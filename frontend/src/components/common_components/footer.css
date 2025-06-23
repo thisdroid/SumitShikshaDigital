@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+@layer components {
+    .footer {
+        @apply w-full;
+    }
+
+    .consultation-banner {
+        @apply bg-blue-600 py-4;
+    }
+
+    .consultation-container {
+        @apply max-w-7xl mx-auto px-4 flex items-center justify-between;
+    }
+
+    .consultation-content {
+        @apply flex items-center gap-3;
+    }
+
+    .consultation-icon {
+        @apply w-8 h-8 text-orange-400 bg-orange-200 rounded-lg p-1.5;
+    }
+
+    .consultation-text {
+        @apply text-white font-medium text-lg;
+    }
+
+    .consultation-actions {
+        @apply flex items-center gap-6;
+    }
+
+    .phone-number {
+        @apply flex items-center gap-2;
+    }
+
+    .phone-icon {
+        @apply w-5 h-5 text-pink-500;
+    }
+
+    .phone-text {
+        @apply text-pink-500 font-semibold text-lg;
+    }
+
+    .consultation-button {
+        @apply bg-white text-blue-600 px-6 py-2.5 rounded-lg font-semibold border-none cursor-pointer transition-colors duration-200 hover:bg-gray-50;
+    }
+
+    .main-footer {
+        @apply bg-gray-100 py-16;
+    }
+
+    .footer-container {
+        @apply max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8;
+    }
+
+    .footer-brand {
+        @apply col-span-1;
+    }
+
+    .footer-logo {
+        @apply flex items-center gap-3 mb-4;
+    }
+
+    .footer-logo-img {
+        width: 160px;
+        height: auto;
+        margin-bottom: 1rem;
+    }
+
+
+    .logo-circle {
+        @apply w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center;
+    }
+
+    .logo-text {
+        @apply text-white font-bold text-lg;
+    }
+
+    .brand-text {
+        @apply flex flex-col leading-tight;
+    }
+
+    .brand-name {
+        @apply text-gray-900 font-bold text-xl;
+    }
+
+    .brand-subtitle {
+        @apply text-blue-600 text-sm font-medium;
+    }
+
+    .footer-description {
+        @apply text-gray-500 text-sm leading-relaxed mb-6 max-w-xs;
+    }
+
+    .social-icons {
+        @apply flex gap-4;
+    }
+
+    .social-link {
+        @apply w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm hover:bg-gray-100;
+    }
+
+    .social-icon {
+        @apply w-5 h-5 text-gray-500;
+    }
+
+    .footer-section {
+        @apply flex flex-col gap-4;
+    }
+
+    .footer-heading {
+        @apply text-gray-900 font-semibold text-lg mb-4 relative;
+    }
+
+    .footer-heading::after {
+        content: "";
+        position: absolute;
+        bottom: -0.5rem;
+        left: 0;
+        width: 2rem;
+        height: 2px;
+        background-color: #3b82f6;
+    }
+
+    .footer-links {
+        @apply flex flex-col gap-3;
+    }
+
+    .footer-link {
+        @apply text-gray-500 text-sm no-underline hover:text-gray-900 transition-colors;
+    }
+
+    .contact-info {
+        @apply flex flex-col gap-4;
+    }
+
+    .contact-item {
+        @apply flex items-start gap-3;
+    }
+
+    .contact-icon {
+        @apply w-5 h-5 mt-0.5 flex-shrink-0;
+    }
+
+    .phone-color {
+        @apply text-pink-500;
+    }
+
+    .email-color {
+        @apply text-blue-500;
+    }
+
+    .location-color {
+        @apply text-pink-500;
+    }
+
+    .contact-text {
+        @apply text-gray-500 text-sm leading-relaxed;
+    }
+
+    .footer-copyright {
+        @apply bg-white border-t border-gray-200 py-4;
+    }
+
+    .copyright-container {
+        @apply max-w-7xl mx-auto px-4;
+    }
+
+    .copyright-text {
+        @apply text-center text-gray-500 text-sm;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .consultation-text {
+        @apply text-base;
+    }
+
+    .phone-text {
+        @apply text-base;
+    }
+
+    .main-footer {
+        @apply py-12;
+    }
+}

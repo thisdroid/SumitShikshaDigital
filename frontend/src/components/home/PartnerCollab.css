@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@layer components {
+  .partner-collab-section {
+    @apply max-w-7xl mx-auto my-16 px-6 py-10 text-center bg-white rounded-xl;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .partner-collab-header h2 {
+    @apply text-3xl font-bold text-gray-900;
+  }
+
+  .partner-highlight {
+    @apply text-blue-600;
+  }
+
+  .partner-subtext {
+    @apply text-gray-500 text-base mt-2;
+  }
+
+  .partner-logo-grid {
+    @apply flex justify-center items-center flex-wrap gap-8 mt-10;
+  }
+
+  .partner-logo-wrapper {
+    @apply max-w-[180px];
+  }
+
+  .partner-logo-img {
+    @apply w-full h-auto object-contain transition-transform duration-300 ease-in-out;
+  }
+
+  .partner-logo-img:hover {
+    @apply scale-105;
+  }
+}

@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@layer components {
+  .navbar {
+    @apply fixed top-0 left-0 w-full z-50 flex items-center justify-between bg-white px-4 py-3 border-b border-gray-300 flex-wrap;
+  }
+
+
+  .left-section {
+    @apply flex items-center gap-6 flex-grow sm:flex-grow-0;
+  }
+
+  .menu-btn {
+    @apply text-2xl font-bold text-gray-700 hover:text-blue-600;
+  }
+
+  .logo-img {
+    margin-top: -15px;
+    height: 60px;
+    width: 110px;
+  }
+
+  .explore-btn {
+    background-color: #fff;
+    border: 1px solid #0066cc;
+    color: #0066cc;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.2s ease;
+  }
+
+  .explore-btn:hover {
+    background-color: #f0f8ff;
+  }
+
+
+
+  .search-container {
+    @apply flex items-center ml-4;
+  }
+
+  .search-input {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 260px;
+    height: 40px;
+  }
+
+  .search-btn {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    padding: 0 15px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+  }
+
+
+  .search-btn:hover {
+    background-color: #005bb5;
+  }
+
+
+  .center-section {
+    @apply flex-1 flex justify-center items-center space-x-3;
+  }
+
+  .nav-link {
+    @apply text-gray-700 font-medium hover:text-blue-700 transition-colors;
+  }
+
+  .active {
+    @apply text-blue-600 font-semibold;
+  }
+
+  .divider {
+    @apply text-gray-300 font-semibold;
+  }
+
+  .right-section {
+    @apply flex items-center space-x-3;
+  }
+
+  .login-btn {
+    @apply px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100 transition;
+  }
+
+  .signup-btn {
+    @apply px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition;
+  }
+}

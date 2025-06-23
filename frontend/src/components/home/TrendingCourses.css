@@ -1,0 +1,275 @@
+@import "tailwindcss";
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+.explore-more {
+  height: 53px;
+  width: 245px;
+  color: white;
+  border: 1px solid #0066cc;
+  background-color: #0066cc;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 27px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  border-radius: .25rem;
+  font-size: 20px;
+  margin-top: 54px;
+}
+
+.explore-more:hover {
+  transform: translateY(-4px);
+  transition: 0.5s;
+  text-decoration: none;
+  background-color: #fff;
+  color: #0067cd;
+  border: 1px solid #0067cd;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* trending card section */
+.ai-trending-header h2 {
+  color: #000;
+  font-family: "EB Garamond", serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.ai-trending-header {
+  text-align: center;
+  color: #0066cc;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "EB Garamond", serif;
+}
+
+.partner-highlight {
+  color: #0066cc;
+  position: relative;
+  font-family: "EB Garamond", serif;
+  font-weight: 700;
+}
+
+.ai-trending-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-size: 400% 400%;
+  animation: aiGradientBG 15s ease infinite;
+  padding: 20px;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  margin-top: -24px;
+}
+
+@keyframes aiGradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.ai-trending-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  width: 100%;
+  z-index: 2;
+}
+
+.ai-trending-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.ai-trending-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.ai-trending-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.ai-trending-card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+  flex-grow: 1;
+  position: relative;
+  padding-bottom: 70px;
+}
+
+.ai-trending-card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #333;
+  line-height: 1.3;
+  font-family: "EB Garamond", serif;
+}
+
+.ai-trending-card-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.ai-trending-price-container {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.ai-trending-current-price {
+  color: #e91e63;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.ai-trending-original-price {
+  position: relative;
+  color: #888;
+  font-size: 16px;
+  display: inline-block;
+}
+
+.ai-trending-original-price::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 75%;
+  width: 100%;
+  height: 2px;
+  background: #888;
+  transform: rotate(-10deg) translateY(-100%);
+  transform-origin: 0 0;
+}
+
+.ai-trending-view-details-btn {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 50%;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ai-trending-view-details-btn:hover {
+  background: #1d4ed8;
+  transform: translateX(-50%) translateY(-2px);
+  text-decoration: none;
+  color: white;
+  border: none;
+}
+
+.ai-floating-icons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ai-floating-icons img {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  animation: aiFloatIcon 15s infinite ease-in-out;
+  opacity: 0.7;
+}
+
+@keyframes aiFloatIcon {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate(calc(var(--ai-x-move1) * 1px), calc(var(--ai-y-move1) * 1px))
+      rotate(calc(var(--ai-rotate-move1) * 1deg)) scale(var(--ai-scale1));
+  }
+  50% {
+    transform: translate(calc(var(--ai-x-move2) * 1px), calc(var(--ai-y-move2) * 1px))
+      rotate(calc(var(--ai-rotate-move2) * 1deg)) scale(var(--ai-scale2));
+  }
+  75% {
+    transform: translate(calc(var(--ai-x-move3) * 1px), calc(var(--ai-y-move3) * 1px))
+      rotate(calc(var(--ai-rotate-move3) * 1deg)) scale(var(--ai-scale3));
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ai-trending-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .explore-more {
+    width: 200px;
+    font-size: 18px;
+  }
+
+  .ai-trending-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-trending-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .explore-more {
+    width: 180px;
+    font-size: 16px;
+    padding: 8px 20px;
+  }
+}

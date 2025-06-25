@@ -27,9 +27,9 @@ const Navbar = () => {
             <div className={styles.mobileMenuContent}>
               {/* Top row: Home and Close */}
               <div className={styles.mobileMenuTopRow}>
-                <a href="/" className={styles.mobileNavLink} onClick={closeMobileMenu}>
+                <NavLink to="/" className={styles.mobileNavLink} onClick={closeMobileMenu} end>
                   Home
-                </a>
+                </NavLink>
                 <button
                   className={styles.mobileMenuClose}
                   onClick={closeMobileMenu}
@@ -41,34 +41,38 @@ const Navbar = () => {
                 </button>
               </div>
               <div className={styles.mobileDivider}></div>
-              <a href="/student" className={styles.mobileNavLink} onClick={closeMobileMenu}>
+              <NavLink to="/Student" className={styles.mobileNavLink} onClick={closeMobileMenu}>
                 Student
-              </a>
+              </NavLink>
               <div className={styles.mobileDivider}></div>
-              <a href="/college" className={styles.mobileNavLink} onClick={closeMobileMenu}>
+              <NavLink to="/College" className={styles.mobileNavLink} onClick={closeMobileMenu}>
                 College
-              </a>
+              </NavLink>
               <div className={styles.mobileDivider}></div>
-              <a href="/training" className={styles.mobileNavLink} onClick={closeMobileMenu}>
+              <NavLink to="/Training" className={styles.mobileNavLink} onClick={closeMobileMenu}>
                 Training
-              </a>
+              </NavLink>
               <div className={styles.mobileDivider}></div>
-              <a href="/about" className={styles.mobileNavLink} onClick={closeMobileMenu}>
+              <NavLink to="/AboutUs" className={styles.mobileNavLink} onClick={closeMobileMenu}>
                 About Us
-              </a>
+              </NavLink>
               <div className={styles.mobileDivider}></div>
-              <a href="/contact" className={styles.mobileNavLink} onClick={closeMobileMenu}>
+              <NavLink to="/ContactUs" className={styles.mobileNavLink} onClick={closeMobileMenu}>
                 Contact Us
-              </a>
+              </NavLink>
 
               {/* Auth buttons at the bottom */}
               <div className={styles.mobileAuthButtons} style={{ marginTop: "auto" }}>
-                <button className={styles.mobileLoginBtnMenu} onClick={() => handleNavClick("login")}>
-                  Log in
-                </button>
-                <button className={styles.mobileSignupBtn} onClick={() => handleNavClick("signup")}>
-                  Sign Up
-                </button>
+                <Link to="/StudentLogin" onClick={closeMobileMenu}>
+                  <button className={styles.mobileLoginBtnMenu}>
+                    Log in
+                  </button>
+                </Link>
+                <Link to="/StudentSignup" onClick={closeMobileMenu}>
+                  <button className={styles.mobileSignupBtn}>
+                    Sign Up
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

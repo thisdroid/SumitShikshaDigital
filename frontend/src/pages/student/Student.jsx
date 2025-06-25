@@ -3,7 +3,7 @@ import styles from './Student.module.css';
 import Navbar from '../../components/common_components/Navbar';
 import { Link } from 'react-router-dom';
 import Animated from '../../components/common_components/Animated';
-const StudentLog = () => {
+const Student = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -95,4 +95,4 @@ const StudentLog = () => {
   );
 };
 
-export default StudentLog;
+export default Student;

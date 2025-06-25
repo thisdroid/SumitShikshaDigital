@@ -190,3 +190,75 @@ font-size: 0.95rem;
 color: #64748b;
 line-height: 1.6;
 }
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 40px 0px;
+  }
+  .heroTitle {
+    font-size: 1.7rem;
+  }
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+  .sectionTitle {
+    font-size: 1.7rem;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .centeredSectionTitle {
+    margin-bottom: 30px;
+  }
+  .visionSection,
+  .missionSection,
+  .whyChooseSection {
+    padding: 40px 0;
+  }
+  .container {
+    padding: 0 8px;
+  }
+  .contentRow,
+  .reverseContentRow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .imageContainer {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .imageContainer img,
+  .imagePlaceholder {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    min-height: 120px;
+    max-height: 220px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin: 0 auto 12px auto;
+    display: block;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .featuresGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .featureCard {
+    padding: 10px 6px;
+  }
+  .featureIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+  .featureTitle {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  .featureDescription {
+    font-size: 0.85rem;
+  }
+}

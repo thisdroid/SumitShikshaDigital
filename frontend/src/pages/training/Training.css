@@ -1,8 +1,3 @@
-/* Training Page Container */
-.training-page {
-  padding-top: 80px;
-}
-
 /* Banner Section */
 .banner {
   /* Gradient: left is white/light-blue, right is white/light-purple/pink */
@@ -37,11 +32,13 @@
 .banner-content h2 {
   font-size: 2.2rem;
   font-weight: bold;
-  color: #0066cc;
   line-height: 1.2;
   margin-bottom: 15px;
   max-width: 600px;
   font-family: "EB Garamond", serif;
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .banner-content p {
@@ -51,7 +48,7 @@
 }
 
 .btn12345 {
-  background-color: #0066cc;
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
   color: white;
   padding: 12px 30px;
   margin-top: 10px;
@@ -65,11 +62,10 @@
 }
 
 .btn12345:hover {
-  transform: translateY(-10px);
+  /* transform: translateY(-10px); */
   transition: 0.5s;
   text-decoration: none;
   background-color: #fff;
-  color: #0067cd;
   border: 1px solid #0067cd;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
@@ -171,7 +167,8 @@
 
 .card-header {
   /* background: linear-gradient(135deg, #4a1e9e 0%, #7b2cff 100%); */
-  background-color: #0066cc;
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+
   padding: 30px 20px;
   position: relative;
   height: 240px;

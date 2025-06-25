@@ -1,4 +1,4 @@
-import "./PreviewTestimonials.css"
+import styles from "./previewTestimonials.module.css"
 
 const PreviewTestimonials = () => {
   const testimonials = [
@@ -58,19 +58,19 @@ const PreviewTestimonials = () => {
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, index) => (
-      <span key={index} className="star">
+      <span key={index} className={styles.star}>
         ★
       </span>
     ))
   }
 
   return (
-    <section className="test">
-      <h2 className="section-heading">
+    <section id="preview-testimonials" className={`${styles.test} ${styles.theme}`}>
+      <h2 className={styles.sectionHeading}>
         See what others are <span>achieving through learning</span>
       </h2>
-      <div className="testimonials">
-        <div className="testimonial-text">
+      <div className={styles.testimonials}>
+        <div className={styles.testimonialText}>
           <h2>
             What Our <br />
             Students Say
@@ -79,25 +79,25 @@ const PreviewTestimonials = () => {
             Relation so in confined smallest children unpacked delicate. Why sir end believe uncivil respect. Always get adieus nature day course for common.
           </p>
           <a href="/testimonials/">
-            <button className="gradient-button">View More</button>
+            <button className={styles.gradientButton}>View More</button>
           </a>
         </div>
 
-        <div className="testimonial-cards">
-          <div className="testimonial-wrapper">
+        <div className={styles.testimonialCards}>
+          <div className={styles.testimonialWrapper}>
             {duplicatedTestimonials.map((testimonial, index) => (
-              <div key={`${testimonial.id}-${index}`} className="card1">
-                <div className="side-bar1"></div>
+              <div key={`${testimonial.id}-${index}`} className={styles.card1}>
+                <div className={styles.sideBar1}></div>
                 <img
                   src={testimonial.image || "/placeholder.svg"}
                   alt={testimonial.name}
-                  className="testimonial-avatar"
+                  className={styles.testimonialAvatar}
                 />
-                <div className="card1-content">
+                <div className={styles.card1Content}>
                   <h3>{testimonial.name}</h3>
                   <p>{testimonial.text}</p>
-                  <div className="rating">{renderStars(testimonial.rating)}</div>
-                  <span className="quote active">❝</span>
+                  <div className={styles.rating}>{renderStars(testimonial.rating)}</div>
+                  <span className={`${styles.quote} ${styles.active}`}>❝</span>
                 </div>
               </div>
             ))}

@@ -1,6 +1,6 @@
 import "./Training.css"
-import Navbar from "../components/common_components/Navbar"
-import Footer from "../components/common_components/Footer"
+import Navbar from "../../components/common_components/Navbar"
+import Footer from "../../components/common_components/Footer"
 const TrainingPage = () => {
   const courses = [
     {
@@ -59,7 +59,11 @@ const TrainingPage = () => {
             </div>
 
             <div className="shape yellow-circle"></div>
-            <div className="shape green-line"></div>
+            <div className="shape green-line">
+              <svg width="20" height="40" viewBox="0 0 20 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="10" y1="0" x2="10" y2="40" stroke="#4caf50" strokeWidth="3" />
+              </svg>
+            </div>
             <div className="shape pink-circle"></div>
 
             <div className="shape blue-star">★</div>

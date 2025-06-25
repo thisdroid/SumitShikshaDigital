@@ -1,93 +1,94 @@
 import React from 'react';
-import { Phone, Mail, MapPin, MessageCircle, Facebook, Linkedin, Twitter, Instagram } from "lucide-react"
-import './footer.css';
+import { Phone, Mail, MapPin, MessageCircle, Facebook, Linkedin, Twitter, Instagram } from 'lucide-react'
+import styles from './footer.module.css';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className="footer">
+        <footer className={`${styles.footer} ${styles.theme}`}>
             {/* Consultation Banner */}
-            <div className="consultation-banner">
-                <div className="consultation-container">
-                    <div className="consultation-content">
-                        <MessageCircle className="consultation-icon" />
-                        <span className="consultation-text">Request a free online examination schedule consultation</span>
+            <div className={styles.consultationBanner}>
+                <div className={styles.consultationContainer}>
+                    <div className={styles.consultationContent}>
+                        <MessageCircle className={styles.consultationIcon} />
+                        <span className={styles.consultationText}>Request a free online examination schedule consultation</span>
                     </div>
-                    <div className="consultation-actions">
-                        <div className="phone-number">
-                            <Phone className="phone-icon" />
-                            <span className="phone-text">+91 9067000315</span>
+                    <div className={styles.consultationActions}>
+                        <div className={styles.phoneNumber}>
+                            <Phone className={styles.phoneIcon} />
+                            <span className={styles.phoneText}>+91 9067000315</span>
                         </div>
-                        <button className="consultation-button">Get Free Consultation</button>
+                        <button className={styles.consultationButton}>Get Free Consultation</button>
                     </div>
                 </div>
             </div>
 
             {/* Main Footer Content */}
-            <div className="main-footer">
-                <div className="footer-container">
+            <div className={styles.mainFooter}>
+                <div className={styles.footerContainer}>
                     {/* Logo and Description */}
-                    <div className="footer-brand">
-                        <div className="footer-logo">
-                            <img src="/images/logo_latest.png" alt="Shiksha Digital Logo" className="footer-logo-img" />
+                    <div className={styles.footerBrand}>
+                        <div className={styles.footerLogo}>
+                            <img src="/images/logo_latest.png" alt="Shiksha Digital Logo" className={styles.footerLogoImg} />
                         </div>
 
-                        <p className="footer-description">
+                        <p className={styles.footerDescription}>
                             Empowering students with quality education and innovative digital learning solutions.
                         </p>
-                        <div className="social-icons">
-                            <a href="#" className="social-link">
-                                <Facebook className="social-icon" />
+                        <div className={styles.socialIcons}>
+                            <a href="#" className={styles.socialLink}>
+                                <Facebook className={styles.socialIcon} />
                             </a>
-                            <a href="#" className="social-link">
-                                <Linkedin className="social-icon" />
+                            <a href="#" className={styles.socialLink}>
+                                <Linkedin className={styles.socialIcon} />
                             </a>
-                            <a href="#" className="social-link">
-                                <Twitter className="social-icon" />
+                            <a href="#" className={styles.socialLink}>
+                                <Twitter className={styles.socialIcon} />
                             </a>
-                            <a href="#" className="social-link">
-                                <Instagram className="social-icon" />
+                            <a href="#" className={styles.socialLink}>
+                                <Instagram className={styles.socialIcon} />
                             </a>
                         </div>
                     </div>
 
                     {/* Quick Links */}
-                    <div className="footer-section">
-                        <h3 className="footer-heading">Quick Links</h3>
-                        <ul className="footer-links">
-                            <li><a href="#" className="footer-link">About Us</a></li>
-                            <li><a href="#" className="footer-link">Courses</a></li>
-                            <li><a href="#" className="footer-link">Contact Us</a></li>
-                            <li><a href="#" className="footer-link">Blog</a></li>
-                            <li><a href="#" className="footer-link">Testimonials</a></li>
+                    <div className={styles.footerSection}>
+                        <h3 className={styles.footerHeading}>Quick Links</h3>
+                        <ul className={styles.footerLinks}>
+                            <li><Link to="/AboutUs" className={styles.footerLink}>About Us</Link></li>
+                            <li><a href="/#trending-courses" className={styles.footerLink}>Courses</a></li>
+                            <li><Link to="/ContactUs" className={styles.footerLink}>Contact Us</Link></li>
+                            <li><Link to="/Blog" className={styles.footerLink}>Blog</Link></li>
+                            <li><a href="/#preview-testimonials" className={styles.footerLink}>Testimonials</a></li>
                         </ul>
                     </div>
 
                     {/* Our Services */}
-                    <div className="footer-section">
-                        <h3 className="footer-heading">Our Services</h3>
-                        <ul className="footer-links">
-                            <li><a href="#" className="footer-link">Online Courses</a></li>
-                            <li><a href="#" className="footer-link">Mock Tests</a></li>
-                            <li><a href="#" className="footer-link">Career Guidance</a></li>
-                            <li><a href="#" className="footer-link">Skill Assessment</a></li>
+                    <div className={styles.footerSection}>
+                        <h3 className={styles.footerHeading}>Our Services</h3>
+                        <ul className={styles.footerLinks}>
+                            <li><a href="#" className={styles.footerLink}>Online Courses</a></li>
+                            <li><a href="#" className={styles.footerLink}>Mock Tests</a></li>
+                            <li><a href="#" className={styles.footerLink}>Career Guidance</a></li>
+                            <li><a href="#" className={styles.footerLink}>Skill Assessment</a></li>
                         </ul>
                     </div>
 
                     {/* Contact Info */}
-                    <div className="footer-section">
-                        <h3 className="footer-heading">Contact Info</h3>
-                        <div className="contact-info">
-                            <div className="contact-item">
-                                <Phone className="contact-icon phone-color" />
-                                <span className="contact-text">+91 9067000315</span>
+                    <div className={styles.footerSection}>
+                        <h3 className={styles.footerHeading}>Contact Info</h3>
+                        <div className={styles.contactInfo}>
+                            <div className={styles.contactItem}>
+                                <Phone className={`${styles.contactIcon} ${styles.phoneColor}`} />
+                                <span className={styles.contactText}>+91 9067000315</span>
                             </div>
-                            <div className="contact-item">
-                                <Mail className="contact-icon email-color" />
-                                <span className="contact-text">info@aartimultiservices.com</span>
+                            <div className={styles.contactItem}>
+                                <Mail className={`${styles.contactIcon} ${styles.emailColor}`} />
+                                <span className={styles.contactText}>info@aartimultiservices.com</span>
                             </div>
-                            <div className="contact-item">
-                                <MapPin className="contact-icon location-color" />
-                                <span className="contact-text">Flat No. 101, Prathamesh Plaza, Unthkhana Road, Nagpur 440009</span>
+                            <div className={styles.contactItem}>
+                                <MapPin className={`${styles.contactIcon} ${styles.locationColor}`} />
+                                <span className={styles.contactText}>Flat No. 101, Prathamesh Plaza, Unthkhana Road, Nagpur 440009</span>
                             </div>
                         </div>
                     </div>
@@ -95,13 +96,13 @@ const Footer = () => {
             </div>
 
             {/* Copyright */}
-            <div className="footer-copyright">
-                <div className="copyright-container">
-                    <p className="copyright-text">© 2023 Aarti Multi Services. All rights reserved.</p>
+            <div className={styles.footerCopyright}>
+                <div className={styles.copyrightContainer}>
+                    <p className={styles.copyrightText}>© 2023 Aarti Multi Services. All rights reserved.</p>
                 </div>
             </div>
         </footer>
     )
 }
 
-export default Footer
+export default Footer;

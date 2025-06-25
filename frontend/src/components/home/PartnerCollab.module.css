@@ -1,0 +1,71 @@
+/* Theme variables */
+.theme {
+  --max-width: 80rem;
+  --spacing-16: 4rem;
+  --spacing-10: 2.5rem;
+  --spacing-6: 1.5rem;
+  --spacing-2: 0.5rem;
+  --text-3xl: 1.875rem;
+  --text-base: 1rem;
+  --font-bold: 700;
+  --text-gray-900: #111827;
+  --text-gray-500: #6b7280;
+  --text-blue-600: #2563eb;
+  --bg-white: #ffffff;
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --border-radius-xl: 0.75rem;
+}
+
+.partnerCollabSection {
+  max-width: var(--max-width);
+  margin: var(--spacing-16) auto;
+  padding: var(--spacing-6) var(--spacing-10);
+  text-align: center;
+  background-color: var(--bg-white);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-soft);
+}
+
+.partnerCollabHeader h2 {
+  font-size: var(--text-3xl);
+  line-height: 2.25rem;
+  font-weight: var(--font-bold);
+  color: var(--text-gray-900);
+  margin: 0;
+}
+
+.partnerHighlight {
+  color: var(--text-blue-600);
+}
+
+.partnerSubtext {
+  color: var(--text-gray-500);
+  font-size: var(--text-base);
+  line-height: 1.5rem;
+  margin-top: var(--spacing-2);
+  margin-bottom: 0;
+}
+
+.partnerLogoGrid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: var(--spacing-10);
+}
+
+.partnerLogoWrapper {
+  max-width: 180px;
+}
+
+.partnerLogoImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease-in-out;
+}
+
+.partnerLogoImg:hover {
+  transform: scale(1.05);
+}

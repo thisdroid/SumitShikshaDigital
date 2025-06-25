@@ -1,10 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import Training from './pages/Training'
-import StudentLogin from './pages/StudentLogin'
-import StudentSignup from './pages/StudentSignup'
-import StudentLog from './pages/Student'
-import College from './pages/College'
+import Home from './pages/home/Home'
+import Training from './pages/training/Training'
+import StudentLogin from './pages/student_login_signup/StudentLogin'
+import StudentSignup from './pages/student_login_signup/StudentSignup'
+import StudentLog from './pages/student/Student'
+import College from './pages/college/College'
+import CollegeLogin from './pages/college_login_signup/CollegeLogin'
+import ContactUs from './pages/home/ContactUs'
+import AboutUs from './pages/home/AboutUs'
+
+
 // import other pages as needed
 
 function App() {
@@ -17,6 +22,10 @@ function App() {
         <Route path="/StudentSignup" element={<StudentSignup />} />
         <Route path="/Student" element={<StudentLog />} />
         <Route path="/College" element={<College />} />
+        <Route path="/CollegeLogin" element={<CollegeLogin />} />
+        <Route path="/AboutUs" element={<AboutUs />} />
+        <Route path="/ContactUs" element={<ContactUs />} />
+        {/* <Route path="/College" element={<College />} /> */}
         {/* Add more routes here */}
       </Routes>
     </Router>

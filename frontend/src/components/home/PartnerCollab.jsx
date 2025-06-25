@@ -1,23 +1,23 @@
 import React from 'react';
-import './PartnerCollab.css';
+import styles from './partnerCollab.module.css';
 
 const PartnerCollab = () => {
   return (
-    <div className="partner-collab-section">
-      <div className="partner-collab-header">
+    <div className={`${styles.partnerCollabSection} ${styles.theme}`}>
+      <div className={styles.partnerCollabHeader}>
         <h2>
-          Trusted by <span className="partner-highlight">Industry Leaders</span>
+          Trusted by <span className={styles.partnerHighlight}>Industry Leaders</span>
         </h2>
-        <p className="partner-subtext">
+        <p className={styles.partnerSubtext}>
           We're proud to partner with organizations that share our commitment to excellence
         </p>
       </div>
-      <div className="partner-logo-grid">
-        <div className="partner-logo-wrapper">
+      <div className={styles.partnerLogoGrid}>
+        <div className={styles.partnerLogoWrapper}>
           <img
             src="/collaboration2.png"
             alt="MSME Logo"
-            className="partner-logo-img"
+            className={styles.partnerLogoImg}
           />
         </div>
       </div>

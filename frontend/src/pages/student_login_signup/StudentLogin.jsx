@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { Eye, EyeOff, CircleArrowRight , ArrowRight } from "lucide-react"
 import "./StudentLogin.css"
-import Navbar from '../components/common_components/Navbar'
-import Animated from "../components/common_components/Animated"
+import Navbar from '../../components/common_components/Navbar'
+import Animated from "../../components/common_components/Animated"
+import { Link } from 'react-router-dom';
 const StudentLogin = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
@@ -56,9 +57,8 @@ const StudentLogin = () => {
             <div className="signup-section">
               <p className="signup-text">
                 {"Don't have an account? "}
-                <a href="#" className="signup-link">
-                  Sign up here
-                </a>
+                {/* <a href="#" className="signup-link">Sign up here</a> */}
+                <Link to="/StudentSignup" className="signup-link">Sign up here</Link>
               </p>
             </div>
           </div>
@@ -119,13 +119,11 @@ const StudentLogin = () => {
               </form>
 
               {/* Footer Links */}
-              <div className="footer-links">
-                <a href="#" className="footer-link">
+              <div className="login-footer-links">
+                <a href="#" className="login-footer-link">
                   Forgot Password?
                 </a>
-                <a href="#" className="footer-link">
-                  Create New Account
-                </a>
+                <Link to="/StudentSignup" className="login-footer-link">Create New Account</Link>
               </div>
             </div>
           </div>

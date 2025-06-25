@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import "./Animated.css"
+import styles from "./Animated.module.css"
 
 const AnimatedBackground = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -14,16 +14,16 @@ const AnimatedBackground = () => {
   }, [])
 
   return (
-    <div className="animated-background"> 
-      <div className="floating-shapes">
-        <div className="shape shape-1"></div>
-        <div className="shape shape-2"></div>
-        <div className="shape shape-3"></div>
-        <div className="shape shape-4"></div>
-        <div className="shape shape-5"></div>
+    <div className={styles.animatedBackground}>
+      <div className={styles.floatingShapes}>
+        <div className={`${styles.shape} ${styles.shape1}`}></div>
+        <div className={`${styles.shape} ${styles.shape2}`}></div>
+        <div className={`${styles.shape} ${styles.shape3}`}></div>
+        <div className={`${styles.shape} ${styles.shape4}`}></div>
+        <div className={`${styles.shape} ${styles.shape5}`}></div>
       </div>
       <div
-        className="mouse-follower"
+        className={styles.mouseFollower}
         style={{
           left: `${mousePosition.x - 100}px`,
           top: `${mousePosition.y - 100}px`,

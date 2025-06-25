@@ -1,0 +1,331 @@
+/* CollegeLogin.module.css */
+
+.theme {
+  --primary: #3498db;
+  --secondary: #9b59b6;
+}
+
+.loginContainer {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  background-color: #e8eef7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.loginCard {
+  width: 100%;
+  max-width: 70rem;
+  background-color: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.loginContent {
+  display: flex;
+  min-height: 500px;
+}
+
+.leftPanel {
+  flex: 1;
+  background: linear-gradient(135deg, #4a90e2 0%, #2e5bba 100%);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.bgCircle1 {
+  position: absolute;
+  top: 5rem;
+  right: 5rem;
+  width: 8rem;
+  height: 8rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.bgCircle2 {
+  position: absolute;
+  bottom: 8rem;
+  left: 4rem;
+  width: 6rem;
+  height: 6rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.bgCircle3 {
+  position: absolute;
+  top: 50%;
+  left: 2rem;
+  width: 4rem;
+  height: 4rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.iconContainer {
+  margin-bottom: 2rem;
+}
+
+.heroIcon {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  color: #4cc9f0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.welcomeTitle {
+  color: white;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  margin-top: 0;
+  line-height: 1.2;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.welcomeSubtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.125rem;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+  max-width: 20rem;
+  line-height: 1.6;
+}
+
+.signupSection {
+  margin-top: auto;
+}
+
+.signupText {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.signupLink {
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.signupLink:hover {
+  text-decoration: underline;
+}
+
+.rightPanel {
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.formContainer {
+  max-width: 28rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.headerSection {
+  margin-bottom: 2rem;
+}
+
+.loginTitle {
+  font-family: "EB garamond", serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-align: center;
+  color: transparent;
+  /* margin-bottom: 1rem; */
+  display: flex;
+  justify-content: center;
+}
+
+.loginSubtitle {
+  color: #8b9dc3;
+  text-align: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d6e3f0;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.formInput:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.formInput::placeholder {
+  color: #8b9dc3;
+}
+
+.passwordContainer {
+  position: relative;
+}
+
+.passwordInput {
+  padding-right: 3rem;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #8b9dc3;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passwordToggle:hover {
+  color: #2c3e50;
+}
+
+.loginButton {
+  width: 100%;
+  background: linear-gradient(90deg, #4a90e2 0%, #2e5bba 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.loginButton:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25);
+  transform: translateY(-1px);
+}
+
+.collegeloginFooterLinks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.collegeloginFooterLink {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.collegeloginFooterLink:hover {
+  text-decoration: underline;
+}
+
+.backgroundWrapper {
+  position: absolute;
+  inset: -1;
+  z-index: 0;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 768px) {
+  .loginContent {
+    flex-direction: column;
+    min-height: auto;
+    height: auto;
+    gap: 1rem;
+  }
+
+  .leftPanel,
+  .rightPanel {
+    flex: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .loginContainer {
+    align-items: flex-start;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .loginContainer {
+    padding: 0.25rem;
+  }
+
+  .leftPanel {
+    padding: 1.5rem 1rem !important;
+  }
+
+  .rightPanel {
+    padding: 1.5rem 1rem !important;
+  }
+
+  .welcomeTitle {
+    font-size: 1.25rem !important;
+  }
+
+  .loginTitle {
+    font-size: 1.75rem !important;
+  }
+
+  .heroIcon {
+    font-size: 2.5rem !important;
+  }
+
+  .formInput {
+    padding: 0.875rem 1rem;
+    font-size: 16px;
+  }
+
+  .loginButton {
+    padding: 1rem 1.5rem;
+  }
+}

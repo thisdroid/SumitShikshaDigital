@@ -157,7 +157,7 @@
 }
 
 .signup-link {
-  color: #5dade2;
+  color: #4cc9f0;
   font-weight: 500;
   text-decoration: none;
 }
@@ -293,7 +293,7 @@
   transform: translateY(-1px);
 }
 
-.footer-links {
+.login-footer-links {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -301,12 +301,12 @@
   font-size: 0.875rem;
 }
 
-.footer-link {
+.login-footer-link {
   color: #4a90e2;
   text-decoration: none;
 }
 
-.footer-link:hover {
+.login-footer-link:hover {
   text-decoration: underline;
 }
 
@@ -373,9 +373,9 @@
 
   .login-button {
     padding: 1rem 1.5rem !important;
-  }
+  } 
 
-  .footer-links {
+  .login-footer-links {
     flex-direction: column !important;
     gap: 1rem !important;
   }

@@ -1,16 +1,32 @@
-@import "tailwindcss";
+/* Theme variables */
+.theme {
+  --primary-blue: #0066cc;
+  --primary-blue-hover: #0067cd;
+  --secondary-blue: #2196f3;
+  --secondary-blue-dark: #1976d2;
+  --text-black: #000;
+  --text-gray-333: #333;
+  --text-gray-666: #666;
+  --text-gray-888: #888;
+  --bg-white: #ffffff;
+  --pink-accent: #e91e63;
+  --font-garamond: "EB Garamond", serif;
+  --shadow-card: 0 6px 12px rgba(0, 0, 0, 0.15);
+  --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.2);
+  --shadow-button: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
 
-
-html {
+/* Global scroll behavior */
+.theme {
   scroll-behavior: smooth;
 }
 
-.explore-more {
+.exploreMore {
   height: 53px;
   width: 245px;
   color: white;
-  border: 1px solid #0066cc;
-  background-color: #0066cc;
+  border: 1px solid var(--primary-blue);
+  background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--secondary-blue-dark) 100%);
   text-decoration: none;
   text-align: center;
   padding: 10px 27px;
@@ -18,46 +34,46 @@ html {
   display: flex;
   justify-content: center;
   margin: 20px auto;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   font-size: 20px;
   margin-top: 54px;
 }
 
-.explore-more:hover {
+.exploreMore:hover {
   transform: translateY(-4px);
   transition: 0.5s;
   text-decoration: none;
-  background-color: #fff;
-  color: #0067cd;
-  border: 1px solid #0067cd;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  background-color: var(--bg-white);
+  color: var(--primary-blue-hover);
+  border: 1px solid var(--primary-blue-hover);
+  box-shadow: var(--shadow-button);
 }
 
-/* trending card section */
-.ai-trending-header h2 {
-  color: #000;
-  font-family: "EB Garamond", serif;
+/* Trending card section */
+.aiTrendingHeader h2 {
+  color: var(--text-black);
+  font-family: var(--font-garamond);
   font-size: 2.2rem;
   font-weight: 700;
 }
 
-.ai-trending-header {
+.aiTrendingHeader {
   text-align: center;
-  color: #0066cc;
+  color: var(--primary-blue);
   padding: 20px;
   font-size: 24px;
   font-weight: bold;
-  font-family: "EB Garamond", serif;
+  font-family: var(--font-garamond);
 }
 
-.partner-highlight {
-  color: #0066cc;
+.partnerHighlight {
+  color: var(--secondary-blue);
   position: relative;
-  font-family: "EB Garamond", serif;
+  font-family: var(--font-garamond);
   font-weight: 700;
 }
 
-.ai-trending-container {
+.aiTrendingContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,7 +100,7 @@ html {
   }
 }
 
-.ai-trending-grid {
+.aiTrendingGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
@@ -93,7 +109,7 @@ html {
   z-index: 2;
 }
 
-.ai-trending-card {
+.aiTrendingCard {
   display: flex;
   flex-direction: column;
   background: rgba(255, 255, 255, 0.25);
@@ -102,23 +118,23 @@ html {
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-card);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
 }
 
-.ai-trending-card:hover {
+.aiTrendingCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-hover);
 }
 
-.ai-trending-card-image {
+.aiTrendingCardImage {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
-.ai-trending-card-content {
+.aiTrendingCardContent {
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -128,24 +144,24 @@ html {
   padding-bottom: 70px;
 }
 
-.ai-trending-card-title {
+.aiTrendingCardTitle {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 12px;
-  color: #333;
+  color: var(--text-gray-333);
   line-height: 1.3;
-  font-family: "EB Garamond", serif;
+  font-family: var(--font-garamond);
 }
 
-.ai-trending-card-description {
+.aiTrendingCardDescription {
   font-size: 14px;
-  color: #666;
+  color: var(--text-gray-666);
   margin-bottom: 20px;
   line-height: 1.5;
   flex-grow: 1;
 }
 
-.ai-trending-price-container {
+.aiTrendingPriceContainer {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 15px;
@@ -155,33 +171,33 @@ html {
   gap: 10px;
 }
 
-.ai-trending-current-price {
-  color: #e91e63;
+.aiTrendingCurrentPrice {
+  color: var(--pink-accent);
   font-weight: bold;
   font-size: 20px;
 }
 
-.ai-trending-original-price {
+.aiTrendingOriginalPrice {
   position: relative;
-  color: #888;
+  color: var(--text-gray-888);
   font-size: 16px;
   display: inline-block;
 }
 
-.ai-trending-original-price::before {
+.aiTrendingOriginalPrice::before {
   content: "";
   position: absolute;
   left: 0;
   top: 75%;
   width: 100%;
   height: 2px;
-  background: #888;
+  background: var(--text-gray-888);
   transform: rotate(-10deg) translateY(-100%);
   transform-origin: 0 0;
 }
 
-.ai-trending-view-details-btn {
-  background-color: #0066cc;
+.aiTrendingViewDetailsBtn {
+  background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--secondary-blue-dark) 100%);
   color: white;
   border: none;
   padding: 12px;
@@ -199,15 +215,15 @@ html {
   transform: translateX(-50%);
 }
 
-.ai-trending-view-details-btn:hover {
-  background: #1d4ed8;
+.aiTrendingViewDetailsBtn:hover {
+  background: linear-gradient(135deg, #1c92f3 0%, var(--secondary-blue-dark) 100%);
   transform: translateX(-50%) translateY(-2px);
   text-decoration: none;
   color: white;
   border: none;
 }
 
-.ai-floating-icons {
+.aiFloatingIcons {
   position: absolute;
   top: 0;
   left: 0;
@@ -217,7 +233,7 @@ html {
   z-index: 1;
 }
 
-.ai-floating-icons img {
+.aiFloatingIcons img {
   position: absolute;
   width: 40px;
   height: 40px;
@@ -248,26 +264,26 @@ html {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .ai-trending-header h2 {
+  .aiTrendingHeader h2 {
     font-size: 1.8rem;
   }
 
-  .explore-more {
+  .exploreMore {
     width: 200px;
     font-size: 18px;
   }
 
-  .ai-trending-grid {
+  .aiTrendingGrid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 480px) {
-  .ai-trending-header h2 {
+  .aiTrendingHeader h2 {
     font-size: 1.5rem;
   }
 
-  .explore-more {
+  .exploreMore {
     width: 180px;
     font-size: 16px;
     padding: 8px 20px;

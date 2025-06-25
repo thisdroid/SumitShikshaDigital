@@ -1,0 +1,344 @@
+/* Theme variables - applied to root wrapper */
+.theme {
+  --primary-blue: #3b82f6;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --orange-200: #fed7aa;
+  --orange-400: #fb923c;
+  --pink-500: #ec4899;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-500: #6b7280;
+  --gray-900: #111827;
+  --white: #ffffff;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.footer {
+  width: 100%;
+}
+
+.consultationBanner {
+  background: linear-gradient(to right, var(--blue-500), var(--blue-700));
+  padding: 1rem 0;
+}
+
+.consultationContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.consultationContent {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.consultationIcon {
+  width: 2rem;
+  height: 2rem;
+  color: var(--orange-400);
+  background-color: var(--orange-200);
+  border-radius: 0.5rem;
+  padding: 0.375rem;
+}
+
+.consultationText {
+  color: var(--white);
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.consultationActions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.phoneNumber {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.phoneIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--pink-500);
+}
+
+.phoneText {
+  color: var(--pink-500);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.consultationButton {
+  background-color: var(--white);
+  color: var(--blue-600);
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.consultationButton:hover {
+  background-color: var(--gray-50);
+}
+
+.mainFooter {
+  background-color: var(--gray-100);
+  padding: 4rem 0;
+}
+
+.footerContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .footerContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footerContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.footerBrand {
+  grid-column: span 1;
+}
+
+.footerLogo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.footerLogoImg {
+  width: 160px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.logoCircle {
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--blue-600);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoText {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.brandName {
+  color: var(--gray-900);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.brandSubtitle {
+  color: var(--blue-600);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+}
+
+.footerDescription {
+  color: var(--gray-500);
+  font-size: 0.875rem;
+  line-height: 1.625;
+  margin-bottom: 1.5rem;
+  max-width: 20rem;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialLink {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.socialLink:hover {
+  background-color: var(--gray-100);
+}
+
+.socialIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--gray-500);
+}
+
+.footerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footerHeading {
+  color: var(--gray-900);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.footerHeading::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 2rem;
+  height: 2px;
+  background-color: var(--primary-blue);
+}
+
+.footerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLink {
+  color: var(--gray-500);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footerLink:hover {
+  color: var(--gray-900);
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.contactIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.phoneColor {
+  color: var(--pink-500);
+}
+
+.emailColor {
+  color: var(--blue-500);
+}
+
+.locationColor {
+  color: var(--pink-500);
+}
+
+.contactText {
+  color: var(--gray-500);
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
+
+.footerCopyright {
+  background-color: var(--white);
+  border-top: 1px solid var(--gray-200);
+  padding: 1rem 0;
+}
+
+.copyrightContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.copyrightText {
+  text-align: center;
+  color: var(--gray-500);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .consultationContainer {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .consultationText {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .phoneText {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .mainFooter {
+    padding: 3rem 0;
+  }
+  
+  .consultationActions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

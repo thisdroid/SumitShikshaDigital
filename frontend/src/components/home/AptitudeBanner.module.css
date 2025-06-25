@@ -1,0 +1,880 @@
+/* Theme variables */
+.theme {
+  --primary-blue: #2563eb;
+  --primary-blue-hover: #1d4ed8;
+  --secondary-blue: #3b82f6;
+  --blue-50: #eff6ff;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --gray-100: #f3f4f6;
+  --gray-600: #4b5563;
+  --gray-900: #111827;
+  --purple-200: #e9d5ff;
+  --white: #ffffff;
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --border-radius-2xl: 1rem;
+  --border-radius-lg: 0.5rem;
+}
+
+/* Wrapper - centers the box on page */
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
+}
+
+/* Main contained box */
+.mainContainer {
+  position: relative;
+  max-width: 80rem;
+  width: 100%;
+  background: linear-gradient(to bottom right, var(--blue-50), var(--gray-100));
+  border-radius: var(--border-radius-2xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.contentWrapper {
+  position: relative;
+  padding: 2rem 3rem;
+}
+
+/* Background decorative elements */
+.backgroundDecorative {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.primaryCircle {
+  position: absolute;
+  top: 2.5rem;
+  left: 2.5rem;
+  width: 8rem;
+  height: 8rem;
+  background-color: rgba(191, 219, 254, 0.3);
+  border-radius: 50%;
+  filter: blur(1.5rem);
+}
+
+.secondaryCircle {
+  position: absolute;
+  bottom: 5rem;
+  right: 5rem;
+  width: 6rem;
+  height: 6rem;
+  background-color: rgba(233, 213, 255, 0.2);
+  border-radius: 50%;
+  filter: blur(1rem);
+}
+
+/* Content container */
+.contentGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Left side with text */
+.textSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.mainHeading {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.highlightText {
+  color: var(--blue-600);
+}
+
+.description {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.buttonContainer {
+  display: flex;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(to bottom right, var(--blue-500), var(--blue-700));
+  color: var(--white);
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius-lg);
+  transition: all 0.2s ease;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.ctaButton:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.buttonIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Right side with puzzle arrangement */
+.puzzleSection {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.puzzleContainer {
+  position: relative;
+  width: 20rem;
+  height: 16rem;
+}
+
+/* Plus shape base styles */
+.plusShape {
+  position: relative;
+  z-index: 10;
+}
+
+.plusHorizontal {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  box-shadow: var(--shadow-lg);
+}
+
+.plusVertical {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 100%;
+  transform: translateX(-50%);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Plus size variants */
+.plusLarge {
+  width: 5rem;
+  height: 5rem;
+}
+
+.plusLarge .plusHorizontal {
+  height: 1.5rem;
+  background-color: var(--blue-600);
+}
+
+.plusLarge .plusVertical {
+  width: 1.5rem;
+  background-color: var(--blue-600);
+}
+
+.plusMedium {
+  width: 4rem;
+  height: 4rem;
+}
+
+.plusMedium .plusHorizontal {
+  height: 1.25rem;
+  background-color: var(--blue-500);
+}
+
+.plusMedium .plusVertical {
+  width: 1.25rem;
+  background-color: var(--blue-500);
+}
+
+.plusXLarge {
+  width: 6rem;
+  height: 6rem;
+}
+
+.plusXLarge .plusHorizontal {
+  height: 1.75rem;
+  background-color: var(--blue-700);
+}
+
+.plusXLarge .plusVertical {
+  width: 1.75rem;
+  background-color: var(--blue-700);
+}
+
+.plusSmall {
+  width: 3rem;
+  height: 3rem;
+}
+
+.plusSmall .plusHorizontal {
+  height: 1rem;
+  background-color: var(--blue-400);
+}
+
+.plusSmall .plusVertical {
+  width: 1rem;
+  background-color: var(--blue-400);
+}
+
+.plusMediumAlt {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.plusMediumAlt .plusHorizontal {
+  height: 1rem;
+  background-color: var(--blue-500);
+}
+
+.plusMediumAlt .plusVertical {
+  width: 1rem;
+  background-color: var(--blue-500);
+}
+
+/* Plus positioning */
+.plusWrapper1 {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.plusWrapper2 {
+  position: absolute;
+  top: 4rem;
+  right: 3rem;
+}
+
+.plusWrapper3 {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.plusWrapper4 {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+
+.plusWrapper5 {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+}
+
+/* Plus shadows */
+.plusShadow1 {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 5rem;
+  height: 5rem;
+  opacity: 0.3;
+}
+
+.plusShadow1::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1.5rem;
+  background-color: var(--blue-300);
+  transform: translateY(-50%);
+}
+
+.plusShadow1::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1.5rem;
+  height: 100%;
+  background-color: var(--blue-300);
+  transform: translateX(-50%);
+}
+
+.plusShadow2 {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  width: 4rem;
+  height: 4rem;
+  opacity: 0.25;
+}
+
+.plusShadow2::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1.25rem;
+  background-color: var(--blue-300);
+  transform: translateY(-50%);
+}
+
+.plusShadow2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1.25rem;
+  height: 100%;
+  background-color: var(--blue-300);
+  transform: translateX(-50%);
+}
+
+.plusShadow3 {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  width: 6rem;
+  height: 6rem;
+  opacity: 0.2;
+}
+
+.plusShadow3::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1.75rem;
+  background-color: var(--blue-300);
+  transform: translateY(-50%);
+}
+
+.plusShadow3::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1.75rem;
+  height: 100%;
+  background-color: var(--blue-300);
+  transform: translateX(-50%);
+}
+
+.plusShadow4 {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 3rem;
+  height: 3rem;
+  opacity: 0.25;
+}
+
+.plusShadow4::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1rem;
+  background-color: var(--blue-300);
+  transform: translateY(-50%);
+}
+
+.plusShadow4::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1rem;
+  height: 100%;
+  background-color: var(--blue-300);
+  transform: translateX(-50%);
+}
+
+.plusShadow5 {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  opacity: 0.25;
+}
+
+.plusShadow5::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1rem;
+  background-color: var(--blue-300);
+  transform: translateY(-50%);
+}
+
+.plusShadow5::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1rem;
+  height: 100%;
+  background-color: var(--blue-300);
+  transform: translateX(-50%);
+}
+
+/* Animations */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1.25rem);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.bounceAnimation1 {
+  animation: bounce 3s infinite;
+  animation-delay: 0s;
+}
+
+.bounceAnimation2 {
+  animation: bounce 3.5s infinite;
+  animation-delay: 1s;
+}
+
+.bounceAnimation3 {
+  animation: bounce 4s infinite;
+  animation-delay: 2s;
+}
+
+.bounceAnimation4 {
+  animation: bounce 3.2s infinite;
+  animation-delay: 0.5s;
+}
+
+.bounceAnimation5 {
+  animation: bounce 3.8s infinite;
+  animation-delay: 1.5s;
+}
+
+.pulseAnimation {
+  animation: pulse 2s infinite;
+}
+
+.pulseAnimationDelayed {
+  animation: pulse 2s infinite;
+  animation-delay: 1s;
+}
+
+/* Star and lightbulb icons */
+.starIcon {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  color: rgba(147, 197, 253, 0.5);
+  z-index: 20;
+}
+
+.lightbulbIcon {
+  position: absolute;
+  bottom: -2rem;
+  left: -1rem;
+  color: rgba(147, 197, 253, 0.4);
+  z-index: 20;
+}
+
+/* Responsive Design */
+@media (min-width: 1024px) {
+  .contentWrapper {
+    padding: 2.5rem 4rem;
+  }
+
+  .contentGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mainHeading {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .puzzleSection {
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 1280px) {
+  .mainHeading {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 1023px) {
+  .puzzleSection {
+    order: -1;
+    margin-bottom: 1rem;
+  }
+
+  .puzzleContainer {
+    width: 16rem;
+    height: 12rem;
+    margin: 0 auto;
+  }
+
+  .plusWrapper1 {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .plusWrapper2 {
+    top: 2rem;
+    right: 1rem;
+  }
+
+  .plusWrapper3 {
+    bottom: 1rem;
+  }
+
+  .plusWrapper4 {
+    left: 0.5rem;
+  }
+
+  .plusWrapper5 {
+    right: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 1rem;
+  }
+
+  .contentWrapper {
+    padding: 1.5rem 2rem;
+  }
+
+  .contentGrid {
+    gap: 2rem;
+  }
+
+  .textSection {
+    gap: 1.5rem;
+  }
+
+  .mainHeading {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .ctaButton {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .puzzleContainer {
+    width: 14rem;
+    height: 10rem;
+  }
+
+  /* Smaller plus shapes on mobile */
+  .plusLarge {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .plusLarge .plusHorizontal {
+    height: 1rem;
+  }
+
+  .plusLarge .plusVertical {
+    width: 1rem;
+  }
+
+  .plusMedium {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .plusMedium .plusHorizontal {
+    height: 0.875rem;
+  }
+
+  .plusMedium .plusVertical {
+    width: 0.875rem;
+  }
+
+  .plusXLarge {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .plusXLarge .plusHorizontal {
+    height: 1.25rem;
+  }
+
+  .plusXLarge .plusVertical {
+    width: 1.25rem;
+  }
+
+  .plusSmall {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .plusSmall .plusHorizontal {
+    height: 0.75rem;
+  }
+
+  .plusSmall .plusVertical {
+    width: 0.75rem;
+  }
+
+  .plusMediumAlt {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .plusMediumAlt .plusHorizontal {
+    height: 0.75rem;
+  }
+
+  .plusMediumAlt .plusVertical {
+    width: 0.75rem;
+  }
+
+  /* Adjust shadows for smaller plus shapes */
+  .plusShadow1 {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .plusShadow1::before {
+    height: 1rem;
+  }
+
+  .plusShadow1::after {
+    width: 1rem;
+  }
+
+  .plusShadow2 {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .plusShadow2::before {
+    height: 0.875rem;
+  }
+
+  .plusShadow2::after {
+    width: 0.875rem;
+  }
+
+  .plusShadow3 {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .plusShadow3::before {
+    height: 1.25rem;
+  }
+
+  .plusShadow3::after {
+    width: 1.25rem;
+  }
+
+  .plusShadow4 {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .plusShadow4::before {
+    height: 0.75rem;
+  }
+
+  .plusShadow4::after {
+    width: 0.75rem;
+  }
+
+  .plusShadow5 {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .plusShadow5::before {
+    height: 0.75rem;
+  }
+
+  .plusShadow5::after {
+    width: 0.75rem;
+  }
+
+  /* Adjust icon sizes */
+  .starIcon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .lightbulbIcon svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 0.75rem;
+  }
+
+  .contentWrapper {
+    padding: 1rem 1.5rem;
+  }
+
+  .mainHeading {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .description {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .ctaButton {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    gap: 0.5rem;
+  }
+
+  .buttonIcon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .puzzleContainer {
+    width: 12rem;
+    height: 8rem;
+  }
+
+  .primaryCircle {
+    width: 6rem;
+    height: 6rem;
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .secondaryCircle {
+    width: 4rem;
+    height: 4rem;
+    bottom: 3rem;
+    right: 3rem;
+  }
+
+  /* Further reduce plus shapes for very small screens */
+  .plusLarge {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .plusXLarge {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .plusMedium {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .plusSmall {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .plusMediumAlt {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  /* Adjust positioning for very small screens */
+  .plusWrapper1 {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .plusWrapper2 {
+    top: 1rem;
+    right: 0.5rem;
+  }
+
+  .plusWrapper3 {
+    bottom: 0.5rem;
+  }
+
+  .plusWrapper4 {
+    left: 0.25rem;
+  }
+
+  .plusWrapper5 {
+    right: 0.5rem;
+  }
+
+  .starIcon {
+    top: -0.5rem;
+    right: -0.5rem;
+  }
+
+  .lightbulbIcon {
+    bottom: -1rem;
+    left: -0.5rem;
+  }
+
+  .starIcon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .lightbulbIcon svg {
+    width: 20px;
+    height: 20px;
+  }
+}

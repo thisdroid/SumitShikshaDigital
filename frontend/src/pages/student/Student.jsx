@@ -18,35 +18,24 @@ const Student = () => {
   return (
     <>
       <Navbar />
-      <div className={styles.examinationPlatform}>
-        <div className={styles.animatedBackground}>
-          <div className={styles.floatingShapes}>
-            <div className={styles.shape1}></div>
-            <div className={styles.shape2}></div>
-            <div className={styles.shape3}></div>
-            <div className={styles.shape4}></div>
-            <div className={styles.shape5}></div>
-          </div>
-          <div
-            className={styles.mouseFollower}
-            style={{
-              left: `${mousePosition.x - 100}px`,
-              top: `${mousePosition.y - 100}px`,
-            }}
-          ></div>
-        </div>
+       <div className={styles.examinationPlatform}>
         <div className={styles.backgroundWrapper}>
           <Animated />
         </div>
 
         <div className={styles.hero}>
+          <div className={styles.container}>
+          
           <div className={styles.heroContent}>
+            <div className={styles.heroBadge}>
+                <span>🎓 Welcome to the Future of Education</span>
+            </div>
             <h1 className={`${styles.heroTitle} `}>
               Hello <span className={styles.gradientText}>Student,</span>
             </h1>
             <h2 className={styles.heroSubtitle}>Welcome to Your Online Examination Portal</h2>
             <p className={styles.heroDescription}>
-              Experience seamless testing with our innovative digital platform designed for your success.
+              Experience seamless testing with our innovative digital<br/> platform designed for your success.
             </p>
             <div className={styles.heroButtons}>
               <Link to="/StudentSignup">
@@ -62,6 +51,7 @@ const Student = () => {
                 </button>
               </Link>
             </div>
+          </div>
           </div>
         </div>
 

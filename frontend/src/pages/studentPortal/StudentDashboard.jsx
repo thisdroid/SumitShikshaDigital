@@ -3,7 +3,7 @@ import Sidebar from '../../components/common_components/Sidebar';
 import styles from './StudentDashboard.module.css'; // ✅ Import CSS Module
 import CourseCard from '../../components/course_card/CourseCard';
 import ResumeCourseCard from '../../components/course_card/ResumeCourseCard';
-import ExamCard from '../../components/Exam_card/ExamCard';
+import ExamCard from '../../components/exam_card/ExamCard';
 
 const StudentDashboard = () => {
   const stats = {
@@ -44,10 +44,17 @@ const StudentDashboard = () => {
     <>
       <Sidebar />
       <div className={styles.dashboardWrapper}>
-        <div className={styles.header}>
+        {/* <div className={styles.header}>
           <h1 className={styles.title}>Dashboard</h1>
           <p className={styles.subtitle}>Welcome back, Ready to continue your learning journey?</p>
+        </div> */}
+        <div className={styles.headerBackground}>
+          <div className={styles.header}>
+            <h1 className={styles.title}>Dashboard</h1>
+            <p className={styles.subtitle}>Welcome back, Ready to continue your learning journey?</p>
+          </div>
         </div>
+
 
         <div className={styles.statsGrid}>
           {statsCards.map((stat, index) => (
@@ -99,14 +106,16 @@ const StudentDashboard = () => {
             exam={{
               name: 'React Basics',
               duration: 60,
-              description: 'Comprehensive assessment covering all key concepts from Aptitude curriculum. Includes multiple choice, short answer, and practical questions.',
+              description:
+                'Comprehensive assessment covering all key concepts from Aptitude curriculum. Includes multiple choice, short answer, and practical questions.',
             }}
           />
           <ExamCard
             exam={{
               name: 'React Basics',
               duration: 60,
-              description: 'Comprehensive assessment covering all key concepts from Aptitude curriculum. Includes multiple choice, short answer, and practical questioComprehensive assessment covering all key concepts from Aptitude curriculum. Includes multiple choice, short answer, and practical questionsComprehensive assessment covering all key concepts from Aptitude curriculum. Includes multiple choice, short answer, and practical questionsComprehensive assessment covering all key concepts from Aptitude curriculum. Includes multiple choice, short answer, and practical questionsComprehensive assessment covering all key concepts from Aptitude curriculum. Includes multiple choice, short answer, and practical questionsComprehensive assessment covering all key concepts from Aptitude curriculum. Includes multiple choice, short answer, and practical questionsns.',
+              description:
+                'Comprehensive assessment covering all key concepts from Aptitude curriculum. Includes multiple choice, short answer, and practical questions.',
             }}
           />
         </div>

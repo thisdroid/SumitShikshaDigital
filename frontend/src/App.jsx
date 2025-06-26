@@ -12,6 +12,7 @@ import AboutUs from './pages/home/AboutUs'
 
 // PROTECTED ROUTES
 import StudentDashboard from './pages/studentPortal/StudentDashboard'
+import Courses from './pages/studentPortal/Courses'
 
 
 // import other pages as needed
@@ -34,6 +35,7 @@ function App() {
 
         {/* PROTECTED ROUTES PUT PROTECTION OVER HERE */}
         <Route path="/StudentDashboard" element={<StudentDashboard />} />
+        <Route path="/Courses" element={<Courses />} />
       
       
       </Routes>

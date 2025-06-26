@@ -1,0 +1,91 @@
+.coursesWrapper {
+  padding: 2rem;
+  margin-left: 16rem;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tabBtn {
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #e5e7eb;
+  color: #374151;
+  border: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.activeTab {
+  background: #2563eb;
+  color: #fff;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.sectionHeading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.coursesFlex {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.searchBarWrapper {
+  margin-bottom: 1.25rem;
+}
+
+.searchBar {
+  width: 100%;
+  max-width: 350px;
+  padding: 0.6rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #374151;
+  background: #fff;
+}
+
+.noCourses {
+  color: #9ca3af;
+  font-size: 1.1rem;
+  padding: 2rem 0;
+}
+
+/* Responsive for small screens */
+@media (max-width: 900px) {
+  .coursesWrapper {
+    margin-left: 0;
+    padding: 1rem;
+  }
+  .coursesFlex {
+    gap: 1rem;
+  }
+}

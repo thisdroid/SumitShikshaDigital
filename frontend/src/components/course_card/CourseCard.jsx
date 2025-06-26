@@ -17,7 +17,7 @@ const CourseCard = ({ course }) => {
         <p className={styles.courseDescription}>{course.description}</p>
         
         <div className={styles.courseMeta}>
-          <span className={styles.coursePrice}>${course.price}</span>
+          <span className={styles.coursePrice}>₹ {course.price}</span>
           <span className={styles.courseRating}>
             ⭐ {course.rating} ({course.reviewCount})
           </span>

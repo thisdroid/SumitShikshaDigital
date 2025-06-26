@@ -1,33 +1,93 @@
 .sidebarWrapper {
   height: 100vh;
-  width: 16rem; /* 64 in Tailwind */
-  background-color: #f9fafb; /* gray-50 */
-  border-right: 1px solid #e5e7eb; /* gray-200 */
+  width: 16rem;
+  background-color: #f9fafb;
+  border-right: 1px solid #e5e7eb;
   position: fixed;
   top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, visibility 0.3s ease;
+  z-index: 1000; /* on top */
 }
 
+/* Sidebar open on small screens */
+.open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/* Sidebar closed on small screens */
+.closed {
+  transform: translateX(-100%);
+  visibility: hidden;
+}
+
+/* Hamburger button visible only on small & medium screens */
+.hamburgerButton {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1100;
+  background-color: white;
+  border: 1.5px solid #2563eb; /* blue-600 border */
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburgerButton .material-icons {
+  color: #2563eb;
+  font-size: 1.5rem;
+}
+
+/* Show hamburger button below 1024px */
+@media (max-width: 1023px) {
+  .hamburgerButton {
+    display: flex;
+  }
+  .sidebarWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 16rem;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.15);
+    background-color: #f9fafb;
+  }
+}
+
+/* Hide sidebar on small screens when closed */
+@media (max-width: 1023px) {
+  .sidebarWrapper {
+    background-color: #f9fafb;
+    border-right: 1px solid #e5e7eb;
+  }
+}
+
+/* Logo and navigation styling remain unchanged */
 .logoContainer {
-  padding: 0.75rem; /* p-3 */
+  padding: 0.75rem;
 }
 
 .logoBox {
   display: flex;
   justify-content: center;
-  margin-bottom: 0.5rem; /* mb-2 */
+  margin-bottom: 0.5rem;
 }
 
 .logoImage {
-  width: 9rem; /* w-36 */
-  height: 9rem; /* h-36 */
+  width: 9rem;
+  height: 9rem;
   object-fit: contain;
 }
 
 .divider {
-  border-bottom: 1px solid #e5e7eb; /* gray-200 */
+  border-bottom: 1px solid #e5e7eb;
   margin-bottom: 0.5rem;
 }
 
@@ -40,18 +100,18 @@
 .navLink {
   display: flex;
   align-items: center;
-  padding: 0.75rem 1rem; /* py-3 px-4 */
-  color: #374151; /* gray-700 */
+  padding: 0.75rem 1rem;
+  color: #374151;
   text-decoration: none;
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
 .navLink:hover {
-  background-color: #f3f4f6; /* gray-100 */
-  color: #2563eb; /* blue-600 */
+  background-color: #f3f4f6;
+  color: #2563eb;
 }
 
 .navIcon {
-  margin-right: 0.75rem; /* mr-3 */
+  margin-right: 0.75rem;
 }

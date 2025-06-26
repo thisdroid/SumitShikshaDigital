@@ -1,0 +1,130 @@
+.dashboardWrapper {
+  padding: 2rem;
+  margin-left: 16rem;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.subtitle {
+  margin-top: 0.5rem;
+  color: #4b5563;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.statCard {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.cardTitle {
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.cardValue {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.cardDescription {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #4b5563;
+}
+
+.textBlue600 {
+  color: #2563eb;
+}
+
+.textGreen600 {
+  color: #16a34a;
+}
+
+.textIndigo600 {
+  color: #4f46e5;
+}
+
+.textOrange600 {
+  color: #ea580c;
+}
+
+/* Divider line */
+.divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 2.5rem 0 2rem 0;
+  border: none;
+}
+
+/* Section Heading */
+.sectionHeading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+/* Courses/Exams Flex Layout */
+.coursesFlex {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive for small screens */
+@media (max-width: 900px) {
+  .dashboardWrapper {
+    margin-left: 0;
+    padding: 1rem;
+  }
+  .coursesFlex {
+    gap: 1rem;
+  }
+}

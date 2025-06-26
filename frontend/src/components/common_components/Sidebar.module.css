@@ -1,0 +1,57 @@
+.sidebarWrapper {
+  height: 100vh;
+  width: 16rem; /* 64 in Tailwind */
+  background-color: #f9fafb; /* gray-50 */
+  border-right: 1px solid #e5e7eb; /* gray-200 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.logoContainer {
+  padding: 0.75rem; /* p-3 */
+}
+
+.logoBox {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem; /* mb-2 */
+}
+
+.logoImage {
+  width: 9rem; /* w-36 */
+  height: 9rem; /* h-36 */
+  object-fit: contain;
+}
+
+.divider {
+  border-bottom: 1px solid #e5e7eb; /* gray-200 */
+  margin-bottom: 0.5rem;
+}
+
+.nav {
+  flex: 1;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem; /* py-3 px-4 */
+  color: #374151; /* gray-700 */
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.navLink:hover {
+  background-color: #f3f4f6; /* gray-100 */
+  color: #2563eb; /* blue-600 */
+}
+
+.navIcon {
+  margin-right: 0.75rem; /* mr-3 */
+}

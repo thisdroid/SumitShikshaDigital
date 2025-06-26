@@ -10,6 +10,9 @@ import CollegeSignUp from './pages/college/CollegeSignUp'
 import ContactUs from './pages/home/ContactUs'
 import AboutUs from './pages/home/AboutUs'
 
+// PROTECTED ROUTES
+import StudentDashboard from './pages/studentPortal/StudentDashboard'
+
 
 // import other pages as needed
 
@@ -27,8 +30,12 @@ function App() {
         <Route path="/CollegeSignUp" element={<CollegeSignUp />} />
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/ContactUs" element={<ContactUs />} />
+
+
+        {/* PROTECTED ROUTES PUT PROTECTION OVER HERE */}
+        <Route path="/StudentDashboard" element={<StudentDashboard />} />
       
-        {/* Add more routes here */}
+      
       </Routes>
     </Router>
   )

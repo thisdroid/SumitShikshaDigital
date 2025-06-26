@@ -109,12 +109,11 @@ export default function Collegelogin() {
                 </form>
 
                 <div className={styles.collegeloginFooterLinks}>
-                  <a href="#" className={styles.collegeloginFooterLink}>
+                  <Link to="/CollegeForgotPassword" className={styles.collegeloginFooterLink}>Forgot Password?</Link>
+                  {/* <a href="#" className={styles.collegeloginFooterLink}>
                     Forgot Password?
-                  </a>
-                  <a href="#" className={styles.collegeloginFooterLink}>
-                    Create New Account
-                  </a>
+                  </a> */}
+                  <Link to="/CollegeSignUp" className={styles.collegeloginFooterLink}>Create New Account</Link>
                 </div>
               </div>
             </div>

@@ -113,7 +113,8 @@ const StudentLogin = () => {
                 </form>
 
                 <div className={styles.loginFooterLinks}>
-                  <a href="#" className={styles.loginFooterLink}>Forgot Password?</a>
+                  <Link to="/StudentForgotPassword" className={styles.loginFooterLink}>Forgot Username?</Link>
+                  {/* <a href="#" className={styles.loginFooterLink}>Forgot Password?</a> */}
                   <Link to="/StudentSignup" className={styles.loginFooterLink}>Create New Account</Link>
                 </div>
               </div>

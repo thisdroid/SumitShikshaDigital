@@ -198,9 +198,7 @@ export default function CollegeSignUp() {
               <div className={styles.footerLink}>
                 <p className={styles.footerText}>
                   Already have an account?{" "}
-                  <a href="#" className={styles.footerLinkText}>
-                    Login
-                  </a>
+                  <Link to="/CollegeLogin" className={styles.footerLinkText}>Login</Link>
                 </p>
               </div>
             </div>

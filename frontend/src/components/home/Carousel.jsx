@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Cloud, Shield, Database, Code, Cpu, Server, Smartphone, Wifi, Settings, Zap, Globe, Lock, Monitor, Layers, GitBranch } from 'lucide-react'
 import styles from "./Carousel.module.css"
+import { Link } from "react-router-dom"
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0)

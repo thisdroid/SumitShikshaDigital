@@ -41,11 +41,13 @@ const College = () => {
                 solution designed for educational institutions
               </p>
               <div className={styles.heroButtons}>
+                <Link to="/CollegeSignUp" >
                 <button className={styles.btnPrimary}>
                   <span className={styles.btnIcon}>+</span>
                   <span>CREATE ACCOUNT</span>
                   <div className={styles.btnShine}></div>
                 </button>
+                  </Link>
                 <Link to="/CollegeLogin" className={styles.btnSecondary}>
                   <span className={styles.btnIcon}>→</span>
                   <span className={styles.btnLink}>LOGIN NOW</span>
@@ -87,9 +89,6 @@ const College = () => {
                     </div>
                   </div>
                 </div>
-                <div className={styles.cardFooter}>
-                  <button className={styles.learnMoreBtn}>Learn More</button>
-                </div>
               </div>
 
               <div className={`${styles.featureCard} ${styles.cardSecurity}`}>
@@ -109,9 +108,6 @@ const College = () => {
                     <span className={styles.badge}>GDPR Compliant</span>
                     <span className={styles.badge}>ISO 27001</span>
                   </div>
-                </div>
-                <div className={styles.cardFooter}>
-                  <button className={styles.learnMoreBtn}>Learn More</button>
                 </div>
               </div>
 
@@ -133,35 +129,10 @@ const College = () => {
                     <div className={styles.featureItem}>✓ Progress Tracking</div>
                   </div>
                 </div>
-                <div className={styles.cardFooter}>
-                  <button className={styles.learnMoreBtn}>Learn More</button>
-                </div>
               </div>
             </div>
           </div>
         </section>
-{/* 
-        <section className={styles.ctaSection}>
-          <div className={styles.container}>
-            <div className={styles.ctaCard}>
-              <div className={styles.ctaContent}>
-                <h2>Ready to Transform Your Examination Process?</h2>
-                <p>Join thousands of educational institutions already using our platform</p>
-                <div className={styles.ctaButtons}>
-                  <button className={styles.btnCtaPrimary}>Start Free Trial</button>
-                  <button className={styles.btnCtaSecondary}>Schedule Demo</button>
-                </div>
-              </div>
-              <div className={styles.ctaVisual}>
-                <div className={styles.floatingElements}>
-                  <div className={styles.element1}>📊</div>
-                  <div className={styles.element2}>🔒</div>
-                  <div className={styles.element3}>👥</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
       </div>
     </>
   )

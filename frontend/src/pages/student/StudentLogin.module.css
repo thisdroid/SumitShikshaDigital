@@ -3,10 +3,10 @@
   --secondary: #9b59b6;
 }
 
-.login-container {
-   position: relative; /* Required to scope absolute child */
+.loginContainer {
+  position: relative;
   z-index: 1;
-  min-height: 100vh;
+  min-height: calc(100vh - 64px);
   background-color: #e8eef7;
   display: flex;
   align-items: center;
@@ -14,26 +14,26 @@
   padding: 1rem;
 }
 
-.login-card {
+.loginCard {
   width: 100%;
-  max-width: 70rem; /* Changed from 80rem */
+  max-width: 70rem;
   background-color: white;
   border-radius: 1.5rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   position: relative;
-  z-index: 2; /* Ensure card is above background */
+  z-index: 2;
 }
 
-.login-content {
+.loginContent {
   display: flex;
-  min-height: 400px; /* Changed from 500px */
+  min-height: 400px;
 }
 
-.left-panel {
+.leftPanel {
   flex: 1;
   background: linear-gradient(135deg, #4a90e2 0%, #2e5bba 100%);
-  padding: 2rem; /* Changed from 3rem */
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,7 +43,7 @@
   overflow: hidden;
 }
 
-.bg-circle-1 {
+.bgCircle1 {
   position: absolute;
   top: 5rem;
   right: 5rem;
@@ -53,7 +53,7 @@
   border-radius: 50%;
 }
 
-.bg-circle-2 {
+.bgCircle2 {
   position: absolute;
   bottom: 8rem;
   left: 4rem;
@@ -63,7 +63,7 @@
   border-radius: 50%;
 }
 
-.bg-circle-3 {
+.bgCircle3 {
   position: absolute;
   top: 50%;
   left: 2rem;
@@ -73,21 +73,20 @@
   border-radius: 50%;
 }
 
-.arrow-icon-container {
+.arrowIconContainer {
   margin-bottom: 2rem;
 }
 
-.arrow-icon-box {
+.arrowIconBox {
   width: 4rem;
   height: 4rem;
-  /* background-color: #5dade2; */
   border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.welcome-title {
+.welcomeTitle {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   --primary-light: #4895ef;
@@ -123,8 +122,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   color: white;
   text-align: center;
@@ -139,7 +137,7 @@
   font-weight: 600;
 }
 
-.welcome-subtitle {
+.welcomeSubtitle {
   color: rgba(255, 255, 255, 0.9);
   font-size: 1.125rem;
   margin-bottom: 3rem;
@@ -148,44 +146,44 @@
   line-height: 1.6;
 }
 
-.signup-section {
+.signupSection {
   margin-top: auto;
 }
 
-.signup-text {
+.signupText {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.signup-link {
-  color: #4cc9f0;
+.signupLink {
+  color: #f5f5f5;
   font-weight: 500;
   text-decoration: none;
 }
 
-.signup-link:hover {
+.signupLink:hover {
   text-decoration: underline;
 }
 
-.right-panel {
+.rightPanel {
   flex: 1;
-  padding: 2rem; /* Changed from 3rem */
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.form-container {
-  max-width: 24rem; /* Changed from 28rem */
+.formContainer {
+  max-width: 24rem;
   margin: 0 auto;
   width: 100%;
 }
 
-.header-section {
-  margin-bottom: 1.5rem; /* Changed from 2rem */
+.headerSection {
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
-.login-title {
+.loginTitle {
   font-family: "EB garamond", serif;
   font-size: 2.5rem;
   font-weight: 800;
@@ -200,23 +198,23 @@
   width: 100%;
 }
 
-.login-subtitle {
+.loginSubtitle {
   color: #8b9dc3;
   text-align: center;
 }
 
-.login-form {
+.loginForm {
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* Changed from 1.5rem */
+  gap: 1rem;
 }
 
-.form-group {
+.formGroup {
   display: flex;
   flex-direction: column;
 }
 
-.form-label {
+.formLabel {
   display: block;
   font-size: 0.875rem;
   font-weight: 500;
@@ -224,7 +222,7 @@
   margin-bottom: 0.5rem;
 }
 
-.form-input {
+.formInput {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid #d6e3f0;
@@ -235,24 +233,24 @@
   box-sizing: border-box;
 }
 
-.form-input:focus {
+.formInput:focus {
   border-color: #4a90e2;
   box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 }
 
-.form-input::placeholder {
+.formInput::placeholder {
   color: #8b9dc3;
 }
 
-.password-container {
+.passwordContainer {
   position: relative;
 }
 
-.password-input {
+.passwordInput {
   padding-right: 3rem;
 }
 
-.password-toggle {
+.passwordToggle {
   position: absolute;
   right: 0.75rem;
   top: 50%;
@@ -267,11 +265,11 @@
   justify-content: center;
 }
 
-.password-toggle:hover {
+.passwordToggle:hover {
   color: #2c3e50;
 }
 
-.login-button {
+.loginButton {
   width: 100%;
   background: linear-gradient(90deg, #4a90e2 0%, #2e5bba 100%);
   color: white;
@@ -288,12 +286,12 @@
   font-size: 1rem;
 }
 
-.login-button:hover {
+.loginButton:hover {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25);
   transform: translateY(-1px);
 }
 
-.login-footer-links {
+.loginFooterLinks {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -301,87 +299,86 @@
   font-size: 0.875rem;
 }
 
-.login-footer-link {
+.loginFooterLink {
   color: #4a90e2;
   text-decoration: none;
 }
 
-.login-footer-link:hover {
+.loginFooterLink:hover {
   text-decoration: underline;
 }
 
-.hero-icon {
+.heroIcon {
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   color: #4cc9f0;
   text-align: center;
   margin-bottom: 20px;
 }
 
-/* Responsive Design */
 @media screen and (max-width: 768px) {
-  .login-content {
+  .loginContent {
     flex-direction: column !important;
     min-height: auto !important;
     height: auto !important;
   }
 
-  .left-panel,
-  .right-panel {
+  .leftPanel,
+  .rightPanel {
     flex: none !important;
     width: 100% !important;
     height: auto !important;
   }
 
-  .login-container {
+  .loginContainer {
     align-items: flex-start !important;
     padding: 1rem !important;
     overflow-y: auto !important;
   }
 
-  .bg-circle-1,
-  .bg-circle-2,
-  .bg-circle-3 {
+  .bgCircle1,
+  .bgCircle2,
+  .bgCircle3 {
     display: none !important;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .login-container {
+  .loginContainer {
     padding: 0.25rem !important;
   }
 
-  .left-panel {
+  .leftPanel {
     padding: 1.5rem 1rem !important;
   }
 
-  .right-panel {
+  .rightPanel {
     padding: 1.5rem 1rem !important;
   }
 
-  .welcome-title {
+  .welcomeTitle {
     font-size: 1.25rem !important;
   }
 
-  .login-title {
+  .loginTitle {
     font-size: 1.75rem !important;
   }
 
-  .form-input {
+  .formInput {
     padding: 0.875rem 1rem !important;
-    font-size: 16px !important; /* Prevents zoom on iOS */
+    font-size: 16px !important;
   }
 
-  .login-button {
+  .loginButton {
     padding: 1rem 1.5rem !important;
-  } 
+  }
 
-  .login-footer-links {
+  .loginFooterLinks {
     flex-direction: column !important;
     gap: 1rem !important;
   }
 }
 
-.background-wrapper {
+.backgroundWrapper {
   position: absolute;
   inset: 0;
   z-index: 0;

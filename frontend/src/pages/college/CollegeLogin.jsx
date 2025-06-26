@@ -6,6 +6,7 @@ import Navbar from "../../components/common_components/Navbar"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUniversity } from "@fortawesome/free-solid-svg-icons"
 import Animated from "../../components/common_components/Animated"
+import { Link } from "react-router-dom"
 
 export default function Collegelogin() {
   const [showPassword, setShowPassword] = useState(false)
@@ -52,9 +53,7 @@ export default function Collegelogin() {
               <div className={styles.signupSection}>
                 <p className={styles.signupText}>
                   {"Don't have an account? "}
-                  <a href="#" className={styles.signupLink}>
-                    Sign up here
-                  </a>
+                  <Link to="/CollegeSignUp" className={styles.signupLink}>Sign up here</Link>
                 </p>
               </div>
             </div>

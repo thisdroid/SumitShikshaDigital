@@ -1,137 +1,128 @@
-import { useState } from "react"
-import { Eye, EyeOff, CircleArrowRight , ArrowRight } from "lucide-react"
-import "./StudentLogin.css"
-import Navbar from '../../components/common_components/Navbar'
-import Animated from "../../components/common_components/Animated"
+import { useState } from "react";
+import { Eye, EyeOff, CircleArrowRight, ArrowRight } from "lucide-react";
+import styles from "./StudentLogin.module.css";
+import Navbar from '../../components/common_components/Navbar';
+import Animated from "../../components/common_components/Animated";
 import { Link } from 'react-router-dom';
+
 const StudentLogin = () => {
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     contactNumber: "",
     password: "",
-  })
+  });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log("Login attempt:", formData)
-  }
+    e.preventDefault();
+    console.log("Login attempt:", formData);
+  };
 
   return (
     <>
-    <Navbar />
-    {/* <Animated /> */}
-    <div className="login-container">
-      <div className="background-wrapper">
-      <Animated />
-    </div>
-      <div className="login-card">
-        <div className="login-content">
-          {/* Left Panel */}
-          <div className="left-panel">
-            {/* Background decorative circles */}
-            <div className="bg-circle-1"></div>
-            <div className="bg-circle-2"></div>
-            <div className="bg-circle-3"></div>
+      <Navbar />
+      {/* <Animated /> */}
+      <div className={`${styles.theme} ${styles.loginContainer}`}>
+        <div className={styles.backgroundWrapper}>
+          <Animated />
+        </div>
+        <div className={styles.loginCard}>
+          <div className={styles.loginContent}>
+            {/* Left Panel */}
+            <div className={styles.leftPanel}>
+              <div className={styles.bgCircle1}></div>
+              <div className={styles.bgCircle2}></div>
+              <div className={styles.bgCircle3}></div>
 
-            {/* Arrow Icon */}
-            <div className="arrow-icon-container">
-              <div className="arrow-icon-box">
-                <CircleArrowRight className="w-18 h-18 text-white" />
+              <div className={styles.arrowIconContainer}>
+                <div className={styles.arrowIconBox}>
+                  <CircleArrowRight className="w-18 h-18 text-white" />
+                </div>
+              </div>
+
+              <h1 className={styles.welcomeTitle}>Welcome Back!</h1>
+              <p className={styles.welcomeSubtitle}>Login to access your courses, exams, and learning resources.</p>
+
+              <div className={styles.signupSection}>
+                <p className={styles.signupText}>
+                  {"Don't have an account? "}
+                  <Link to="/StudentSignup" className={styles.signupLink}>Sign up here</Link>
+                </p>
               </div>
             </div>
 
-            {/* Welcome Text */}
-            <h1 className="welcome-title">Welcome Back!</h1>
-
-            <p className="welcome-subtitle">Login to access your courses, exams, and learning resources.</p>
-
-            {/* Sign up link */}
-            <div className="signup-section">
-              <p className="signup-text">
-                {"Don't have an account? "}
-                {/* <a href="#" className="signup-link">Sign up here</a> */}
-                <Link to="/StudentSignup" className="signup-link">Sign up here</Link>
-              </p>
-            </div>
-          </div>
-
-          {/* Right Panel */}
-          <div className="right-panel">
-            <div className="form-container">
-              {/* Header */}
-              <div className="header-section">
-                <h2 className="login-title">Student Login</h2>
-                <p className="login-subtitle">Enter your credentials to continue</p>
-              </div>
-
-              {/* Form */}
-              <form onSubmit={handleSubmit} className="login-form">
-                {/* Username Field */}
-                <div className="form-group">
-                  <label htmlFor="contactNumber" className="form-label">
-                    Username
-                  </label>
-                  <input
-                    type="text"
-                    id="contactNumber"
-                    name="contactNumber"
-                    value={formData.contactNumber}
-                    onChange={handleInputChange}
-                    placeholder="Enter your username/contact number"
-                    className="form-input"
-                  />
+            {/* Right Panel */}
+            <div className={styles.rightPanel}>
+              <div className={styles.formContainer}>
+                <div className={styles.headerSection}>
+                  <h2 className={styles.loginTitle}>Student Login</h2>
+                  <p className={styles.loginSubtitle}>Enter your credentials to continue</p>
                 </div>
 
-                {/* Password Field */}
-                <div className="form-group">
-                  <label htmlFor="password" className="form-label">
-                    Password
-                  </label>
-                  <div className="password-container">
+                <form onSubmit={handleSubmit} className={styles.loginForm}>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="contactNumber" className={styles.formLabel}>
+                      Username
+                    </label>
                     <input
-                      type={showPassword ? "text" : "password"}
-                      id="password"
-                      name="password"
-                      value={formData.password}
+                      type="text"
+                      id="contactNumber"
+                      name="contactNumber"
+                      value={formData.contactNumber}
                       onChange={handleInputChange}
-                      placeholder="Enter your password"
-                      className="form-input password-input"
+                      placeholder="Enter your username/contact number"
+                      className={styles.formInput}
                     />
-                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="password-toggle">
-                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                    </button>
                   </div>
+
+                  <div className={styles.formGroup}>
+                    <label htmlFor="password" className={styles.formLabel}>
+                      Password
+                    </label>
+                    <div className={styles.passwordContainer}>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        id="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        placeholder="Enter your password"
+                        className={`${styles.formInput} ${styles.passwordInput}`}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className={styles.passwordToggle}
+                      >
+                        {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                      </button>
+                    </div>
+                  </div>
+
+                  <button type="submit" className={styles.loginButton}>
+                    <ArrowRight className="w-5 h-5" />
+                    Login
+                  </button>
+                </form>
+
+                <div className={styles.loginFooterLinks}>
+                  <a href="#" className={styles.loginFooterLink}>Forgot Password?</a>
+                  <Link to="/StudentSignup" className={styles.loginFooterLink}>Create New Account</Link>
                 </div>
-
-                {/* Login Button */}
-                <button type="submit" className="login-button">
-                  <ArrowRight className="w-5 h-5" />
-                  Login
-                </button>
-              </form>
-
-              {/* Footer Links */}
-              <div className="login-footer-links">
-                <a href="#" className="login-footer-link">
-                  Forgot Password?
-                </a>
-                <Link to="/StudentSignup" className="login-footer-link">Create New Account</Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </>
-  )
-}
+  );
+};
 
-export default StudentLogin
+export default StudentLogin;

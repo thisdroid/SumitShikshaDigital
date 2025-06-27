@@ -13,17 +13,19 @@ const ResumeCourseCard = ({ course }) => {
       </div>
       
       <div className={styles.courseContent}>
-        <h3 className={styles.courseTitle}>{course.title}</h3>
-        <p className={styles.courseDescription}>{course.description}</p>
-        
-        <div className={styles.courseMeta}>
-
-          <span className={styles.courseDuration}>{course.duration} days</span>
+        <div>
+          <h3 className={styles.courseTitle}>{course.title}</h3>
+          <p className={styles.courseDescription}>{course.description}</p>
         </div>
-        
-        <button className={styles.viewCourseBtn}>
-          View Course
-        </button>
+        <div>
+          <div className={styles.courseMeta}>
+            <span className={styles.courseDuration}>{course.duration} days</span>
+          </div>
+          
+          <button className={styles.viewCourseBtn}>
+            Resume Course
+          </button>
+        </div>
       </div>
     </div>
   );

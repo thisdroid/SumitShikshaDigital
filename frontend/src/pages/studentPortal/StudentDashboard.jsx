@@ -44,11 +44,7 @@ const StudentDashboard = () => {
     <>
       <Sidebar />
       <div className={styles.dashboardWrapper}>
-        {/* <div className={styles.header}>
-          <h1 className={styles.title}>Dashboard</h1>
-          <p className={styles.subtitle}>Welcome back, Ready to continue your learning journey?</p>
-        </div> */}
-        <div className={styles.headerBackground}>
+        <div className={`${styles.headerBackground} ${styles.theme}`}>
           <div className={styles.header}>
             <h1 className={styles.title}>Dashboard</h1>
             <p className={styles.subtitle}>Welcome back, Ready to continue your learning journey?</p>

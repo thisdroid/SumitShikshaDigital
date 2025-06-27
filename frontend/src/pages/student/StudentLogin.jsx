@@ -105,11 +105,12 @@ const StudentLogin = () => {
                       </button>
                     </div>
                   </div>
-
+                  <Link to="/StudentDashboard" className={styles.forgotPasswordLink}>
                   <button type="submit" className={styles.loginButton}>
                     <ArrowRight className="w-5 h-5" />
                     Login
                   </button>
+                  </Link>
                 </form>
 
                 <div className={styles.loginFooterLinks}>

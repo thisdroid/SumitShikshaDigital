@@ -1,7 +1,8 @@
 .sidebarWrapper {
   height: 100vh;
   width: 16rem;
-  background-color: #f9fafb;
+  /* background-color: #f9fafb; */
+  background-color: #e2e8f0;
   border-right: 1px solid #e5e7eb;
   position: fixed;
   top: 0;
@@ -87,8 +88,8 @@
 }
 
 .divider {
-  border-bottom: 1px solid #e5e7eb;
-  margin-bottom: 0.5rem;
+  border-bottom: 1.5px solid #d1d5db; /* slightly darker and thicker */
+  margin: 0.5rem 0 0.5rem 0;
 }
 
 .nav {

@@ -4,38 +4,30 @@
 }
 
 .headerBackground {
-  /* Same gradient as dashboard */
   background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--secondary-blue-dark) 100%);
-  /* Same padding as dashboard */
   padding: 4rem 2rem 2rem 2rem;
-  border-radius: 0.5rem 0 0 0.5rem; /* match dashboard border-radius */
+  border-radius: 0.5rem 0 0 0.5rem;
   margin-bottom: 2rem;
   display: flex;
   justify-content: center;
-
 }
 
-/* To keep the text readable on gradient background */
 .headerBackground .title,
 .headerBackground .subtitle {
   color: white;
   margin: 0;
 }
 
-/* Same styling as dashboard title */
 .headerBackground .title {
   font-weight: 800;
-  /* font-size: 1.875rem; */
   font-size: 3rem;
   line-height: 2.25rem;
   letter-spacing: 0.02em;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   font-family: 'EB garamond', serif;
-
-
 }
 
-.coursesWrapper {
+.examinationWrapper {
   padding: 2rem;
   margin-left: 16rem;
   background-color: #f9fafb;
@@ -88,7 +80,7 @@
   margin-top: 0.5rem;
 }
 
-.coursesFlex {
+.examsFlex {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
@@ -110,24 +102,23 @@
   background: #fff;
 }
 
-.noCourses {
+.noExams {
   color: #9ca3af;
   font-size: 1.1rem;
   padding: 2rem 0;
 }
 
-/* Responsive for small screens */
 @media (max-width: 900px) {
-  .coursesWrapper {
+  .examinationWrapper {
     margin-left: 0;
     padding: 1rem;
   }
-  .coursesFlex {
+  .examsFlex {
     gap: 1rem;
   }
 }
 
-.coursesWrapper {
+.examinationWrapper {
   padding: 2rem;
   background-color: #f9fafb;
   min-height: 100vh;
@@ -136,14 +127,14 @@
 }
 
 @media (min-width: 1024px) {
-  .coursesWrapper {
-    margin-left: 16rem; /* Same as sidebar width */
+  .examinationWrapper {
+    margin-left: 16rem;
   }
 }
 
 .divider {
   height: 1px;
-  background: #e5e7eb; /* light gray, visible but subtle */
+  background: #e5e7eb;
   margin: 0 0 2rem 0;
   border: none;
 }

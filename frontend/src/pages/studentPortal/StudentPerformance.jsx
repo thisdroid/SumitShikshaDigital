@@ -83,17 +83,7 @@ const StudentPerformance = () => {
           <div className={styles.noChartMessage}>No data available to generate the chart for the selected course.</div>
         </div>
       </div>
-
-      {/* Footer */}
-      <div className={styles.footer}>
-        <div className={styles.socialIcons}>
-          <span className={styles.socialIcon}>f</span>
-          <span className={styles.socialIcon}>🐦</span>
-          <span className={styles.socialIcon}>📷</span>
-          <span className={styles.socialIcon}>in</span>
-        </div>
-        <div className={styles.copyright}>Copyright © Aarti Multi Services Pvt Ltd 2024</div>
-      </div>
+      
     </div>
     </>
   )

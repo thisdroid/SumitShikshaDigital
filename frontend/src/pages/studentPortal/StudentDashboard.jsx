@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './StudentDashboard.module.css'; 
+import styles from './StudentDashboard.module.css';
 import CourseCard from '../../components/course_card/CourseCard';
 import ResumeCourseCard from '../../components/course_card/ResumeCourseCard';
 import ExamCard from '../../components/exam_card/ExamCard';
@@ -11,6 +11,7 @@ const StudentDashboard = () => {
     Certificates_Earned: 0,
     Learning_Streak: 0,
   };
+
 
   const statsCards = [
     {
@@ -69,7 +70,7 @@ const StudentDashboard = () => {
         {/* Courses Section */}
         <h2 className={styles.sectionHeading}>Courses Enrolled</h2>
         <div className={styles.coursesFlex}>
-          <CourseCard
+          {/* <CourseCard
             course={{
               image: '/images/FrontEnd.jpg',
               title: 'Frontend for Beginners',
@@ -79,7 +80,7 @@ const StudentDashboard = () => {
               reviewCount: 120,
               duration: 30,
             }}
-          />
+          /> */}
           <ResumeCourseCard
             course={{
               image: '/images/FrontEnd.jpg',
@@ -96,7 +97,14 @@ const StudentDashboard = () => {
         {/* Exams Section */}
         <h2 className={styles.sectionHeading}>Upcoming Exam</h2>
         <div className={styles.coursesFlex}>
-          <ExamCard />
+          <ExamCard
+            exam={{
+              name: 'Frontend for Beginners',
+              duration: '60 mins',
+              level: 'Advanced',
+              description: 'Comprehensive assessment covering all key concepts from React curriculum. Includes multiple choice, short answer, and practical questions.',
+            }}
+          />
         </div>
       </div>
     </>

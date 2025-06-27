@@ -83,7 +83,7 @@ const Sidebar = () => {
             <span className={`material-icons ${styles.navIcon}`}>edit</span>
             Examination
           </Link>
-          <Link to="/StudentDashboard/Performance" className={styles.navLink}>
+          <Link to="/StudentDashboard/StudentPerformance" className={styles.navLink}>
             <span className={`material-icons ${styles.navIcon}`}>analytics</span>
             Performance
           </Link>

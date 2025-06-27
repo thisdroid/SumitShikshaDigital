@@ -19,6 +19,8 @@ import Certificates from './pages/studentPortal/Certificates'
 import Profile from './pages/studentPortal/Profile'
 import PersonalDetails from './pages/studentPortal/PersonalDetails'
 import StudentSecurity from './pages/studentPortal/StudentSecurity'
+import StudentPerformance from './pages/studentPortal/StudentPerformance'
+
 
 function App() {
   return (
@@ -40,6 +42,7 @@ function App() {
           <Route index element={<StudentDashboard />} />
           <Route path="Courses" element={<Courses />} />
           <Route path="Examination" element={<Examination />} />
+          <Route path="StudentPerformance" element={<StudentPerformance />} />
           <Route path="Certificates" element={<Certificates />} />
           <Route path="Profile" element={<Profile />} />
           <Route path="PersonalDetails" element={<PersonalDetails />} />

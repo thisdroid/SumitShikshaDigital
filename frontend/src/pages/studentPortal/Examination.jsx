@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Sidebar from '../../components/common_components/Sidebar';
 import styles from './Examination.module.css';
 import ExamCard from '../../components/exam_card/ExamCard';
 
@@ -43,7 +42,6 @@ const Examination = () => {
 
     return (
         <>
-            <Sidebar />
             <div className={styles.examinationWrapper}>
                 <div className={`${styles.headerBackground} ${styles.theme}`}>
                     <div className={styles.header}>

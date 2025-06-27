@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from "react"
-import Sidebar from "../../components/common_components/Sidebar"
 import styles from "./Courses.module.css"
 import CourseCard from "../../components/course_card/CourseCard"
 import ResumeCourseCard from "../../components/course_card/ResumeCourseCard"
@@ -229,7 +228,6 @@ const Courses = () => {
 
   return (
     <>
-      <Sidebar />
       <div className={styles.coursesWrapper}>
         <div className={`${styles.headerBackground} ${styles.theme}`}>
           <div className={styles.header}>

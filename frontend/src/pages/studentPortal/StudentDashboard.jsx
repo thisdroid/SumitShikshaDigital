@@ -1,6 +1,5 @@
 import React from 'react';
-import Sidebar from '../../components/common_components/Sidebar';
-import styles from './StudentDashboard.module.css'; // ✅ Import CSS Module
+import styles from './StudentDashboard.module.css'; 
 import CourseCard from '../../components/course_card/CourseCard';
 import ResumeCourseCard from '../../components/course_card/ResumeCourseCard';
 import ExamCard from '../../components/exam_card/ExamCard';
@@ -42,7 +41,6 @@ const StudentDashboard = () => {
 
   return (
     <>
-      <Sidebar />
       <div className={styles.dashboardWrapper}>
         <div className={`${styles.headerBackground} ${styles.theme}`}>
           <div className={styles.header}>

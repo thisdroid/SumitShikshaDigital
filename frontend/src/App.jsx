@@ -11,11 +11,14 @@ import ContactUs from './pages/home/ContactUs'
 import AboutUs from './pages/home/AboutUs'
 
 // PROTECTED ROUTES
-import StudentDashboardLayout from './pages/student/StudentDashboardLayout'
+import StudentDashboardLayout from './pages/studentPortal/StudentDashboardLayout'
 import StudentDashboard from './pages/studentPortal/StudentDashboard'
 import Courses from './pages/studentPortal/Courses'
 import Examination from './pages/studentPortal/Examination'
 import Certificates from './pages/studentPortal/Certificates'
+import Profile from './pages/studentPortal/Profile'
+import PersonalDetails from './pages/studentPortal/PersonalDetails'
+import StudentSecurity from './pages/studentPortal/StudentSecurity'
 
 function App() {
   return (
@@ -34,12 +37,13 @@ function App() {
 
         {/* NESTED PROTECTED ROUTES */}
         <Route path="/StudentDashboard" element={<StudentDashboardLayout />}>
-          {/* Default dashboard */}
           <Route index element={<StudentDashboard />} />
-          {/* Nested pages */}
           <Route path="Courses" element={<Courses />} />
           <Route path="Examination" element={<Examination />} />
           <Route path="Certificates" element={<Certificates />} />
+          <Route path="Profile" element={<Profile />} />
+          <Route path="PersonalDetails" element={<PersonalDetails />} />
+          <Route path="StudentSecurity" element={<StudentSecurity />} />
         </Route>
       </Routes>
     </Router>

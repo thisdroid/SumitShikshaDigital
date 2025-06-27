@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Sidebar from '../../components/common_components/Sidebar';
 import styles from './Certificates.module.css';
 import CertificateTemplate from './CertificateTemplate';
 import html2pdf from 'html2pdf.js';
@@ -87,7 +86,6 @@ const Certificates = () => {
 
   return (
     <>
-      <Sidebar />
       <div className={styles.certificatesWrapper}>
         <div className={`${styles.headerBackground} ${styles.theme}`}>
           <div className={styles.header}>

@@ -6,12 +6,14 @@ import ExamCard from '../../components/exam_card/ExamCard';
 const upcomingExams = [
     {
         name: 'React Basics',
-        duration: 60,
+        duration: '60 mins',
+        level: 'Advanced',
         description: 'Comprehensive assessment covering all key concepts from React curriculum. Includes multiple choice, short answer, and practical questions.',
     },
     {
         name: 'Python Fundamentals',
-        duration: 90,
+        duration: '90 mins',
+        level: 'Standard',
         description: 'Test your understanding of Python basics, syntax, and problem-solving skills.',
     },
 ];
@@ -19,12 +21,14 @@ const upcomingExams = [
 const availableExams = [
     {
         name: 'Data Science Essentials',
-        duration: 120,
+        duration: '120 mins',
+        level: 'Standard',
         description: 'Covers statistics, data analysis, and machine learning basics.',
     },
     {
         name: 'Cyber Security Basics',
-        duration: 75,
+        duration: '75 mins',
+        level: 'Standard',
         description: 'Covers security principles, threats, and best practices.',
     },
 ];

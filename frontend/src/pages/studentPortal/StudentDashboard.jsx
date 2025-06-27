@@ -98,22 +98,7 @@ const StudentDashboard = () => {
         {/* Exams Section */}
         <h2 className={styles.sectionHeading}>Upcoming Exam</h2>
         <div className={styles.coursesFlex}>
-          <ExamCard
-            exam={{
-              name: 'React Basics',
-              duration: 60,
-              description:
-                'Comprehensive assessment covering all key concepts from Aptitude curriculum. Includes multiple choice, short answer, and practical questions.',
-            }}
-          />
-          <ExamCard
-            exam={{
-              name: 'React Basics',
-              duration: 60,
-              description:
-                'Comprehensive assessment covering all key concepts from Aptitude curriculum. Includes multiple choice, short answer, and practical questions.',
-            }}
-          />
+          <ExamCard />
         </div>
       </div>
     </>

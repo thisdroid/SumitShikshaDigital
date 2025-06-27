@@ -75,19 +75,19 @@ const Sidebar = () => {
             <span className={`material-icons ${styles.navIcon}`}>dashboard</span>
             Dashboard
           </Link>
-          <Link to="/Courses" className={styles.navLink}>
+          <Link to="/StudentDashboard/Courses" className={styles.navLink}>
             <span className={`material-icons ${styles.navIcon}`}>menu_book</span>
             Courses
           </Link>
-          <Link to="/Examination" className={styles.navLink}>
+          <Link to="/StudentDashboard/Examination" className={styles.navLink}>
             <span className={`material-icons ${styles.navIcon}`}>edit</span>
             Examination
           </Link>
-          <Link to="/Performance" className={styles.navLink}>
+          <Link to="/StudentDashboard/Performance" className={styles.navLink}>
             <span className={`material-icons ${styles.navIcon}`}>analytics</span>
             Performance
           </Link>
-          <Link to="/Certificates" className={styles.navLink}>
+          <Link to="/StudentDashboard/Certificates" className={styles.navLink}>
             <span className={`material-icons ${styles.navIcon}`}>verified</span>
             Certificates
           </Link>

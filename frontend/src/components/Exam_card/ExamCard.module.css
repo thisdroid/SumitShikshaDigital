@@ -1,82 +1,268 @@
-.examCard {
-  width: 320px;
-  height: 380px;
-  background: white;
-  border-radius: 12px;
-  padding: 20px 24px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  font-family: 'Arial', sans-serif;
-  color: #2c3e50;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.dashboardWrapper {
+  padding: 2rem;
+  margin-left: 16rem; /* Width of sidebar */
+  min-height: 100vh;
+  background-color: #f9fafb; /* very light gray */
+  font-family: 'Inter', sans-serif;
+  color: #374151; /* gray-700 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header styles */
+
+.header {
+  text-align: center;
+  max-width: 600px;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: #2563eb; /* blue-600 */
+  display: inline;
+}
+
+.titleHighlight {
+  font-weight: 700;
+  background: linear-gradient(90deg, #2563eb 0%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.titleUnderline {
+  height: 4px;
+  width: 96px;
+  margin: 0.5rem auto 1.5rem;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #2563eb 0%, #059669 100%);
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #4b5563; /* gray-600 */
+}
+
+/* Button + New Enrollment */
+
+.newEnrollmentButton {
+  background-color: #2563eb; /* blue-600 */
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgb(37 99 235 / 0.35);
+  transition: background-color 0.3s ease;
+}
+
+.newEnrollmentButton:hover {
+  background-color: #1e40af; /* blue-800 */
+}
+
+/* Cards container */
+
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start; /* Centers all cards */
+  gap: 2rem;
+  width: 100%;
+  max-width: 1000px;
+}
+
+
+/* Individual card */
+
+/* .card {
+  position: relative;
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1.75rem 2rem;
+  box-shadow: 0 4px 24px rgb(37 99 235 / 0.15);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  transition: box-shadow 0.3s, transform 0.3s;
-}
+  overflow: hidden;
+  min-height: 280px;
+} */
 
-.examCard:hover {
+
+
+.card {
+  position: relative;
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1.75rem 2rem;
+  box-shadow: 0 4px 24px rgb(37 99 235 / 0.15);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  /* min-height: 280px;   Set a fixed height */
+  max-width: 400px;
+  width: 100%;
+  height: 310px;       /* Add this for fixed height */
+  transition: box-shadow 0.3s, transform 0.3s; /* Add transition for smooth effect */
+}
+.card:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   transform: translateY(-8px) scale(1.03);
   z-index: 2;
 }
 
 
-.examName {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 600;
-  color: #3478f6;
+/* Top gradient border */
+
+.cardTopBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 7px;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  background: linear-gradient(90deg, #2563eb 0%, #059669 100%);
 }
 
-.examInfo {
+/* Card title */
+
+.cardTitle {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #2563eb; /* blue-600 */
+  margin-bottom: 1rem;
+  z-index: 1;
+  position: relative;
+}
+
+/* Card info row */
+
+.cardInfo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: #536dfe;
-  font-size: 14px;
-  margin-top: 8px;
-}
-
-.icon {
-  font-size: 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.examDuration {
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: #6b7280; /* gray-500 */
   font-weight: 500;
 }
 
-.examDescription {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #4d5d6c;
-  margin: 12px 0;
-  overflow: hidden;
+/* Individual info item (icons) */
 
-  /* ✅ multi-line ellipsis config */
+.cardInfoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563eb; /* blue-600 */
+}
+
+.shieldIcon {
+  color: #6b7280 !important;
+}
+
+/* The text next to icons */
+
+.cardInfoText {
+  color: #6b7280; /* gray-500 */
+  font-weight: 500;
+}
+
+/* Description text */
+
+/* .cardDescription {
+  color: #374151; 
+  font-size: 1rem;
+  line-height: 1.5rem;
+  flex-grow: 1;
+  margin-bottom: 2rem;
+} */
+
+.cardDescription {
+  color: #374151; /* gray-700 */
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin-bottom: 2rem;
+
   display: -webkit-box;
+  -webkit-line-clamp: 4;      /* 👈 Limit to 4 lines */
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 8;
-  white-space: normal;
+  overflow: hidden;
   text-overflow: ellipsis;
+
+  flex-grow: 1; /* Add this to push actions to the bottom */
+
+  min-height: 0;       /* Prevents flex overflow issues */
 }
 
-.startExamBtn {
-  width: 100%;
-  padding: 10px;
-  background-color: #2a52be;
-  color: white;
-  border: none;
-  border-radius: 4px;
+
+
+/* Action buttons container */
+
+.cardActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto; /* Add this to stick to bottom */
+}
+
+/* Buttons */
+
+.btn {
   cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.25s ease;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   user-select: none;
-  margin-top: auto;
 }
 
-.startExamBtn:hover {
-  background-color: #1a3a8f;
+/* Primary button */
+
+.btnPrimary {
+  background-color: #2563eb;
+  border: none;
+  color: white;
+  box-shadow: 0 4px 24px rgb(37 99 235 / 0.45);
+}
+
+.btnPrimary:hover {
+  background-color: #1e40af;
+  box-shadow: 0 6px 24px rgb(29 78 216 / 0.6);
+}
+
+/* Outline button */
+
+.btnOutline {
+  border: 2px solid #2563eb;
+  background-color: transparent;
+  color: #2563eb;
+}
+
+.btnOutline:hover {
+  background-color: #eff6ff; /* light blue bg on hover */
+}
+
+/* Responsive */
+
+@media (max-width: 1023px) {
+  .dashboardWrapper {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .cardsContainer {
+    grid-template-columns: 1fr;
+  }
 }

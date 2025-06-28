@@ -29,7 +29,7 @@
 .hamburgerButton {
   position: fixed;
   top: 1rem;
-  right: 1rem;
+  left: 1rem;
   z-index: 1100;
   background-color: white;
   border: 1.5px solid #2563eb; /* blue-600 border */

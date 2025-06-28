@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ResumeCourseCard.module.css';
 
-const ResumeCourseCard = ({ course }) => {
+const ResumeCourseCard = ({ course, onView }) => {
   return (
     <div className={styles.courseCard}>
       <div className={styles.courseImageContainer}>
@@ -22,7 +22,7 @@ const ResumeCourseCard = ({ course }) => {
             <span className={styles.courseDuration}>{course.duration} days</span>
           </div>
           
-          <button className={styles.viewCourseBtn}>
+          <button className={styles.viewCourseBtn} onClick={onView}>
             Resume Course
           </button>
         </div>

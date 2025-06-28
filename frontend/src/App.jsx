@@ -20,6 +20,7 @@ import Profile from './pages/studentPortal/Profile'
 import PersonalDetails from './pages/studentPortal/PersonalDetails'
 import StudentSecurity from './pages/studentPortal/StudentSecurity'
 import StudentPerformance from './pages/studentPortal/StudentPerformance'
+import CourseDetails from './pages/studentPortal/Courses/CourseDetails'
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path="Profile" element={<Profile />} />
           <Route path="PersonalDetails" element={<PersonalDetails />} />
           <Route path="StudentSecurity" element={<StudentSecurity />} />
+          <Route path="CourseDetails" element={<CourseDetails />} />
         </Route>
       </Routes>
     </Router>

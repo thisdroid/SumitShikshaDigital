@@ -71,23 +71,43 @@ const Sidebar = () => {
           <div className={styles.divider}></div>
         </div>
         <nav className={styles.nav}>
-          <Link to="/StudentDashboard" className={styles.navLink}>
+          <Link
+            to="/StudentDashboard"
+            className={styles.navLink}
+            onClick={() => isMobileView && setIsOpen(false)}
+          >
             <span className={`material-icons ${styles.navIcon}`}>dashboard</span>
             Dashboard
           </Link>
-          <Link to="/StudentDashboard/Courses" className={styles.navLink}>
+          <Link
+            to="/StudentDashboard/Courses"
+            className={styles.navLink}
+            onClick={() => isMobileView && setIsOpen(false)}
+          >
             <span className={`material-icons ${styles.navIcon}`}>menu_book</span>
             Courses
           </Link>
-          <Link to="/StudentDashboard/Examination" className={styles.navLink}>
+          <Link
+            to="/StudentDashboard/Examination"
+            className={styles.navLink}
+            onClick={() => isMobileView && setIsOpen(false)}
+          >
             <span className={`material-icons ${styles.navIcon}`}>edit</span>
             Examination
           </Link>
-          <Link to="/StudentDashboard/StudentPerformance" className={styles.navLink}>
+          <Link
+            to="/StudentDashboard/StudentPerformance"
+            className={styles.navLink}
+            onClick={() => isMobileView && setIsOpen(false)}
+          >
             <span className={`material-icons ${styles.navIcon}`}>analytics</span>
             Performance
           </Link>
-          <Link to="/StudentDashboard/Certificates" className={styles.navLink}>
+          <Link
+            to="/StudentDashboard/Certificates"
+            className={styles.navLink}
+            onClick={() => isMobileView && setIsOpen(false)}
+          >
             <span className={`material-icons ${styles.navIcon}`}>verified</span>
             Certificates
           </Link>

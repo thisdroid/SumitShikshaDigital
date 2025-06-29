@@ -50,6 +50,43 @@
   }
 }
 
+@media (max-width: 600px) {
+  .certificatesWrapper {
+    padding: 0.5rem;
+  }
+  .certificateCard {
+    flex-direction: column;
+    padding: 1rem 0.5rem;
+    align-items: stretch;
+  }
+  .certificateInfo {
+    max-width: 100%;
+  }
+  .certificateActions {
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: stretch;
+    justify-content: flex-start;
+    margin-top: 0.7rem;
+  }
+  .viewBtn,
+  .downloadBtnList {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.5rem 0.3rem;
+  }
+  .modalContent {
+    padding: 0.5rem;
+    max-width: 98vw;
+  }
+}
+
+@media (max-width: 400px) {
+  .modalContent {
+    padding: 0.2rem;
+  }
+}
+
 .searchBarWrapper {
   margin-bottom: 1.25rem;
 }

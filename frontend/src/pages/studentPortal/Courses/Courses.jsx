@@ -1,8 +1,8 @@
 import { useRef, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
 import styles from "./Courses.module.css"
-import CourseCard from "../../components/course_card/CourseCard"
-import ResumeCourseCard from "../../components/course_card/ResumeCourseCard"
-import CourseDetails from "./Courses/CourseDetails"
+import CourseCard from "../../../components/course_card/CourseCard"
+import ResumeCourseCard from "../../../components/course_card/ResumeCourseCard"
 
 const enrolledCourses = [
   {
@@ -49,7 +49,7 @@ const enrolledCourses = [
   },
 ]
 
-const availableCourses = [
+export const availableCourses = [
   {
     image: "/images/fullStack.jpg",
     title: "Python Programming",
@@ -110,7 +110,7 @@ const Courses = () => {
     rating: false,
     price: false,
   })
-  const [selectedCourse, setSelectedCourse] = useState(null) // Track course selected to view details
+  const navigate = useNavigate();
 
   const filterDropdownRef = useRef(null)
 
@@ -231,12 +231,7 @@ const Courses = () => {
 
   // Open course detail view
   const handleViewCourse = (course) => {
-    setSelectedCourse(course)
-  }
-
-  // Back from details to courses
-  const handleBackToCourses = () => {
-    setSelectedCourse(null)
+    navigate(`/StudentDashboard/Courses/${encodeURIComponent(course.title)}`, { state: { course } });
   }
 
   // Render enrolled courses with onView
@@ -421,13 +416,6 @@ const Courses = () => {
       </div>
     </>
   )
-
-  // Note: end of renderAvailableCourses
-  // )
-  
-  if (selectedCourse) {
-    return <CourseDetails course={selectedCourse} onBack={handleBackToCourses} />
-  }
 
   return (
     <div className={styles.coursesWrapper}>

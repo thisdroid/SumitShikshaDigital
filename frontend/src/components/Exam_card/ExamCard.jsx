@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import styles from './ExamCard.module.css';
 
 const CalendarIcon = () => (
@@ -38,6 +39,7 @@ const ShieldIcon = () => (
 );
 
 function ExamCard({ exam }) {
+    const navigate = useNavigate();
     if (!exam) return null;
     return (
         <div className={styles.card}>
@@ -64,7 +66,13 @@ function ExamCard({ exam }) {
 
             <p className={styles.cardDescription}>{exam.description}</p>
             <div className={styles.cardActions}>
-                <button className={`${styles.btn} ${styles.btnPrimary}`} type="button">
+                <button
+                    className={`${styles.btn} ${styles.btnPrimary}`}
+                    type="button"
+                    onClick={() =>
+                        navigate(`/StudentDashboard/Examination/${encodeURIComponent(exam.name)}`, { state: { exam } })
+                    }
+                >
                     <span className="material-icons" style={{ fontSize: '18px', verticalAlign: 'middle' }}>
                         visibility
                     </span>{' '}

@@ -1,20 +1,49 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useParams, useLocation, useNavigate } from "react-router-dom"
 import styles from "./CourseDetails.module.css"
 
-const CourseDetails = ({ course, onBack }) => {
+// You can import your course list here or fetch from API
+import { availableCourses } from "./Courses" // Adjust path as needed
+
+const CourseDetails = () => {
+  const { courseId } = useParams()
+  const location = useLocation()
+  const navigate = useNavigate()
   const [isEnrolled, setIsEnrolled] = useState(false)
 
-  // Sample course data - you can pass this as props or fetch from API
+  // Try to get course from location.state (if navigated from Courses page)
+  let course = location.state?.course
+
+  // If not found, find it from your course list using courseId (decode if needed)
+  if (!course && courseId) {
+    course = availableCourses.find((c) => encodeURIComponent(c.title) === courseId)
+  }
+
+  // Fallback if course not found
+  if (!course) {
+    return (
+      <div className={styles.courseDetailsWrapper}>
+        <button className={styles.backButton} onClick={() => navigate(-1)}>
+          <span className="material-icons">arrow_back</span>
+          Back to Courses
+        </button>
+        <div className={styles.section}>
+          <h2>Course not found.</h2>
+        </div>
+      </div>
+    )
+  }
+
   const courseData = {
-    image: course?.image || "/images/FrontEnd.jpg",
-    title: course?.title || "Frontend for Beginners",
-    description: course?.description || "Learn the basics of React.js with hands-on projects.",
-    rating: course?.rating || 4.8,
-    reviewCount: course?.reviewCount || 120,
-    duration: course?.duration || 30,
-    price: course?.price || "Free",
+    image: course.image || "/images/FrontEnd.jpg",
+    title: course.title || "Frontend for Beginners",
+    description: course.description || "Learn the basics of React.js with hands-on projects.",
+    rating: course.rating || 4.8,
+    reviewCount: course.reviewCount || 120,
+    duration: course.duration || 30,
+    price: course.price || "Free",
     originalPrice: "₹549.0",
     questionsCount: 75,
     totalMarks: 150,
@@ -79,21 +108,14 @@ const CourseDetails = ({ course, onBack }) => {
     ))
   }
 
+  // Scroll to top when this component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0});
+  }, []);
+
   return (
     <div className={styles.courseDetailsWrapper}>
-      {/* <div className={`${styles.headerBackground} ${styles.theme}`}>
-        <div className={styles.header}>
-          <div className={styles.headerContent}>
-            <button className={styles.backButton} onClick={onBack}>
-              <span className="material-icons">arrow_back</span>
-              Back to Courses
-            </button>
-            <h1 className={styles.title}>Course Details</h1>
-          </div>
-        </div>
-      </div> */}
-
-      <button className={styles.backButton} onClick={onBack}>
+      <button className={styles.backButton} onClick={() => navigate(-1)}>
         <span className="material-icons">arrow_back</span>
         Back to Courses
       </button>

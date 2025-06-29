@@ -9,18 +9,20 @@ import CollegeLogin from './pages/college/CollegeLogin'
 import CollegeSignUp from './pages/college/CollegeSignUp'
 import ContactUs from './pages/home/ContactUs'
 import AboutUs from './pages/home/AboutUs'
+import GetHelp from './components/common_components/GetHelp'
 
 // PROTECTED ROUTES
 import StudentDashboardLayout from './pages/studentPortal/StudentDashboardLayout'
 import StudentDashboard from './pages/studentPortal/StudentDashboard'
-import Courses from './pages/studentPortal/Courses'
-import Examination from './pages/studentPortal/Examination'
-import Certificates from './pages/studentPortal/Certificates'
-import Profile from './pages/studentPortal/Profile'
-import PersonalDetails from './pages/studentPortal/PersonalDetails'
-import StudentSecurity from './pages/studentPortal/StudentSecurity'
+import Courses from './pages/studentPortal/Courses/Courses'
+import Examination from './pages/studentPortal/Exams/Examination'
+import Certificates from './pages/studentPortal/StudentCertificates/Certificates'
+import Profile from './pages/studentPortal/Profile_icon/Profile'
+import PersonalDetails from './pages/studentPortal/Profile_icon/PersonalDetails'
+import StudentSecurity from './pages/studentPortal/Profile_icon/StudentSecurity'
 import StudentPerformance from './pages/studentPortal/StudentPerformance'
 import CourseDetails from './pages/studentPortal/Courses/CourseDetails'
+import ExamDetails from './pages/studentPortal/Exams/ExamDetails'
 
 
 function App() {
@@ -37,20 +39,22 @@ function App() {
         <Route path="/CollegeSignUp" element={<CollegeSignUp />} />
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/ContactUs" element={<ContactUs />} />
+        <Route path="/GetHelp" element={<GetHelp />} />
 
         {/* NESTED PROTECTED ROUTES */}
         <Route path="/StudentDashboard" element={<StudentDashboardLayout />}>
           <Route index element={<StudentDashboard />} />
           <Route path="Courses" element={<Courses />} />
+          <Route path="Courses/:courseId" element={<CourseDetails />} />
           <Route path="Examination" element={<Examination />} />
-          <Route path="StudentPerformance" element={<StudentPerformance />} />
+          <Route path="Examination/:examName" element={<ExamDetails />} />
           <Route path="Certificates" element={<Certificates />} />
           <Route path="Profile" element={<Profile />} />
           <Route path="PersonalDetails" element={<PersonalDetails />} />
           <Route path="StudentSecurity" element={<StudentSecurity />} />
-          <Route path="CourseDetails" element={<CourseDetails />} />
+          <Route path="StudentPerformance" element={<StudentPerformance />} />
         </Route>
-      </Routes>
+      </Routes>     
     </Router>
   )
 }

@@ -83,7 +83,7 @@ const Profile = () => {
               </Link>
             </li>
             <li className={styles.borderTop}>
-              <Link to="/help" className={styles.menuItem} onClick={() => setIsOpen(false)}>
+              <Link to="/GetHelp" className={styles.menuItem} onClick={() => setIsOpen(false)}>
                 <span className="material-icons" style={{ marginRight: "0.75rem", fontSize: "20px", color: "#6b7280" }}>
                   help
                 </span>

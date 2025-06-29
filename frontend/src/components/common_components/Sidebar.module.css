@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, visibility 0.3s ease;
-  z-index: 1000; /* on top */
+  z-index: 1300; /* on top */
 }
 
 /* Sidebar open on small screens */

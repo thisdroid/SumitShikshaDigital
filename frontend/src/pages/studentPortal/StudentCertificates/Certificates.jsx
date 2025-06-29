@@ -142,9 +142,16 @@ const Certificates = () => {
       {/* Offscreen hidden certificate template used for PDF generation from list button */}
       {/* Render but hide it so html2pdf can capture its content */}
       <div style={{ position: 'fixed', top: '-9999px', left: '-9999px', pointerEvents: 'none' }}>
-        {downloadCert && <CertificateTemplate ref={templateRef} cert={downloadCert} />}
-        {/* When no downloadCert, still good to render last modal cert for download there */}
-        {!downloadCert && selectedCert && <CertificateTemplate ref={templateRef} cert={selectedCert} />}
+        {downloadCert && (
+          <div className="pdfMode">
+            <CertificateTemplate ref={templateRef} cert={downloadCert} />
+          </div>
+        )}
+        {!downloadCert && selectedCert && (
+          <div className="pdfMode">
+            <CertificateTemplate ref={templateRef} cert={selectedCert} />
+          </div>
+        )}
       </div>
 
       {/* Modal for viewing certificate and downloading */}

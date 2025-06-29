@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styles from './Examination.module.css';
-import ExamCard from '../../components/exam_card/ExamCard';
+import ExamCard from '../../../components/exam_card/ExamCard';
 
-const upcomingExams = [
+export const upcomingExams = [
     {
         name: 'React Basics',
         duration: '60 mins',
@@ -17,7 +17,7 @@ const upcomingExams = [
     },
 ];
 
-const availableExams = [
+export const availableExams = [
     {
         name: 'Data Science Essentials',
         duration: '120 mins',

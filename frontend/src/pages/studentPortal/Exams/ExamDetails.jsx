@@ -45,8 +45,12 @@ const ExamDetails = () => {
           <div>
             <h2 className={styles.examTitle}>{exam.name}</h2>
             <div className={styles.examStats}>
-              <span className={styles.examStat}><span className="material-icons">schedule</span> {exam.duration}</span>
-              <span className={styles.examStat}><span className="material-icons">shield</span> {exam.level}</span>
+              <span className={styles.examStat}>
+                <span className="material-icons">schedule</span> {exam.duration}
+              </span>
+              <span className={styles.examStat}>
+                <span className="material-icons">shield</span> {exam.level}
+              </span>
             </div>
             <p className={styles.examDescription}>{exam.description}</p>
           </div>
@@ -66,7 +70,10 @@ const ExamDetails = () => {
             <li>Only one choice is correct among the given</li>
             <li>Every question carries different marks</li>
             <li>Try to answer as quickly as possible</li>
-            <li>If you refresh or go back, you’ll get a new question and the current one will count as an attempt</li>
+            <li>
+              If you refresh or go back, you’ll get a new question and the current
+              one will count as an attempt
+            </li>
             <li>Questions are presented randomly</li>
             <li>You’ll see your marks immediately after submitting</li>
           </ul>

@@ -1,42 +1,40 @@
+.theme {
+  --secondary-blue: #2196f3;
+  --secondary-blue-dark: #1976d2;
+}
+
+.headerBackground {
+  background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--secondary-blue-dark) 100%);
+  padding: 4rem 2rem 2rem 2rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   font-family: "Poppins", sans-serif;
-   padding: 2rem;
+  padding: 2rem;
   margin-left: 16rem;
   background-color: #f9fafb;
   min-height: 100vh;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  width: calc(100% - 16rem);
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 2rem;
 }
 
 .title {
-  font-size: 48px;
-  font-weight: 600;
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 2.25rem;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  font-family: "EB garamond", serif;
+  color: white;
   margin: 0;
-  color: #4285f4;
-  font-family: "Poppins", sans-serif;
-}
-
-.titleTeal {
-  color: #20b2aa;
-}
-
-.underline {
-  width: 120px;
-  height: 4px;
-  background: linear-gradient(to right, #4285f4, #20b2aa);
-  margin: 10px auto 20px;
-  border-radius: 2px;
-}
-
-.subtitle {
-  font-size: 18px;
-  color: #6c757d;
-  margin: 0;
-  font-weight: 400;
-  font-family: "Poppins", sans-serif;
 }
 
 .filterSection {
@@ -192,9 +190,64 @@
   font-family: "Poppins", sans-serif;
 }
 
+.footer {
+  text-align: center;
+  margin-top: 50px;
+}
 
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
 
-@media (max-width: 768px) {
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  background-color: #6c757d;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+}
+
+.copyright {
+  color: #6c757d;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Hamburger menu styles */
+.hamburger {
+  display: none; /* Hidden by default */
+  cursor: pointer;
+  padding: 10px;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 5px 0;
+}
+
+/* Adjust the breakpoint to match when the sidebar should disappear */
+@media (max-width: 1024px) {
+  .container {
+    margin-left: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .hamburger {
+    display: block; /* Show hamburger menu */
+  }
+
   .metricsContainer {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
@@ -215,7 +268,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .metricsContainer {
     grid-template-columns: 1fr;
   }

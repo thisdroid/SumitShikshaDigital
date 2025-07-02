@@ -1,89 +1,277 @@
-.relative {
+.header {
+  background: white;
+
+  padding: 1rem 2rem;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
   position: relative;
+
+  z-index: 100;
+
+  flex-direction: row;
 }
 
-.profileButton {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.5rem;
-  background-color: #f9fafb;
-  border-radius: 9999px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  border: 2px solid #f9fafb;
-  cursor: pointer;
-  z-index: 50;
+.headerTop {
   display: flex;
+
+  justify-content: space-between;
+
   align-items: center;
+
+  width: 100%;
+}
+
+.searchContainer {
+  display: flex;
+
+  align-items: center;
+
+  background: #f8fafc;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 0.5rem;
+
+  padding: 0.5rem 1rem;
+
+  width: 400px;
+
+  gap: 0.5rem;
+}
+
+.searchContainer .material-icons {
+  color: #9ca3af;
+
+  font-size: 1.25rem;
+}
+
+.searchInput {
+  border: none;
+
+  background: transparent;
+
+  outline: none;
+
+  flex: 1;
+
+  font-size: 0.875rem;
+
+  color: #374151;
+}
+
+.searchInput::placeholder {
+  color: #9ca3af;
+}
+
+.userSection {
+  display: flex;
+
+  align-items: center;
+
+  gap: 1rem;
+}
+
+.notificationBtn {
+  position: relative;
+
+  background: none;
+
+  border: none;
+
+  cursor: pointer;
+
+  padding: 0.5rem;
+
+  border-radius: 0.5rem;
+
   transition: background-color 0.2s;
 }
 
-.profileButton:hover {
-  background-color: #f9fafb;
-  border: 2px solid #e5e7eb;
+.notificationBtn:hover {
+  background-color: #f3f4f6;
 }
 
-.profileImage {
+.notificationBtn .material-icons {
+  color: #6b7280;
+
+  font-size: 1.5rem;
+}
+
+.notificationBadge {
+  position: absolute;
+
+  top: 0.25rem;
+
+  right: 0.25rem;
+
+  width: 8px;
+
+  height: 8px;
+
+  background-color: #ef4444;
+
+  border-radius: 50%;
+}
+
+.profileContainer {
+  position: relative;
+}
+
+.userProfile {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.75rem;
+
+  cursor: pointer;
+
+  padding: 0.5rem;
+
+  border-radius: 0.5rem;
+
+  transition: background-color 0.2s;
+}
+
+.userProfile:hover {
+  background-color: #f3f4f6;
+}
+
+.userAvatar {
   width: 2.5rem;
+
   height: 2.5rem;
-  border-radius: 9999px;
+
+  border-radius: 50%;
+
   object-fit: cover;
 }
 
+.userInfo {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.userName {
+  font-weight: 600;
+
+  color: #1f2937;
+
+  font-size: 0.875rem;
+}
+
+.userRole {
+  font-size: 0.75rem;
+
+  color: #6b7280;
+}
+
+.userProfile .material-icons {
+  color: #9ca3af;
+
+  font-size: 1.25rem;
+}
+
 .dropdown {
-  position: fixed;
-  top: 4rem;
-  right: 1rem;
+  position: absolute;
+
+  top: 100%;
+
+  right: 0;
+
   width: 16rem;
+
   background-color: #ffffff;
+
   border-radius: 0.5rem;
+
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
   z-index: 50;
+
   transform: translateZ(0);
+
   transition: all 0.2s ease-in-out;
+
+  margin-top: 0.5rem;
 }
 
 .dropdownHeader {
   padding: 1rem;
-  border-bottom: 1px solid white;
+
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .flexContainer {
   display: flex;
+
   align-items: center;
+
   gap: 0.75rem;
+}
+
+.flexContainer > div {
+  min-width: 0;
+  flex: 1;
 }
 
 .dropdownProfileImage {
   width: 2.5rem;
+
   height: 2.5rem;
+
   border-radius: 9999px;
+
   border: 2px solid white;
+
   object-fit: cover;
 }
 
 .username {
   font-weight: 600;
+
   color: #1f2937;
+
+  margin: 0;
 }
 
 .useremail {
   font-size: 0.875rem;
   color: #6b7280;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
 }
 
 .dropdownMenu {
   padding: 0.5rem 0;
+
   list-style: none;
+
   margin: 0;
 }
 
 .menuItem {
   display: flex;
+
   align-items: center;
+
   padding: 0.75rem 1rem;
+
   color: #374151;
+
   text-decoration: none;
+
   transition: background-color 0.2s;
 }
 
@@ -93,55 +281,110 @@
 
 .menuIcon {
   width: 1.25rem;
+
   height: 1.25rem;
+
   margin-right: 0.75rem;
+
   color: #6b7280;
 }
 
 .borderTop {
-  border-top: 1px solid white;
+  border-top: 1px solid #e5e7eb;
 }
 
-.signOutButton {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 0.75rem 1rem;
-  color: #374151;
-  background: none;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  transition: background-color 0.2s;
+/* Desktop - keep original layout */
+
+@media (min-width: 769px) {
+  .header {
+    flex-direction: row;
+  }
+
+  .headerTop {
+    display: contents;
+  }
 }
 
-.signOutButton:hover {
-  background-color: #f9fafb;
-}
+/* Mobile - new layout */
 
-/* Mobile adjustments for profile positioning */
 @media (max-width: 768px) {
-  .profileButton {
-    top: 0.75rem;
-    right: 0.75rem;
+  .header {
+    padding: 1rem;
+
+    flex-direction: column;
+
+    gap: 1rem;
+
+    position: relative;
+  }
+
+  .headerTop {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    width: 100%;
+
+    flex-direction: column;
+
+    gap: 1rem;
+  }
+
+  .searchContainer {
+    width: 100%;
+
+    order: 2;
+  }
+
+  .userSection {
+    gap: 0.75rem;
+
+    order: 1;
+
+    align-self: flex-end;
+  }
+
+  .userProfile {
+    gap: 0.5rem;
+  }
+
+  .userAvatar {
+    width: 2rem;
+
+    height: 2rem;
+  }
+
+  .userName {
+    font-size: 0.8rem;
+  }
+
+  .userRole {
+    font-size: 0.7rem;
   }
 
   .dropdown {
-    top: 3.5rem;
-    right: 0.75rem;
+    right: 0;
+
     width: 14rem;
   }
 }
 
-@media (max-width: 480px) {
-  .profileButton {
-    top: 0.5rem;
-    right: 0.5rem;
+@media (max-width: 1023px) {
+  .header {
+    position: relative;
+
+    padding: 1rem 4rem 1rem 1rem;
   }
 
+  .searchContainer {
+    width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
   .dropdown {
-    top: 3rem;
-    right: 0.5rem;
     width: 12rem;
   }
 }

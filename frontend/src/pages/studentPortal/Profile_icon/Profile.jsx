@@ -1,19 +1,28 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
+
 import { Link, useNavigate } from "react-router-dom"
+
 import styles from "./Profile.module.css"
 
 // Static user object
+
 const staticUser = {
-  username: "user",
-  email: "user@example.com",
+  username: "Mr. Hennis Jha",
+
+  email: "hennis.jha@example.com",
+
+  role: "Student",
 }
 
 const Profile = () => {
   const [isOpen, setIsOpen] = useState(false)
+
   const [user] = useState(staticUser)
+
   const navigate = useNavigate()
+
   const dropdownRef = useRef(null)
 
   useEffect(() => {
@@ -24,6 +33,7 @@ const Profile = () => {
     }
 
     document.addEventListener("mousedown", handleClickOutside)
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)
     }
@@ -31,30 +41,41 @@ const Profile = () => {
 
   const handleSignOut = () => {
     setIsOpen(false)
+
     navigate("/login")
   }
 
   return (
-    <div className={styles.relative} ref={dropdownRef}>
-      <button onClick={() => setIsOpen(!isOpen)} className={styles.profileButton}>
-        <img
-          src={"/images/default-user.png"} // Replace with your profile image path
-          alt="Profile"
-          className={styles.profileImage}
-        />
-      </button>
+    <div className={styles.profileContainer} ref={dropdownRef}>
+      <div className={styles.userProfile} onClick={() => setIsOpen(!isOpen)}>
+        <img src="/images/default-user.png" alt="User" className={styles.userAvatar} />
+
+        {/* Hide the user info by default - only show avatar and dropdown arrow */}
+        {/* <div className={styles.userInfo}>
+
+          <span className={styles.userName}>{user.username}</span>
+
+          <span className={styles.userRole}>{user.role}</span>
+
+        </div> */}
+
+        <span className="material-icons">keyboard_arrow_down</span>
+      </div>
 
       {isOpen && (
         <div className={styles.dropdown}>
           <div className={styles.dropdownHeader}>
             <div className={styles.flexContainer}>
-              <img src={"/images/default-user.png"} alt="User" className={styles.profileImage} />
+              <img src="/images/default-user.png" alt="User" className={styles.dropdownProfileImage} />
+
               <div>
                 <p className={styles.username}>{user.username}</p>
+
                 <p className={styles.useremail}>{user.email}</p>
               </div>
             </div>
           </div>
+
           <ul className={styles.dropdownMenu}>
             <li>
               <Link to="/StudentDashboard/PersonalDetails" className={styles.menuItem} onClick={() => setIsOpen(false)}>
@@ -69,6 +90,7 @@ const Profile = () => {
                 Personal Details
               </Link>
             </li>
+
             <li>
               <Link to="/StudentDashboard/StudentSecurity" className={styles.menuItem} onClick={() => setIsOpen(false)}>
                 <svg className={styles.menuIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,6 +104,7 @@ const Profile = () => {
                 Security Settings
               </Link>
             </li>
+
             <li className={styles.borderTop}>
               <Link to="/GetHelp" className={styles.menuItem} onClick={() => setIsOpen(false)}>
                 <span className="material-icons" style={{ marginRight: "0.75rem", fontSize: "20px", color: "#6b7280" }}>
@@ -90,12 +113,14 @@ const Profile = () => {
                 Get Help
               </Link>
             </li>
+
             <li className={styles.borderTop}>
               <Link
                 to="/StudentLogin"
                 className={styles.menuItem}
                 onClick={() => {
                   setIsOpen(false)
+
                   handleSignOut()
                 }}
               >

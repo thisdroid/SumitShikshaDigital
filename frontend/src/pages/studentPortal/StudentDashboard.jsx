@@ -1,35 +1,62 @@
+"use client"
 
 import { useState } from "react"
+
 import styles from "./StudentDashboard.module.css"
+
 import Sidebar from "../../components/common_components/Sidebar"
 
+import Profile from "./Profile_icon/Profile"
+
 const StudentDashboard = () => {
+  const today = new Date()
+
   const [selectedCourseTab, setSelectedCourseTab] = useState("All")
 
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth())
+
+  const [currentYear, setCurrentYear] = useState(today.getFullYear())
+
   // Sample data
+
   const statsData = [
     {
       icon: "school",
+
       label: "Courses Enroll",
+
       value: "16",
+
       color: "#f97316",
     },
+
     {
       icon: "quiz",
+
       label: "Available Exams",
+
       value: "88",
+
       color: "#8b5cf6",
     },
+
     {
       icon: "workspace_premium",
+
       label: "Certificate Earned",
+
       value: "62",
+
       color: "#f59e0b",
     },
+
     {
       icon: "local_fire_department",
+
       label: "Learning Streak",
+
       value: "256",
+
       color: "#10b981",
     },
   ]
@@ -37,122 +64,189 @@ const StudentDashboard = () => {
   const allCourses = [
     {
       id: 1,
+
       name: "Advance level of Mobile Application Design Course",
+
       rating: 4.3,
+
       color: "#8b5cf6",
+
       status: "ongoing",
     },
+
     {
       id: 2,
+
       name: "Java Full Stack Course - 6 Month Online Bootcamp",
+
       rating: 4.0,
+
       color: "#3b82f6",
+
       status: "ongoing",
     },
+
     {
       id: 3,
+
       name: "Python Full Stack Course - 6 Month Online Bootcamp",
+
       rating: 4.3,
+
       color: "#eab308",
+
       status: "completed",
     },
   ]
 
   const getFilteredCourses = () => {
     if (selectedCourseTab === "All") return allCourses
+
     return allCourses.filter((course) => course.status === selectedCourseTab.toLowerCase())
   }
 
   const upcomingExams = [
     {
       id: 1,
+
       title: "React Basic",
+
       duration: "60 mins",
+
       color: "#ef4444",
+
       icon: "description",
     },
+
     {
       id: 2,
+
       title: "Assignment 103",
+
       duration: "60 mins",
+
       color: "#3b82f6",
+
       icon: "description",
     },
+
     {
       id: 3,
+
       title: "Assignment 103",
+
       duration: "60 mins",
+
       color: "#10b981",
+
       icon: "description",
     },
+
     {
       id: 4,
+
       title: "Assignment 103",
+
       duration: "60 mins",
+
       color: "#8b5cf6",
+
       icon: "description",
     },
+
     {
       id: 5,
+
       title: "Assignment 103",
+
       duration: "60 mins",
+
       color: "#f59e0b",
+
       icon: "description",
     },
   ]
 
   const activityData = [
     { day: "Sun", value: 30 },
+
     { day: "Mon", value: 45 },
+
     { day: "Tue", value: 35 },
+
     { day: "Wed", value: 60 },
+
     { day: "Thu", value: 55 },
+
     { day: "Fri", value: 70 },
+
     { day: "Sat", value: 40 },
   ]
 
   const generateCalendar = () => {
-    const today = new Date()
-    const currentDate = today.getDate()
-    const currentMonth = today.getMonth()
-    const currentYear = today.getFullYear()
     const firstDay = new Date(currentYear, currentMonth, 1).getDay()
+
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
+
+    const currentDate = today.getDate()
+
+    const isCurrentMonth = currentMonth === today.getMonth() && currentYear === today.getFullYear()
 
     const calendar = []
 
-    // Add empty cells for days before the first day of the month
     for (let i = 0; i < firstDay; i++) {
       calendar.push(null)
     }
 
-    // Add days of the month
     for (let i = 1; i <= daysInMonth; i++) {
       calendar.push({
         date: i,
-        isToday: i === currentDate,
+
+        isToday: isCurrentMonth && i === currentDate,
       })
     }
 
-    return { calendar, currentDate, currentMonth, currentYear }
+    return { calendar }
   }
 
   const { calendar } = generateCalendar()
 
   // Generate SVG path for activity chart
+
   const generateActivityPath = () => {
     const width = 300
+
     const height = 100
+
     const padding = 20
+
     const maxValue = Math.max(...activityData.map((d) => d.value))
 
     const points = activityData.map((data, index) => {
       const x = padding + (index * (width - 2 * padding)) / (activityData.length - 1)
+
       const y = height - padding - (data.value / maxValue) * (height - 2 * padding)
+
       return `${x},${y}`
     })
 
     return `M ${points.join(" L ")}`
+  }
+
+  const handlePrevMonth = () => {
+    setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1))
+
+    if (currentMonth === 0) setCurrentYear((y) => y - 1)
+  }
+
+  const handleNextMonth = () => {
+    setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1))
+
+    if (currentMonth === 11) setCurrentYear((y) => y + 1)
+  }
+
+  const handleYearChange = (e) => {
+    setCurrentYear(Number(e.target.value))
   }
 
   return (
@@ -161,43 +255,43 @@ const StudentDashboard = () => {
 
       <div className={styles.mainContent}>
         {/* Header */}
+
         <header className={styles.header}>
           <div className={styles.headerTop}>
             <div className={styles.searchContainer}>
               <span className="material-icons">search</span>
+
               <input type="text" placeholder="Search" className={styles.searchInput} />
             </div>
 
             <div className={styles.userSection}>
               <button className={styles.notificationBtn}>
                 <span className="material-icons">notifications</span>
+
                 <span className={styles.notificationBadge}></span>
               </button>
 
-              <div className={styles.userProfile}>
-                <img src="/images/default-user.png" alt="User" className={styles.userAvatar} />
-                <div className={styles.userInfo}>
-                  <span className={styles.userName}>Mr. Hennis Jha</span>
-                  <span className={styles.userRole}>Student</span>
-                </div>
-                <span className="material-icons">keyboard_arrow_down</span>
-              </div>
+              <Profile />
             </div>
           </div>
         </header>
 
         <div className={styles.contentWrapper}>
           {/* Left Content */}
+
           <div className={styles.leftContent}>
             {/* Welcome Banner */}
+
             <div className={styles.welcomeBanner}>
               <div className={styles.welcomeContent}>
                 <h1 className={styles.welcomeTitle}>Hi David Yadav!</h1>
+
                 <p className={styles.welcomeText}>
                   Artificial Intelligence is transforming the way businesses operate, making processes smarter and more
                   efficient. Artificial Intelligence leader.
                 </p>
               </div>
+
               <div className={styles.welcomeImage}>
                 <img
                   src="/images/student-dashboard-banner.png"
@@ -209,26 +303,33 @@ const StudentDashboard = () => {
             </div>
 
             {/* Stats Cards */}
+
             <div className={styles.statsGrid}>
               {statsData.map((stat, index) => (
                 <div key={index} className={styles.statCard}>
                   <div className={styles.statIcon} style={{ color: stat.color }}>
                     <span className="material-icons">{stat.icon}</span>
                   </div>
+
                   <div className={styles.statValue}>{stat.value}</div>
+
                   <div className={styles.statLabel}>{stat.label}</div>
                 </div>
               ))}
             </div>
 
             {/* Learning Time and Activity */}
+
             <div className={styles.chartsGrid}>
               {/* Learning Time */}
+
               <div className={styles.chartCard}>
                 <div className={styles.chartHeader}>
                   <h3 className={styles.chartTitle}>Learning Time</h3>
+
                   <span className={styles.chartSubtitle}>Tuesday</span>
                 </div>
+
                 <div className={styles.circularChart}>
                   <div className={styles.circularProgress}>
                     <svg className={styles.progressRing} width="120" height="120">
@@ -241,6 +342,7 @@ const StudentDashboard = () => {
                         cx="60"
                         cy="60"
                       />
+
                       <circle
                         className={styles.progressRingProgress}
                         stroke="#10b981"
@@ -253,46 +355,58 @@ const StudentDashboard = () => {
                         strokeDashoffset={`${2 * Math.PI * 52 * (1 - 0.65)}`}
                       />
                     </svg>
+
                     <div className={styles.progressText}>
                       <div className={styles.progressTime}>2 Hours 35 mins</div>
                     </div>
                   </div>
                 </div>
+
                 <div className={styles.chartLegend}>
                   <div className={styles.legendItem}>
                     <span className={styles.legendDot} style={{ backgroundColor: "#10b981" }}></span>
+
                     <span>Reading</span>
                   </div>
+
                   <div className={styles.legendItem}>
                     <span className={styles.legendDot} style={{ backgroundColor: "#6b7280" }}></span>
+
                     <span>Assignment</span>
                   </div>
                 </div>
               </div>
 
               {/* My Activity */}
+
               <div className={styles.chartCard}>
                 <div className={styles.chartHeader}>
                   <h3 className={styles.chartTitle}>My Activity</h3>
+
                   <select className={styles.chartSelect}>
                     <option>Weekly</option>
+
                     <option>Monthly</option>
                   </select>
                 </div>
+
                 <div className={styles.activityChart}>
                   <div className={styles.activityLine}>
                     <svg width="100%" height="120" viewBox="0 0 300 120">
                       <defs>
                         <linearGradient id="activityGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                           <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.3" />
+
                           <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
                         </linearGradient>
                       </defs>
 
                       {/* Area under the curve */}
+
                       <path d={`${generateActivityPath()} L 280 100 L 20 100 Z`} fill="url(#activityGradient)" />
 
                       {/* Main line */}
+
                       <path
                         d={generateActivityPath()}
                         stroke="#8b5cf6"
@@ -303,19 +417,25 @@ const StudentDashboard = () => {
                       />
 
                       {/* Data points */}
+
                       {activityData.map((data, index) => {
                         const x = 20 + (index * 260) / (activityData.length - 1)
+
                         const y = 100 - 20 - (data.value / 70) * 60
+
                         return <circle key={index} cx={x} cy={y} r="4" fill="#8b5cf6" stroke="white" strokeWidth="2" />
                       })}
 
                       {/* Task 4 label */}
+
                       <circle cx="235" cy="45" r="4" fill="#8b5cf6" />
+
                       <text x="225" y="35" fontSize="12" fill="#8b5cf6" fontWeight="600">
                         Task 4
                       </text>
                     </svg>
                   </div>
+
                   <div className={styles.activityDays}>
                     {activityData.map((item, index) => (
                       <span key={index} className={styles.dayLabel}>
@@ -328,9 +448,11 @@ const StudentDashboard = () => {
             </div>
 
             {/* My Courses */}
+
             <div className={styles.coursesSection}>
               <div className={styles.coursesHeader}>
                 <h3 className={styles.sectionTitle}>My Courses</h3>
+
                 <div className={styles.courseTabs}>
                   {["All", "Ongoing", "Completed"].map((tab) => (
                     <button
@@ -357,15 +479,24 @@ const StudentDashboard = () => {
                       </div>
                       <span className={styles.courseName}>{course.name}</span>
                     </div>
-
                     <div className={styles.courseRating}>
                       <span className="material-icons" style={{ color: "#fbbf24", fontSize: "1rem" }}>
                         star
                       </span>
                       <span className={styles.ratingValue}>{course.rating}</span>
                     </div>
-
                     <button className={styles.viewCourseBtn}>View Course</button>
+
+                    {/* Mobile-only actions container */}
+                    <div className={styles.courseActions}>
+                      <div className={styles.courseRating}>
+                        <span className="material-icons" style={{ color: "#fbbf24", fontSize: "1rem" }}>
+                          star
+                        </span>
+                        <span className={styles.ratingValue}>{course.rating}</span>
+                      </div>
+                      <button className={styles.viewCourseBtn}>View Course</button>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -373,23 +504,35 @@ const StudentDashboard = () => {
           </div>
 
           {/* Right Sidebar */}
+
           <div className={styles.rightSidebar}>
             {/* Calendar */}
+
             <div className={styles.calendarCard}>
               <div className={styles.calendarHeader}>
                 <h3 className={styles.calendarTitle}>Calendar</h3>
+
                 <div className={styles.calendarControls}>
-                  <span>2025</span>
-                  <span className="material-icons">keyboard_arrow_down</span>
+                  <select value={currentYear} onChange={handleYearChange}>
+                    {Array.from({ length: 10 }, (_, i) => currentYear - 5 + i).map((year) => (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
               <div className={styles.monthHeader}>
-                <button className={styles.monthNav}>
+                <button className={styles.monthNav} onClick={handlePrevMonth}>
                   <span className="material-icons">chevron_left</span>
                 </button>
-                <span className={styles.monthTitle}>December 2025</span>
-                <button className={styles.monthNav}>
+
+                <span className={styles.monthTitle}>
+                  {new Date(currentYear, currentMonth).toLocaleString("default", { month: "long" })} {currentYear}
+                </span>
+
+                <button className={styles.monthNav} onClick={handleNextMonth}>
                   <span className="material-icons">chevron_right</span>
                 </button>
               </div>
@@ -414,9 +557,11 @@ const StudentDashboard = () => {
             </div>
 
             {/* Upcoming Exams */}
+
             <div className={styles.upcomingCard}>
               <div className={styles.upcomingHeader}>
                 <h3 className={styles.upcomingTitle}>Upcoming Exam</h3>
+
                 <button className={styles.seeAllBtn}>See all</button>
               </div>
 
@@ -426,10 +571,13 @@ const StudentDashboard = () => {
                     <div className={styles.examIcon} style={{ backgroundColor: exam.color }}>
                       <span className="material-icons">{exam.icon}</span>
                     </div>
+
                     <div className={styles.examInfo}>
                       <div className={styles.examTitle}>{exam.title}</div>
+
                       <div className={styles.examDuration}>{exam.duration}</div>
                     </div>
+
                     <button className={styles.examOptions}>
                       <span className="material-icons">more_vert</span>
                     </button>

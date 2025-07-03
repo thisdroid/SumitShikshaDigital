@@ -2,95 +2,14 @@
   display: flex;
   min-height: 100vh;
   background-color: #f8fafc;
+  font-family: "Poppins", sans-serif;
 }
 
 .mainContent {
   flex: 1;
-  margin-left: 16rem; /* Add back sidebar margin */
+  margin-left: 16rem;
   display: flex;
   flex-direction: column;
-}
-
-.header {
-  background: white;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #e5e7eb;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  z-index: 100;
-}
-
-.headerTop {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.searchContainer {
-  display: flex;
-  align-items: center;
-  background: #f8fafc;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  width: 400px;
-  gap: 0.5rem;
-}
-
-.searchContainer .material-icons {
-  color: #9ca3af;
-  font-size: 1.25rem;
-}
-
-.searchInput {
-  border: none;
-  background: transparent;
-  outline: none;
-  flex: 1;
-  font-size: 0.875rem;
-  color: #374151;
-}
-
-.searchInput::placeholder {
-  color: #9ca3af;
-}
-
-.userSection {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.notificationBtn {
-  position: relative;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s;
-}
-
-.notificationBtn:hover {
-  background-color: #f3f4f6;
-}
-
-.notificationBtn .material-icons {
-  color: #6b7280;
-  font-size: 1.5rem;
-}
-
-.notificationBadge {
-  position: absolute;
-  top: 0.25rem;
-  right: 0.25rem;
-  width: 8px;
-  height: 8px;
-  background-color: #ef4444;
-  border-radius: 50%;
 }
 
 .contentWrapper {
@@ -119,6 +38,8 @@
   overflow: hidden;
   position: relative;
   min-height: 160px;
+  max-width: 900px;
+  font-family: "Poppins", sans-serif;
 }
 
 .courseBanner::before {
@@ -151,11 +72,13 @@
 }
 
 .bannerText {
-  font-size: 0.875rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
   margin: 0;
   opacity: 0.9;
   max-width: 400px;
+  font-family: "Poppins", sans-serif;
 }
 
 .bannerImage {
@@ -178,60 +101,42 @@
   border-radius: 0 1rem 1rem 0;
 }
 
-/* Hide banner image when screen width is below 1200px */
-@media (max-width: 1199px) {
-  .bannerImage {
-    display: none !important;
-  }
-
-  .courseBanner {
-    justify-content: center;
-    text-align: center;
-    padding: 2rem 1rem;
-  }
-
-  .bannerContent {
-    max-width: none;
-    text-align: center;
-  }
-
-  .bannerText {
-    max-width: none;
-  }
-}
-
-/* Navigation Tabs */
+/* Navigation Tabs - Dashboard Style */
 .tabsContainer {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  font-family: "Poppins", sans-serif;
 }
 
 .tab {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  transition: all 0.2s;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: #f3f4f6;
-  border: none;
-  border-radius: 0.5rem;
-  color: #6b7280;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
+  font-family: "Poppins", sans-serif;
 }
 
 .tab:hover {
-  background: #e5e7eb;
+  background-color: #f3f4f6;
+  color: #374151;
 }
 
 .activeTab {
-  background: #2563eb;
-  color: white;
+  background-color: #eff6ff;
+  color: #2563eb;
 }
 
 .activeTab .material-icons {
-  color: white;
+  color: #2563eb;
 }
 
 /* Section Headers */
@@ -239,7 +144,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  font-family: "Poppins", sans-serif;
 }
 
 .sectionTitle {
@@ -256,6 +161,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: color 0.2s;
+  font-family: "Poppins", sans-serif;
 }
 
 .seeAllBtn:hover {
@@ -264,10 +170,14 @@
 
 /* Course Cards */
 .coursesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  overflow-x: auto;
   gap: 1.5rem;
   margin-bottom: 2rem;
+  max-width: 860px;
+  padding: 10px;
+  max-height: 500px;
+  justify-content: flex-start;
 }
 
 .courseCard {
@@ -276,6 +186,10 @@
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+  max-width: 20rem;
+  height: 350px;
+  font-family: "Poppins", sans-serif;
 }
 
 .courseCard:hover {
@@ -285,7 +199,7 @@
 
 .courseImageContainer {
   position: relative;
-  height: 200px;
+  height: 60%;
   overflow: hidden;
 }
 
@@ -322,6 +236,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
+  font-family: "Poppins", sans-serif;
 }
 
 .viewCourseBtn:hover {
@@ -329,7 +244,7 @@
 }
 
 .courseInfo {
-  padding: 1.5rem;
+  padding: 0.5rem;
 }
 
 .courseTitle {
@@ -383,74 +298,6 @@
   text-decoration: line-through;
 }
 
-/* Learning Progress */
-.learningGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.learningCard {
-  background: white;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  text-align: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-}
-
-.learningCard:hover {
-  transform: translateY(-2px);
-}
-
-.progressCircle {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.progressRing {
-  transform: rotate(-90deg);
-}
-
-.progressRingCircle {
-  transition: stroke-dashoffset 0.35s;
-}
-
-.progressRingProgress {
-  transition: stroke-dashoffset 0.35s;
-  stroke-linecap: round;
-}
-
-.progressText {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.progressPercent {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #1f2937;
-}
-
-.learningTitle {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1f2937;
-  margin: 0 0 0.25rem 0;
-}
-
-.learningVideos {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin: 0;
-}
-
 /* Right Sidebar */
 .rightSidebar {
   width: 300px;
@@ -465,6 +312,8 @@
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  max-height: 500px;
+  font-family: "Poppins", sans-serif;
 }
 
 .streakHeader {
@@ -510,7 +359,7 @@
 
 .streakStats {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 1.5rem;
 }
@@ -539,46 +388,6 @@
   font-size: 0.75rem;
   color: #10b981;
   font-weight: 500;
-}
-
-.streakProgress {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
-.streakRing {
-  transform: rotate(-90deg);
-}
-
-.streakRingCircle {
-  transition: stroke-dashoffset 0.35s;
-}
-
-.streakRingProgress {
-  transition: stroke-dashoffset 0.35s;
-  stroke-linecap: round;
-}
-
-.streakProgressText {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.streakTime {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #1f2937;
-}
-
-.streakUnit {
-  display: block;
-  font-size: 0.75rem;
-  color: #6b7280;
 }
 
 .streakCalendar {
@@ -641,6 +450,9 @@
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+  height: fit-content;
+  max-height: 500px; /* Increased from 400px to fit all 5 courses */
 }
 
 .recommendedHeader {
@@ -658,6 +470,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  height: auto;
 }
 
 .recommendedItem {
@@ -724,6 +537,7 @@
 .tabContent {
   text-align: center;
   padding: 3rem 0;
+  font-family: "Poppins", sans-serif;
 }
 
 .comingSoon {
@@ -731,15 +545,38 @@
   font-size: 1.125rem;
 }
 
+/* Hide banner image when screen width is below 1200px */
+@media (max-width: 1199px) {
+  .bannerImage {
+    display: none !important;
+  }
+
+  .courseBanner {
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .bannerContent {
+    max-width: none;
+    text-align: center;
+  }
+
+  .bannerText {
+    max-width: none;
+  }
+}
+
 /* Mobile Responsive */
 @media (max-width: 1023px) {
   .mainContent {
-    margin-left: 0; /* Remove margin on mobile when sidebar is hidden */
+    margin-left: 0;
   }
 
   .contentWrapper {
     flex-direction: column;
     padding: 1rem;
+    gap: 1.5rem;
   }
 
   .rightSidebar {
@@ -747,75 +584,315 @@
   }
 
   .coursesGrid {
+    max-width: 100%;
     grid-template-columns: 1fr;
+    display: grid;
+    overflow-x: visible;
+    justify-items: center;
+    gap: 1.5rem;
   }
 
-  .learningGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .bannerImage {
-    order: -1;
-    height: 100%;
-    display: flex;
-    align-items: stretch;
-  }
-}
-
-@media (max-width: 768px) {
-  .header {
-    padding: 1rem;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .headerTop {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .searchContainer {
-    width: 100%;
-  }
-
-  .bannerTitle {
-    font-size: 1.5rem;
-  }
-
-  .bannerImage {
-    display: none;
+  .courseBanner {
+    max-width: 100%;
   }
 
   .tabsContainer {
     flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
   }
 
   .tab {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-  }
-
-  .learningGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .streakStats {
-    flex-direction: column;
-    gap: 1rem;
+    flex: 1;
+    min-width: fit-content;
+    justify-content: center;
   }
 }
 
-@media (max-width: 480px) {
-  .coursesGrid {
+@media (max-width: 768px) {
+  .contentWrapper {
+    padding: 1rem;
     gap: 1rem;
   }
 
+  .leftContent {
+    gap: 1.5rem;
+  }
+
+  /* Banner responsive */
+  .courseBanner {
+    padding: 1.5rem 1rem;
+    min-height: 120px;
+  }
+
+  .bannerTitle {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .bannerText {
+    font-size: 0.875rem;
+  }
+
+  /* Tabs responsive */
+  .tabsContainer {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .tab {
+    padding: 0.75rem 1.25rem; /* Increased from 0.5rem 1rem */
+    font-size: 1rem;           /* Increased from 0.875rem */
+    flex: 1;
+    min-width: fit-content;
+    justify-content: center;
+  }
+
+  .tab .material-icons {
+    font-size: 1rem;
+  }
+
+  /* Course grid responsive */
+  .coursesGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    overflow-x: visible;
+    padding: 0;
+    max-height: none;
+    justify-items: center;
+  }
+
   .courseCard {
-    margin: 0;
+    max-width: 100%;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    min-height: 300px;
+  }
+
+  /* Section headers responsive */
+  .sectionHeader {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  /* Right sidebar responsive */
+  .rightSidebar {
+    gap: 1rem;
   }
 
   .streakCard,
   .recommendedCard {
     padding: 1rem;
   }
+
+  .streakHeader {
+    margin-bottom: 1rem;
+  }
+
+  .streakTitle {
+    font-size: 0.875rem;
+  }
+
+  .streakSubtitle {
+    font-size: 0.7rem;
+  }
+
+  .streakStats {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 1rem;
+  }
+
+  .streakNumber {
+    font-size: 1.5rem;
+  }
+
+  .recommendedTitle {
+    font-size: 1rem;
+  }
+
+  .recommendedItem {
+    padding: 0.5rem;
+  }
+
+  .recommendedName {
+    font-size: 0.8rem;
+  }
+
+  .recommendedVideos {
+    font-size: 0.7rem;
+  }
+
+  /* Ensure course card buttons are visible and responsive */
+  .courseCard .viewCourseBtn,
+  .courseCard button {
+    display: block;
+    width: auto;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contentWrapper {
+    padding: 0.75rem;
+  }
+
+  /* Banner extra small screens */
+  .courseBanner {
+    padding: 1rem;
+    min-height: 100px;
+  }
+
+  .bannerTitle {
+    font-size: 1.25rem;
+  }
+
+  .bannerText {
+    font-size: 0.8rem;
+  }
+
+  /* Tabs extra small - FIXED: Show text labels */
+  .tab {
+    padding: 0.75rem 1rem;     /* Increased from 0.5rem 0.75rem */
+    font-size: 1rem;           /* Increased from 0.875rem */
+    min-width: calc(50% - 0.25rem);
+  }
+
+  .tab span:not(.material-icons) {
+    display: inline; /* Changed from 'none' to 'inline' to show text */
+    font-size: 0.75rem;
+  }
+
+  .tab .material-icons {
+    font-size: 1rem;
+  }
+
+  /* Course cards extra small */
+  .courseCard {
+    min-height: 280px;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .courseInfo {
+    padding: 0.75rem;
+  }
+
+  .courseTitle {
+    font-size: 1rem;
+  }
+
+  .courseDescription {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  /* Section titles extra small */
+  .sectionTitle {
+    font-size: 1.125rem;
+  }
+
+  /* Streak card extra small */
+  .streakCard {
+    padding: 0.75rem;
+  }
+
+  .streakIcon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .streakIcon .material-icons {
+    font-size: 1rem;
+  }
+
+  .streakNumber {
+    font-size: 1.25rem;
+  }
+
+  .weekDay {
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.7rem;
+  }
+
+  /* Recommended card extra small */
+  .recommendedCard {
+    padding: 0.75rem;
+    max-height: 450px; /* Ensure all courses fit */
+  }
+
+  .recommendedIcon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .recommendedIcon .material-icons {
+    font-size: 0.875rem;
+  }
+
+  .recommendedItem {
+    padding: 0.4rem;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .courseBanner {
+    min-height: 80px;
+    padding: 1rem;
+  }
+
+  .bannerTitle {
+    font-size: 1.25rem;
+  }
+
+  .streakStats {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .tab {
+    min-width: 100%;
+    margin-bottom: 0.25rem;
+  }
+
+  .tab span:not(.material-icons) {
+    display: inline;
+    font-size: 0.75rem;
+  }
+
+  .coursesGrid {
+    gap: 0.75rem;
+  }
+}
+
+.joinButton {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: "Poppins", sans-serif;
+  backdrop-filter: blur(10px);
+}
+
+.joinButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
 }

@@ -1,268 +1,175 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-.dashboardWrapper {
-  padding: 2rem;
-  margin-left: 16rem; /* Width of sidebar */
-  min-height: 100vh;
-  background-color: #f9fafb; /* very light gray */
-  font-family: 'Inter', sans-serif;
-  color: #374151; /* gray-700 */
+/* Exam Card */
+.examCard {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1rem; /* Reduced from 1.25rem */
+  transition: transform 0.2s, box-shadow 0.2s;
+  max-width: 400px; /* Add max-width to make it smaller */
+  width: 100%; /* Keep responsive */
   display: flex;
   flex-direction: column;
+  overflow: hidden; /* Prevent content overflow */
+}
+
+.examCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.examHeader {
+  display: flex;
   align-items: center;
+  gap: 0.75rem; /* Reduced from 1rem */
+  margin-bottom: 0.75rem; /* Reduced from 1rem */
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
-/* Header styles */
-
-.header {
-  text-align: center;
-  max-width: 600px;
-  margin-bottom: 3rem;
-}
-
-.title {
-  font-size: 2.75rem;
-  font-weight: 700;
-  color: #2563eb; /* blue-600 */
-  display: inline;
-}
-
-.titleHighlight {
-  font-weight: 700;
-  background: linear-gradient(90deg, #2563eb 0%, #059669 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.titleUnderline {
-  height: 4px;
-  width: 96px;
-  margin: 0.5rem auto 1.5rem;
-  border-radius: 8px;
-  background: linear-gradient(90deg, #2563eb 0%, #059669 100%);
-}
-
-.subtitle {
-  font-weight: 400;
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  color: #4b5563; /* gray-600 */
-}
-
-/* Button + New Enrollment */
-
-.newEnrollmentButton {
-  background-color: #2563eb; /* blue-600 */
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 0.5rem 1.75rem;
+.examIcon {
+  width: 2.5rem; /* Reduced from 3rem */
+  height: 2.5rem; /* Reduced from 3rem */
   border-radius: 0.5rem;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 6px 15px rgb(37 99 235 / 0.35);
-  transition: background-color 0.3s ease;
-}
-
-.newEnrollmentButton:hover {
-  background-color: #1e40af; /* blue-800 */
-}
-
-/* Cards container */
-
-.cardsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start; /* Centers all cards */
-  gap: 2rem;
-  width: 100%;
-  max-width: 1000px;
-}
-
-
-/* Individual card */
-
-/* .card {
-  position: relative;
-  background-color: #fff;
-  border-radius: 1rem;
-  padding: 1.75rem 2rem;
-  box-shadow: 0 4px 24px rgb(37 99 235 / 0.15);
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  overflow: hidden;
-  min-height: 280px;
-} */
-
-
-
-.card {
-  position: relative;
-  background-color: #fff;
-  border-radius: 1rem;
-  padding: 1.75rem 2rem;
-  box-shadow: 0 4px 24px rgb(37 99 235 / 0.15);
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  overflow: hidden;
-  /* min-height: 280px;   Set a fixed height */
-  max-width: 400px;
-  width: 100%;
-  height: 310px;       /* Add this for fixed height */
-  transition: box-shadow 0.3s, transform 0.3s; /* Add transition for smooth effect */
-}
-.card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-  transform: translateY(-8px) scale(1.03);
-  z-index: 2;
-}
-
-
-/* Top gradient border */
-
-.cardTopBorder {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 7px;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  background: linear-gradient(90deg, #2563eb 0%, #059669 100%);
-}
-
-/* Card title */
-
-.cardTitle {
-  font-size: 1.375rem;
-  font-weight: 700;
-  color: #2563eb; /* blue-600 */
-  margin-bottom: 1rem;
-  z-index: 1;
-  position: relative;
-}
-
-/* Card info row */
-
-.cardInfo {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-  color: #6b7280; /* gray-500 */
-  font-weight: 500;
-}
-
-/* Individual info item (icons) */
-
-.cardInfoItem {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #2563eb; /* blue-600 */
+  color: white;
+  flex-shrink: 0;
 }
 
-.shieldIcon {
-  color: #6b7280 !important;
+.examIcon .material-icons {
+  font-size: 1.25rem; /* Reduced from 1.5rem */
 }
 
-/* The text next to icons */
-
-.cardInfoText {
-  color: #6b7280; /* gray-500 */
-  font-weight: 500;
+.examTitleSection {
+  flex: 1;
+  min-width: 0; /* Allow text truncation */
 }
 
-/* Description text */
+.examTitle {
+  font-size: 1.125rem; /* Reduced from 1.25rem */
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.3;
+  /* Text truncation */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-/* .cardDescription {
-  color: #374151; 
-  font-size: 1rem;
-  line-height: 1.5rem;
-  flex-grow: 1;
-  margin-bottom: 2rem;
-} */
+.examContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Allow content to shrink */
+}
 
-.cardDescription {
-  color: #374151; /* gray-700 */
-  font-size: 1rem;
-  line-height: 1.5rem;
-  margin-bottom: 2rem;
-
+.examDescription {
+  color: #6b7280;
+  font-size: 0.8rem; /* Reduced from 0.875rem */
+  line-height: 1.5;
+  margin: 0 0 0.75rem 0; /* Reduced from 1rem */
+  flex: 1;
+  /* Multi-line text truncation */
   display: -webkit-box;
-  -webkit-line-clamp: 4;      /* 👈 Limit to 4 lines */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  flex-grow: 1; /* Add this to push actions to the bottom */
-
-  min-height: 0;       /* Prevents flex overflow issues */
 }
 
-
-
-/* Action buttons container */
-
-.cardActions {
+.examDetails {
   display: flex;
-  gap: 1rem;
-  margin-top: auto; /* Add this to stick to bottom */
+  flex-wrap: wrap;
+  gap: 0.75rem; /* Keep the reduced gap */
+  margin-bottom: 0.75rem; /* Keep the reduced margin */
+  flex-shrink: 0;
 }
 
-/* Buttons */
-
-.btn {
-  cursor: pointer;
-  font-weight: 600;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  transition: all 0.25s ease;
-  padding: 0.5rem 1.5rem;
+.examDetail {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  user-select: none;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #6b7280;
 }
 
-/* Primary button */
+.examDetail .material-icons {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
 
-.btnPrimary {
-  background-color: #2563eb;
-  border: none;
+.examDetail span:last-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.examFooter {
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.examBtn {
+  background: #3b82f6;
   color: white;
-  box-shadow: 0 4px 24px rgb(37 99 235 / 0.45);
+  border: none;
+  padding: 0.625rem 1.25rem; /* Reduced from 0.75rem 1.5rem */
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
 }
 
-.btnPrimary:hover {
-  background-color: #1e40af;
-  box-shadow: 0 6px 24px rgb(29 78 216 / 0.6);
+.examBtn:hover {
+  background: #1d4ed8;
 }
 
-/* Outline button */
-
-.btnOutline {
-  border: 2px solid #2563eb;
-  background-color: transparent;
-  color: #2563eb;
-}
-
-.btnOutline:hover {
-  background-color: #eff6ff; /* light blue bg on hover */
-}
-
-/* Responsive */
-
-@media (max-width: 1023px) {
-  .dashboardWrapper {
-    margin-left: 0;
-    padding: 1rem;
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .examCard {
+    padding: 0.875rem; /* Reduced from 1rem */
+    max-width: 350px; /* Smaller on mobile */
   }
 
-  .cardsContainer {
-    grid-template-columns: 1fr;
+  .examHeader {
+    gap: 0.625rem; /* Reduced from 0.75rem */
+  }
+
+  .examIcon {
+    width: 2.25rem; /* Reduced from 2.5rem */
+    height: 2.25rem; /* Reduced from 2.5rem */
+  }
+
+  .examIcon .material-icons {
+    font-size: 1.125rem; /* Reduced from 1.25rem */
+  }
+
+  .examTitle {
+    font-size: 1rem; /* Reduced from 1.125rem */
+  }
+
+  .examDescription {
+    font-size: 0.75rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .examDetails {
+    gap: 0.375rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .examCard {
+    width: 240px;
+    height: 180px;
+  }
+
+  .examDescription {
+    -webkit-line-clamp: 2;
   }
 }

@@ -41,6 +41,9 @@ function App() {
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/GetHelp" element={<GetHelp />} />
 
+        {/* Exam Details Standalone Route */}
+        {/* <Route path="/exam-details/:examName" element={<ExamDetails />} /> */}
+
         {/* NESTED PROTECTED ROUTES */}
         <Route path="/StudentDashboard" element={<StudentDashboardLayout />}>
           <Route index element={<StudentDashboard />} />

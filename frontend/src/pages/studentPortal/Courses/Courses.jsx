@@ -1,22 +1,75 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styles from "./Courses.module.css"
-import Profile from "../Profile_icon/Profile"
+import Header from "../header/Header"
+import CourseCard from "./CourseCard"
+
+function getTodayString() {
+  const today = new Date()
+  const options = { month: "short", day: "numeric" }
+  return today.toLocaleDateString("en-US", options)
+}
+
+function getTodayWeekIndex() {
+  return new Date().getDay()
+}
+
+function getLocalStreak() {
+  const streak = parseInt(localStorage.getItem("streak") || "1", 10)
+  const lastDate = localStorage.getItem("lastStreakDate")
+  return { streak, lastDate }
+}
+
+function setLocalStreak(streak, date) {
+  localStorage.setItem("streak", streak)
+  localStorage.setItem("lastStreakDate", date)
+}
 
 const Courses = () => {
   const [activeTab, setActiveTab] = useState("enrolled")
+  const [streak, setStreak] = useState(1)
 
-  // Sample data
+  useEffect(() => {
+    const today = new Date()
+    const todayStr = today.toISOString().slice(0, 10) // YYYY-MM-DD
+    const { streak: storedStreak, lastDate } = getLocalStreak()
+
+    if (!lastDate) {
+      setLocalStreak(1, todayStr)
+      setStreak(1)
+      return
+    }
+
+    if (lastDate === todayStr) {
+      setStreak(storedStreak)
+      return
+    }
+
+    const last = new Date(lastDate)
+    const diff = Math.floor((today - last) / (1000 * 60 * 60 * 24))
+
+    if (diff === 1) {
+      setLocalStreak(storedStreak + 1, todayStr)
+      setStreak(storedStreak + 1)
+    } else if (diff > 1) {
+      setLocalStreak(1, todayStr)
+      setStreak(1)
+    } else {
+      setStreak(storedStreak)
+    }
+  }, [])
+
   const enrolledCourses = [
     {
       id: 1,
       title: "React Native",
       description: "React Native enables seamless cross-platform mobile development, cross-platform mobile development",
       image: "/images/react-native.jpg",
-      rating: 4.5,
+      rating: 2,
+      reviewCount: 120,
+      duration: 30,
       price: "₹1499",
-      originalPrice: "₹3999",
       color: "#61dafb",
     },
     {
@@ -24,51 +77,77 @@ const Courses = () => {
       title: "Flutter",
       description: "React Native enables seamless cross-platform mobile development, native-like performance.",
       image: "/images/flutter.jpg",
-      rating: 4.8,
+      rating: 3,
+      reviewCount: 95,
+      duration: 25,
       price: "₹1499",
-      originalPrice: "₹3999",
       color: "#02569B",
     },
     {
       id: 3,
-      title: "Kotlin",
-      description: "React Native enables seamless cross-platform mobile development, native-like performance.",
-      image: "/images/kotlin.jpg",
+      title: "Flutter Advanced",
+      description: "Advanced Flutter concepts for professional mobile development.",
+      image: "/images/flutter.jpg",
       rating: 4.6,
+      reviewCount: 78,
+      duration: 35,
       price: "₹1499",
-      originalPrice: "₹3999",
-      color: "#7F52FF",
-    },
-  ]
-
-  const learningProgress = [
-    {
-      id: 1,
-      title: "HTML5 Design",
-      progress: 50,
-      videos: 18,
-      color: "#10b981",
-    },
-    {
-      id: 2,
-      title: "UI/UX Design",
-      progress: 50,
-      videos: 15,
-      color: "#f59e0b",
-    },
-    {
-      id: 3,
-      title: "Copywriting",
-      progress: 50,
-      videos: 16,
-      color: "#06b6d4",
+      color: "#02569B",
     },
     {
       id: 4,
-      title: "Mobile Apps",
-      progress: 50,
-      videos: 22,
-      color: "#8b5cf6",
+      title: "Flutter Pro",
+      description: "Professional Flutter development with advanced techniques.",
+      image: "/images/flutter.jpg",
+      rating: 4.7,
+      reviewCount: 65,
+      duration: 40,
+      price: "₹1499",
+      color: "#02569B",
+    },
+    {
+      id: 5,
+      title: "Flutter Expert",
+      description: "Expert-level Flutter development and architecture patterns.",
+      image: "/images/flutter.jpg",
+      rating: 4.9,
+      reviewCount: 52,
+      duration: 45,
+      price: "₹1499",
+      color: "#02569B",
+    },
+    {
+      id: 6,
+      title: "Flutter Master",
+      description: "Master Flutter development with real-world projects.",
+      image: "/images/flutter.jpg",
+      rating: 4.4,
+      reviewCount: 89,
+      duration: 50,
+      price: "₹1499",
+      color: "#02569B",
+    },
+    {
+      id: 7,
+      title: "Flutter Complete",
+      description: "Complete Flutter course from beginner to advanced level.",
+      image: "/images/flutter.jpg",
+      rating: 4.3,
+      reviewCount: 110,
+      duration: 60,
+      price: "₹1499",
+      color: "#02569B",
+    },
+    {
+      id: 8,
+      title: "Kotlin",
+      description: "Modern Android development with Kotlin programming language.",
+      image: "/images/kotlin.jpg",
+      rating: 4.6,
+      reviewCount: 75,
+      duration: 28,
+      price: "₹1499",
+      color: "#7F52FF",
     },
   ]
 
@@ -113,46 +192,24 @@ const Courses = () => {
   const tabs = [
     { id: "enrolled", label: "Enrolled Courses", icon: "school" },
     { id: "available", label: "Available Courses", icon: "library_books" },
-    { id: "other1", label: "Other Details", icon: "info" },
-    { id: "other2", label: "Other Details", icon: "info" },
   ]
 
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.mainContent}>
-        {/* Header */}
-        <header className={styles.header}>
-          <div className={styles.headerTop}>
-            <div className={styles.searchContainer}>
-              <span className="material-icons">search</span>
-              <input type="text" placeholder="Search" className={styles.searchInput} />
-            </div>
-
-            <div className={styles.userSection}>
-              <button className={styles.notificationBtn}>
-                <span className="material-icons">notifications</span>
-                <span className={styles.notificationBadge}></span>
-              </button>
-              <Profile />
-            </div>
-          </div>
-        </header>
+        {/* Header Component */}
+        <Header />
 
         <div className={styles.contentWrapper}>
-          {/* Left Content */}
           <div className={styles.leftContent}>
-            {/* Course Banner */}
             <div className={styles.courseBanner}>
               <div className={styles.bannerContent}>
                 <h1 className={styles.bannerTitle}>Sharpen Your Skills with Professional Online Courses</h1>
-                <p className={styles.bannerText}>
-                  Artificial Intelligence is transforming the way businesses operate, making processes smarter and more
-                  efficient. Join our comprehensive online courses today.
-                </p>
+                <button className={styles.joinButton}>JOIN US</button>
               </div>
               <div className={styles.bannerImage}>
                 <img
-                  src="/images/course-banner.png"
+                  src="/images/student-dashboard-banner.png"
                   alt="Course illustration"
                   className={styles.bannerImg}
                   draggable={false}
@@ -160,7 +217,6 @@ const Courses = () => {
               </div>
             </div>
 
-            {/* Navigation Tabs */}
             <div className={styles.tabsContainer}>
               {tabs.map((tab) => (
                 <button
@@ -174,106 +230,36 @@ const Courses = () => {
               ))}
             </div>
 
-            {/* Enrolled Courses Section */}
             {activeTab === "enrolled" && (
               <>
                 <div className={styles.sectionHeader}>
                   <h2 className={styles.sectionTitle}>Enrolled Courses</h2>
                   <button className={styles.seeAllBtn}>See All</button>
                 </div>
-
                 <div className={styles.coursesGrid}>
                   {enrolledCourses.map((course) => (
-                    <div key={course.id} className={styles.courseCard}>
-                      <div className={styles.courseImageContainer}>
-                        <img
-                          src={course.image || "/placeholder.svg?height=200&width=300"}
-                          alt={course.title}
-                          className={styles.courseImage}
-                        />
-                        <div className={styles.courseOverlay}>
-                          <button className={styles.viewCourseBtn}>View Course</button>
-                        </div>
-                      </div>
-                      <div className={styles.courseInfo}>
-                        <h3 className={styles.courseTitle}>{course.title}</h3>
-                        <p className={styles.courseDescription}>{course.description}</p>
-                        <div className={styles.courseFooter}>
-                          <div className={styles.courseRating}>
-                            {[...Array(5)].map((_, i) => (
-                              <span
-                                key={i}
-                                className={`material-icons ${styles.star} ${i < Math.floor(course.rating) ? styles.filled : ""}`}
-                              >
-                                star
-                              </span>
-                            ))}
-                          </div>
-                          <div className={styles.coursePrice}>
-                            <span className={styles.currentPrice}>{course.price}</span>
-                            <span className={styles.originalPrice}>{course.originalPrice}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Learning Time Section */}
-                <div className={styles.sectionHeader}>
-                  <h2 className={styles.sectionTitle}>Learning Time</h2>
-                </div>
-
-                <div className={styles.learningGrid}>
-                  {learningProgress.map((item) => (
-                    <div key={item.id} className={styles.learningCard}>
-                      <div className={styles.progressCircle}>
-                        <svg className={styles.progressRing} width="80" height="80">
-                          <circle
-                            className={styles.progressRingCircle}
-                            stroke="#e5e7eb"
-                            strokeWidth="6"
-                            fill="transparent"
-                            r="34"
-                            cx="40"
-                            cy="40"
-                          />
-                          <circle
-                            className={styles.progressRingProgress}
-                            stroke={item.color}
-                            strokeWidth="6"
-                            fill="transparent"
-                            r="34"
-                            cx="40"
-                            cy="40"
-                            strokeDasharray={`${2 * Math.PI * 34}`}
-                            strokeDashoffset={`${2 * Math.PI * 34 * (1 - item.progress / 100)}`}
-                          />
-                        </svg>
-                        <div className={styles.progressText}>
-                          <span className={styles.progressPercent}>{item.progress}%</span>
-                        </div>
-                      </div>
-                      <h3 className={styles.learningTitle}>{item.title}</h3>
-                      <p className={styles.learningVideos}>{item.videos} videos</p>
-                    </div>
+                    <CourseCard key={course.id} course={course} />
                   ))}
                 </div>
               </>
             )}
 
-            {/* Other tabs content */}
-            {activeTab !== "enrolled" && (
-              <div className={styles.tabContent}>
-                <h2 className={styles.sectionTitle}>Coming Soon</h2>
-                <p className={styles.comingSoon}>This section is under development.</p>
-              </div>
+            {activeTab === "available" && (
+              <>
+                <div className={styles.sectionHeader}>
+                  <h2 className={styles.sectionTitle}>Available Courses</h2>
+                  <button className={styles.seeAllBtn}>See All</button>
+                </div>
+                <div className={styles.coursesGrid}>
+                  {availableCourses.map((course) => (
+                    <CourseCard key={course.id} course={course} />
+                  ))}
+                </div>
+              </>
             )}
           </div>
 
-          {/* Right Sidebar */}
           <div className={styles.rightSidebar}>
-            {/* Daily Streak */}
             <div className={styles.streakCard}>
               <div className={styles.streakHeader}>
                 <div className={styles.streakIcon}>
@@ -284,66 +270,42 @@ const Courses = () => {
                   <p className={styles.streakSubtitle}>Complete your daily goals to keep your streak alive!</p>
                 </div>
               </div>
-
               <div className={styles.streakStats}>
                 <div className={styles.streakDays}>
-                  <span className={styles.streakNumber}>4</span>
+                  <span className={styles.streakNumber}>{streak}</span>
                   <span className={styles.streakLabel}>Days</span>
                   <span className={styles.streakStatus}>Active</span>
                 </div>
-
-                <div className={styles.streakProgress}>
-                  <svg className={styles.streakRing} width="80" height="80">
-                    <circle
-                      className={styles.streakRingCircle}
-                      stroke="#e5e7eb"
-                      strokeWidth="6"
-                      fill="transparent"
-                      r="34"
-                      cx="40"
-                      cy="40"
-                    />
-                    <circle
-                      className={styles.streakRingProgress}
-                      stroke="#10b981"
-                      strokeWidth="6"
-                      fill="transparent"
-                      r="34"
-                      cx="40"
-                      cy="40"
-                      strokeDasharray={`${2 * Math.PI * 34}`}
-                      strokeDashoffset={`${2 * Math.PI * 34 * (1 - 0.5)}`}
-                    />
-                  </svg>
-                  <div className={styles.streakProgressText}>
-                    <span className={styles.streakTime}>15/30</span>
-                    <span className={styles.streakUnit}>min</span>
-                  </div>
-                </div>
               </div>
-
               <div className={styles.streakCalendar}>
                 <div className={styles.streakDate}>
                   <span className={styles.streakToday}>Today visited</span>
-                  <span className={styles.streakDateText}>Jun 30</span>
+                  <span className={styles.streakDateText}>{getTodayString()}</span>
                 </div>
                 <div className={styles.weekDays}>
-                  {["S", "M", "T", "W", "T", "F", "S"].map((day, index) => (
-                    <span key={index} className={`${styles.weekDay} ${index < 4 ? styles.completed : ""}`}>
-                      {day}
-                    </span>
-                  ))}
+                  {["S", "M", "T", "W", "T", "F", "S"].map((day, index) => {
+                    const todayIdx = getTodayWeekIndex()
+                    // Mark completed for the streak days ending today (max 7)
+                    let completed = false
+                    if (streak > 0) {
+                      if (streak >= 7) completed = true
+                      else if (index <= todayIdx && index > todayIdx - streak) completed = true
+                    }
+                    return (
+                      <span key={index} className={`${styles.weekDay} ${completed ? styles.completed : ""}`}>
+                        {day}
+                      </span>
+                    )
+                  })}
                 </div>
-                <p className={styles.streakReward}>🏆 7 days = Gold Badge + ₹200 voucher</p>
+                {/* <p className={styles.streakReward}>🏆 7 days = Gold Badge + ₹200 voucher</p> */}
               </div>
             </div>
 
-            {/* Recommended Courses */}
             <div className={styles.recommendedCard}>
               <div className={styles.recommendedHeader}>
                 <h3 className={styles.recommendedTitle}>Recommended Courses</h3>
               </div>
-
               <div className={styles.recommendedList}>
                 {recommendedCourses.map((course) => (
                   <div key={course.id} className={styles.recommendedItem}>
@@ -368,7 +330,6 @@ const Courses = () => {
   )
 }
 
-// Export availableCourses for other components
 export const availableCourses = [
   {
     image: "/images/fullStack.jpg",

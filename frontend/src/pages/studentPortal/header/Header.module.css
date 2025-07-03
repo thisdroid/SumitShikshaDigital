@@ -1,0 +1,144 @@
+.header {
+  background: white;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+  flex-direction: row;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  width: 400px;
+  gap: 0.5rem;
+}
+
+.searchContainer .material-icons {
+  color: #9ca3af;
+  font-size: 1.25rem;
+}
+
+.searchInput {
+  border: none;
+  background: transparent;
+  outline: none;
+  flex: 1;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.searchInput::placeholder {
+  color: #9ca3af;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notificationBtn {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.notificationBtn:hover {
+  background-color: #f3f4f6;
+}
+
+.notificationBtn .material-icons {
+  color: #6b7280;
+  font-size: 1.5rem;
+}
+
+.notificationBadge {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 8px;
+  height: 8px;
+  background-color: #ef4444;
+  border-radius: 50%;
+}
+
+/* Desktop - keep original layout */
+@media (min-width: 769px) {
+  .header {
+    flex-direction: row;
+  }
+
+  .headerTop {
+    display: contents;
+  }
+}
+
+/* Mobile - new layout */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem 1rem 1rem 1rem; /* Remove extra right padding */
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .headerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0; /* Remove any padding */
+  }
+
+  .searchContainer {
+    width: 100%;
+    order: 2;
+    margin: 0; /* Remove any margins */
+  }
+
+  .userSection {
+    gap: 0.75rem;
+    order: 1;
+    align-self: flex-end;
+    margin-right: 0; /* Ensure no right margin */
+    padding-right: 0; /* Ensure no right padding */
+  }
+}
+
+@media (max-width: 1023px) {
+  .header {
+    position: relative;
+    padding: 1rem 1rem 1rem 1rem;
+  }
+
+  .searchContainer {
+    width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .searchContainer {
+    width: 100%;
+  }
+}

@@ -56,39 +56,10 @@ const CourseDetails = () => {
     alert("Course learning functionality will be implemented here!")
   }
 
-  // Enhanced course data with additional details
+  // Remove the hardcoded courseData object and replace it with:
   const courseData = {
     ...course,
-    studentsCount: 1250,
-    lessonsCount: 24,
-    projectsCount: 5,
-    certificateAvailable: true,
-    level: course.level || "Beginner",
-    language: "English",
-    lastUpdated: "December 2024",
-    whatYouLearn: [
-      "Master the fundamentals and core concepts",
-      "Build real-world projects from scratch",
-      "Understand best practices and industry standards",
-      "Learn debugging and problem-solving techniques",
-      "Gain hands-on experience with practical exercises",
-      "Develop portfolio-worthy applications",
-      "Understand advanced concepts and patterns",
-      "Learn to optimize performance and efficiency",
-    ],
-    courseContent: [
-      { title: "Introduction and Setup", lessons: 3, duration: "45 mins" },
-      { title: "Core Concepts", lessons: 6, duration: "2 hours" },
-      { title: "Practical Applications", lessons: 8, duration: "3 hours" },
-      { title: "Advanced Topics", lessons: 5, duration: "2.5 hours" },
-      { title: "Projects and Practice", lessons: 2, duration: "1.5 hours" },
-    ],
-    requirements: [
-      "Basic computer knowledge",
-      "No prior programming experience required",
-      "Willingness to learn and practice",
-      "Access to a computer with internet connection",
-    ],
+    // Use all data from the course object directly
   }
 
   return (
@@ -111,8 +82,8 @@ const CourseDetails = () => {
                 <div className={styles.courseImageColumn}>
                   <div className={styles.courseImageContainer}>
                     <img
-                      src={courseData.image || "/placeholder.svg?height=200&width=300"}
-                      alt={courseData.title}
+                      src={course.image || "/placeholder.svg?height=200&width=300"}
+                      alt={course.title}
                       className={styles.courseImage}
                     />
                     <div className={styles.courseOverlay}>
@@ -134,14 +105,12 @@ const CourseDetails = () => {
                   </div>
                 </div>
                 <div className={styles.courseHeaderInfo}>
-                  <h1 className={styles.courseTitle}>{courseData.title}</h1>
-                  <p className={styles.courseDescription}>{courseData.description}</p>
+                  <h1 className={styles.courseTitle}>{course.title}</h1>
+                  <p className={styles.courseDescription}>{course.description}</p>
 
                   <div className={styles.priceSection}>
-                    <span className={styles.currentPrice}>
-                      {courseData.price === "Free" ? "Free" : courseData.price}
-                    </span>
-                    {courseData.price !== "Free" && <span className={styles.originalPrice}>₹2,499</span>}
+                    <span className={styles.currentPrice}>{course.price === "Free" ? "Free" : course.price}</span>
+                    {course.originalPrice && <span className={styles.originalPrice}>{course.originalPrice}</span>}
                   </div>
 
                   <div className={styles.courseRating}>
@@ -149,14 +118,14 @@ const CourseDetails = () => {
                       {Array.from({ length: 5 }, (_, index) => (
                         <span
                           key={index}
-                          className={`${styles.star} ${index < Math.floor(courseData.rating) ? styles.filled : ""}`}
+                          className={`${styles.star} ${index < Math.floor(course.rating) ? styles.filled : ""}`}
                         >
                           ★
                         </span>
                       ))}
                     </div>
                     <span className={styles.ratingText}>
-                      {courseData.rating} ({courseData.studentsCount} students)
+                      {course.rating} ({course.reviewCount} reviews)
                     </span>
                   </div>
 
@@ -165,28 +134,28 @@ const CourseDetails = () => {
                       <span className="material-icons">schedule</span>
                       <div className={styles.metricInfo}>
                         <span className={styles.metricLabel}>Duration</span>
-                        <span className={styles.metricValue}>{courseData.duration} hours</span>
+                        <span className={styles.metricValue}>{course.duration} hours</span>
                       </div>
                     </div>
                     <div className={styles.metric}>
                       <span className="material-icons">play_lesson</span>
                       <div className={styles.metricInfo}>
                         <span className={styles.metricLabel}>Lessons</span>
-                        <span className={styles.metricValue}>{courseData.lessonsCount}</span>
+                        <span className={styles.metricValue}>{course.lessonsCount}</span>
                       </div>
                     </div>
                     <div className={styles.metric}>
                       <span className="material-icons">assignment</span>
                       <div className={styles.metricInfo}>
                         <span className={styles.metricLabel}>Projects</span>
-                        <span className={styles.metricValue}>{courseData.projectsCount}</span>
+                        <span className={styles.metricValue}>{course.projectsCount}</span>
                       </div>
                     </div>
                     <div className={styles.metric}>
                       <span className="material-icons">trending_up</span>
                       <div className={styles.metricInfo}>
                         <span className={styles.metricLabel}>Level</span>
-                        <span className={styles.metricValue}>{courseData.level}</span>
+                        <span className={styles.metricValue}>{course.level}</span>
                       </div>
                     </div>
                   </div>
@@ -199,15 +168,15 @@ const CourseDetails = () => {
                 <div className={styles.infoList}>
                   <div className={styles.infoItem}>
                     <span className="material-icons">people</span>
-                    <span>{courseData.studentsCount} students enrolled</span>
+                    <span>{course.studentsCount} students enrolled</span>
                   </div>
                   <div className={styles.infoItem}>
                     <span className="material-icons">language</span>
-                    <span>Language: {courseData.language}</span>
+                    <span>Language: {course.language}</span>
                   </div>
                   <div className={styles.infoItem}>
                     <span className="material-icons">update</span>
-                    <span>Last updated: {courseData.lastUpdated}</span>
+                    <span>Last updated: {course.lastUpdated}</span>
                   </div>
                   <div className={styles.infoItem}>
                     <span className="material-icons">workspace_premium</span>
@@ -221,7 +190,7 @@ const CourseDetails = () => {
             <div className={styles.learningSection}>
               <h2 className={styles.sectionTitle}>What You'll Learn</h2>
               <div className={styles.learningGrid}>
-                {courseData.whatYouLearn.map((item, index) => (
+                {course.whatYouLearn.map((item, index) => (
                   <div key={index} className={styles.learningItem}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                       <circle cx="12" cy="12" r="12" fill="#10b981" />
@@ -237,7 +206,7 @@ const CourseDetails = () => {
             <div className={styles.contentSection}>
               <h2 className={styles.sectionTitle}>Course Content</h2>
               <div className={styles.contentList}>
-                {courseData.courseContent.map((section, index) => (
+                {course.courseContent.map((section, index) => (
                   <div key={index} className={styles.contentItem}>
                     <div className={styles.contentHeader}>
                       <span className={styles.contentTitle}>{section.title}</span>
@@ -254,13 +223,7 @@ const CourseDetails = () => {
             <div className={styles.keyHighlightsSection}>
               <h2 className={styles.sectionTitle}>Key Highlights</h2>
               <div className={styles.keyHighlightsList}>
-                {[
-                  "Critical Thinking Development",
-                  "Real-World Problem-Solving Skills",
-                  "Goal-Oriented Learning Approach",
-                  "Objective & Fair Skill Evaluation",
-                  "Foundation for Career Planning",
-                ].map((highlight, index) => (
+                {course.keyHighlights.map((highlight, index) => (
                   <div key={index} className={styles.keyHighlightItem}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                       <circle cx="12" cy="12" r="12" fill="#10b981" />
@@ -281,15 +244,15 @@ const CourseDetails = () => {
               <div className={styles.infoList}>
                 <div className={styles.infoItem}>
                   <span className="material-icons">people</span>
-                  <span>{courseData.studentsCount} students enrolled</span>
+                  <span>{course.studentsCount} students enrolled</span>
                 </div>
                 <div className={styles.infoItem}>
                   <span className="material-icons">language</span>
-                  <span>Language: {courseData.language}</span>
+                  <span>Language: {course.language}</span>
                 </div>
                 <div className={styles.infoItem}>
                   <span className="material-icons">update</span>
-                  <span>Last updated: {courseData.lastUpdated}</span>
+                  <span>Last updated: {course.lastUpdated}</span>
                 </div>
                 <div className={styles.infoItem}>
                   <span className="material-icons">workspace_premium</span>

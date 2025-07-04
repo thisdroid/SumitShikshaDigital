@@ -84,6 +84,7 @@ const CourseCard = ({ course }) => {
           </div>
           <div className={styles.coursePrice}>
             <span className={styles.currentPrice}>{course.price}</span>
+            {course.originalPrice && <span className={styles.originalPrice}>{course.originalPrice}</span>}
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
 import { useEffect } from "react"
 import { useParams, useNavigate, useLocation } from "react-router-dom"
 import styles from "./ExamDetails.module.css"
-import Profile from "../Profile_icon/Profile"
+import Header from "../header/Header"
 import { courseExams, availableExams, upcomingExams } from "./Examination"
 
 const allExams = [...courseExams, ...availableExams, ...upcomingExams]
@@ -28,23 +28,8 @@ const ExamDetails = () => {
     return (
       <div className={styles.examDetailsContainer}>
         <div className={styles.mainContent}>
-          {/* Header */}
-          <header className={styles.header}>
-            <div className={styles.headerTop}>
-              <div className={styles.searchContainer}>
-                <span className="material-icons">search</span>
-                <input type="text" placeholder="Search exams..." className={styles.searchInput} />
-              </div>
-
-              <div className={styles.userSection}>
-                <button className={styles.notificationBtn}>
-                  <span className="material-icons">notifications</span>
-                  <span className={styles.notificationBadge}></span>
-                </button>
-                <Profile />
-              </div>
-            </div>
-          </header>
+          {/* Header Component */}
+          <Header />
 
           <div className={styles.contentWrapper}>
             <div className={styles.errorCard}>
@@ -73,23 +58,8 @@ const ExamDetails = () => {
   return (
     <div className={styles.examDetailsContainer}>
       <div className={styles.mainContent}>
-        {/* Header */}
-        <header className={styles.header}>
-          <div className={styles.headerTop}>
-            <div className={styles.searchContainer}>
-              <span className="material-icons">search</span>
-              <input type="text" placeholder="Search exams..." className={styles.searchInput} />
-            </div>
-
-            <div className={styles.userSection}>
-              <button className={styles.notificationBtn}>
-                <span className="material-icons">notifications</span>
-                <span className={styles.notificationBadge}></span>
-              </button>
-              <Profile />
-            </div>
-          </div>
-        </header>
+        {/* Header Component */}
+        <Header />
 
         <div className={styles.contentWrapper}>
           {/* Left Content */}
@@ -100,49 +70,71 @@ const ExamDetails = () => {
               Back to Exams
             </button>
 
-            {/* Exam Header Card */}
-            <div className={styles.examHeaderCard}>
-              <div className={styles.examIconLarge} style={{ backgroundColor: exam.color }}>
-                <span className="material-icons">{exam.icon}</span>
-              </div>
-              <div className={styles.examHeaderInfo}>
-                <h1 className={styles.examTitle}>{exam.name}</h1>
-                <p className={styles.examDescription}>{exam.description}</p>
-
-                <div className={styles.examMetrics}>
-                  <div className={styles.metric}>
-                    <span className="material-icons">schedule</span>
-                    <div className={styles.metricInfo}>
-                      <span className={styles.metricLabel}>Duration</span>
-                      <span className={styles.metricValue}>{exam.duration}</span>
-                    </div>
-                  </div>
-
-                  <div className={styles.metric}>
-                    <span className="material-icons">quiz</span>
-                    <div className={styles.metricInfo}>
-                      <span className={styles.metricLabel}>Questions</span>
-                      <span className={styles.metricValue}>{exam.questions}</span>
-                    </div>
-                  </div>
-
-                  <div className={styles.metric}>
-                    <span className="material-icons">grade</span>
-                    <div className={styles.metricInfo}>
-                      <span className={styles.metricLabel}>Passing Score</span>
-                      <span className={styles.metricValue}>{exam.passingScore}%</span>
-                    </div>
-                  </div>
-
-                  {exam.level && (
+            {/* Exam Header Section - Desktop: side by side, Mobile: stacked */}
+            <div className={styles.examHeaderSection}>
+              {/* Exam Header Card */}
+              <div className={styles.examHeaderCard}>
+                <div className={styles.examIconLarge} style={{ backgroundColor: exam.color }}>
+                  <span className="material-icons">{exam.icon}</span>
+                </div>
+                <div className={styles.examHeaderInfo}>
+                  <h1 className={styles.examTitle}>{exam.name}</h1>
+                  <p className={styles.examDescription}>{exam.description}</p>
+                  <div className={styles.examMetrics}>
                     <div className={styles.metric}>
-                      <span className="material-icons">trending_up</span>
+                      <span className="material-icons">schedule</span>
                       <div className={styles.metricInfo}>
-                        <span className={styles.metricLabel}>Level</span>
-                        <span className={styles.metricValue}>{exam.level}</span>
+                        <span className={styles.metricLabel}>Duration</span>
+                        <span className={styles.metricValue}>{exam.duration}</span>
                       </div>
                     </div>
-                  )}
+                    <div className={styles.metric}>
+                      <span className="material-icons">quiz</span>
+                      <div className={styles.metricInfo}>
+                        <span className={styles.metricLabel}>Questions</span>
+                        <span className={styles.metricValue}>{exam.questions}</span>
+                      </div>
+                    </div>
+                    <div className={styles.metric}>
+                      <span className="material-icons">grade</span>
+                      <div className={styles.metricInfo}>
+                        <span className={styles.metricLabel}>Passing Score</span>
+                        <span className={styles.metricValue}>{exam.passingScore}%</span>
+                      </div>
+                    </div>
+                    {exam.level && (
+                      <div className={styles.metric}>
+                        <span className="material-icons">trending_up</span>
+                        <div className={styles.metricInfo}>
+                          <span className={styles.metricLabel}>Level</span>
+                          <span className={styles.metricValue}>{exam.level}</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Tips Card - Desktop: beside header, Mobile: in sidebar */}
+              <div className={styles.tipsCard}>
+                <h3 className={styles.tipsTitle}>Exam Tips</h3>
+                <div className={styles.tipsList}>
+                  <div className={styles.tipItem}>
+                    <span className="material-icons">lightbulb</span>
+                    <span>Read each question carefully before answering</span>
+                  </div>
+                  <div className={styles.tipItem}>
+                    <span className="material-icons">timer</span>
+                    <span>Manage your time effectively</span>
+                  </div>
+                  <div className={styles.tipItem}>
+                    <span className="material-icons">psychology</span>
+                    <span>Stay calm and focused throughout</span>
+                  </div>
+                  <div className={styles.tipItem}>
+                    <span className="material-icons">fact_check</span>
+                    <span>Review your answers before submitting</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -185,31 +177,52 @@ const ExamDetails = () => {
               <h2 className={styles.sectionTitle}>Exam Rules & Instructions</h2>
               <div className={styles.rulesList}>
                 <div className={styles.ruleItem}>
-                  <span className="material-icons">check_circle</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="12" fill="#10b981" />
+                    <path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19l10-10-1.4-1.4z" fill="white" />
+                  </svg>
                   <span>All questions are multiple choice questions (MCQ)</span>
                 </div>
                 <div className={styles.ruleItem}>
-                  <span className="material-icons">check_circle</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="12" fill="#10b981" />
+                    <path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19l10-10-1.4-1.4z" fill="white" />
+                  </svg>
                   <span>Only one choice is correct among the given options</span>
                 </div>
                 <div className={styles.ruleItem}>
-                  <span className="material-icons">check_circle</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="12" fill="#10b981" />
+                    <path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19l10-10-1.4-1.4z" fill="white" />
+                  </svg>
                   <span>Every question carries equal marks</span>
                 </div>
                 <div className={styles.ruleItem}>
-                  <span className="material-icons">check_circle</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="12" fill="#10b981" />
+                    <path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19l10-10-1.4-1.4z" fill="white" />
+                  </svg>
                   <span>Try to answer as quickly and accurately as possible</span>
                 </div>
                 <div className={styles.ruleItem}>
-                  <span className="material-icons">check_circle</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="12" fill="#10b981" />
+                    <path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19l10-10-1.4-1.4z" fill="white" />
+                  </svg>
                   <span>Questions are presented in random order</span>
                 </div>
                 <div className={styles.ruleItem}>
-                  <span className="material-icons">check_circle</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="12" fill="#10b981" />
+                    <path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19l10-10-1.4-1.4z" fill="white" />
+                  </svg>
                   <span>You can review and change answers before submitting</span>
                 </div>
                 <div className={styles.ruleItem}>
-                  <span className="material-icons">check_circle</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="12" fill="#10b981" />
+                    <path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19l10-10-1.4-1.4z" fill="white" />
+                  </svg>
                   <span>Results will be displayed immediately after submission</span>
                 </div>
               </div>
@@ -226,36 +239,8 @@ const ExamDetails = () => {
 
           {/* Right Sidebar */}
           <div className={styles.rightSidebar}>
-            {/* Quick Info Card */}
-            <div className={styles.quickInfoCard}>
-              <h3 className={styles.quickInfoTitle}>Quick Info</h3>
-              <div className={styles.quickInfoList}>
-                <div className={styles.quickInfoItem}>
-                  <span className="material-icons">schedule</span>
-                  <div>
-                    <span className={styles.quickInfoLabel}>Duration</span>
-                    <span className={styles.quickInfoValue}>{exam.duration}</span>
-                  </div>
-                </div>
-                <div className={styles.quickInfoItem}>
-                  <span className="material-icons">quiz</span>
-                  <div>
-                    <span className={styles.quickInfoLabel}>Questions</span>
-                    <span className={styles.quickInfoValue}>{exam.questions}</span>
-                  </div>
-                </div>
-                <div className={styles.quickInfoItem}>
-                  <span className="material-icons">grade</span>
-                  <div>
-                    <span className={styles.quickInfoLabel}>Pass Mark</span>
-                    <span className={styles.quickInfoValue}>{exam.passingScore}%</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Tips Card */}
-            <div className={styles.tipsCard}>
+            {/* Tips Card - Mobile only */}
+            <div className={styles.tipsCardMobile}>
               <h3 className={styles.tipsTitle}>Exam Tips</h3>
               <div className={styles.tipsList}>
                 <div className={styles.tipItem}>

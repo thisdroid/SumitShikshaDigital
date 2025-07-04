@@ -11,89 +11,6 @@
   flex-direction: column;
 }
 
-.header {
-  background: white;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #e5e7eb;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  z-index: 100;
-  flex-direction: row;
-}
-
-.headerTop {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.searchContainer {
-  display: flex;
-  align-items: center;
-  background: #f8fafc;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  width: 400px;
-  gap: 0.5rem;
-}
-
-.searchContainer .material-icons {
-  color: #9ca3af;
-  font-size: 1.25rem;
-}
-
-.searchInput {
-  border: none;
-  background: transparent;
-  outline: none;
-  flex: 1;
-  font-size: 0.875rem;
-  color: #374151;
-}
-
-.searchInput::placeholder {
-  color: #9ca3af;
-}
-
-.userSection {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.notificationBtn {
-  position: relative;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s;
-}
-
-.notificationBtn:hover {
-  background-color: #f3f4f6;
-}
-
-.notificationBtn .material-icons {
-  color: #6b7280;
-  font-size: 1.5rem;
-}
-
-.notificationBadge {
-  position: absolute;
-  top: 0.25rem;
-  right: 0.25rem;
-  width: 8px;
-  height: 8px;
-  background-color: #ef4444;
-  border-radius: 50%;
-}
-
 .backButton {
   display: flex;
   align-items: center;
@@ -128,6 +45,17 @@
   flex: 1;
 }
 
+/* Desktop layout - create grid for exam header and tips alignment */
+@media (min-width: 1024px) {
+  .examHeaderSection {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    align-items: stretch; /* Make both cards same height */
+  }
+}
+
 .leftContent {
   flex: 1;
   display: flex;
@@ -137,13 +65,14 @@
 
 /* Exam Header Card */
 .examHeaderCard {
-  background: white;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
   border-radius: 0.75rem;
   padding: 2rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
+  border: 1px solid #e2e8f0;
 }
 
 .examIconLarge {
@@ -191,9 +120,9 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1rem;
-  background: #f8fafc;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 }
 
 .metric .material-icons {
@@ -222,10 +151,11 @@
 
 /* Details Section */
 .detailsSection {
-  background: white;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
   border-radius: 0.75rem;
   padding: 2rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
 }
 
 .sectionTitle {
@@ -246,9 +176,35 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background: #f8fafc;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
+  position: relative;
+}
+
+/* Add colored left border to detail items */
+.detailItem:nth-child(1) {
+  border-left: 4px solid #3b82f6;
+}
+
+.detailItem:nth-child(2) {
+  border-left: 4px solid #10b981;
+}
+
+.detailItem:nth-child(3) {
+  border-left: 4px solid #f59e0b;
+}
+
+.detailItem:nth-child(4) {
+  border-left: 4px solid #ef4444;
+}
+
+.detailItem:nth-child(5) {
+  border-left: 4px solid #8b5cf6;
+}
+
+.detailItem:nth-child(6) {
+  border-left: 4px solid #06b6d4;
 }
 
 .detailLabel {
@@ -265,10 +221,11 @@
 
 /* Rules Section */
 .rulesSection {
-  background: white;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
   border-radius: 0.75rem;
   padding: 2rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
 }
 
 .rulesList {
@@ -282,15 +239,9 @@
   align-items: flex-start;
   gap: 0.75rem;
   padding: 1rem;
-  background: #f8fafc;
+  background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
   border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
-}
-
-.ruleItem .material-icons {
-  color: #10b981;
-  font-size: 1.125rem;
-  margin-top: 0.125rem;
+  border: 1px solid #dbeafe;
 }
 
 .ruleItem span:last-child {
@@ -323,9 +274,9 @@
 }
 
 .startExamButton:hover {
-  background: #1d4ed8;
+  background: #10b981;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
 }
 
 .startExamButton .material-icons {
@@ -340,64 +291,16 @@
   gap: 1.5rem;
 }
 
-/* Quick Info Card */
-.quickInfoCard {
-  background: white;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.quickInfoTitle {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #1f2937;
-  margin: 0 0 1rem 0;
-}
-
-.quickInfoList {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.quickInfoItem {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem;
-  background: #f8fafc;
-  border-radius: 0.5rem;
-}
-
-.quickInfoItem .material-icons {
-  color: #3b82f6;
-  font-size: 1.125rem;
-}
-
-.quickInfoItem > div {
-  display: flex;
-  flex-direction: column;
-}
-
-.quickInfoLabel {
-  font-size: 0.75rem;
-  color: #6b7280;
-  font-weight: 500;
-}
-
-.quickInfoValue {
-  font-size: 0.875rem;
-  color: #1f2937;
-  font-weight: 600;
-}
-
 /* Tips Card */
 .tipsCard {
-  background: white;
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dcfce7;
+  height: 100%; /* Changed from fit-content to 100% */
+  display: flex;
+  flex-direction: column;
 }
 
 .tipsTitle {
@@ -411,6 +314,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  flex: 1; /* Add this to help fill available space */
 }
 
 .tipItem {
@@ -481,71 +385,165 @@
   transform: translateY(-1px);
 }
 
-/* Desktop - keep original layout */
-@media (min-width: 769px) {
-  .header {
-    flex-direction: row;
+/* Hide banner image when screen width is below 1200px */
+@media (max-width: 1199px) {
+  .bannerImage {
+    display: none !important;
   }
 
-  .headerTop {
-    display: contents;
-  }
-}
-
-/* Mobile - new layout */
-@media (max-width: 768px) {
-  .header {
-    padding: 1rem;
-    flex-direction: column;
-    gap: 1rem;
-    position: relative;
+  .examBanner {
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem;
   }
 
-  .headerTop {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    flex-direction: column;
-    gap: 1rem;
+  .bannerContent {
+    max-width: none;
+    text-align: center;
   }
 
-  .searchContainer {
-    width: 100%;
-    order: 2;
-  }
-
-  .userSection {
-    gap: 0.75rem;
-    order: 1;
-    align-self: flex-end;
+  .bannerText {
+    max-width: none;
   }
 }
 
 @media (max-width: 1023px) {
-  .header {
-    position: relative;
-    padding: 1rem 4rem 1rem 1rem;
+  .mainContent {
+    margin-left: 0;
   }
 
-  .searchContainer {
-    width: 250px;
+  .contentWrapper {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .examHeaderSection {
+    display: block;
+  }
+
+  .rightSidebar {
+    width: 100%;
+  }
+
+  .examMetrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .detailsGrid {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 480px) {
-  .contentWrapper {
-    padding: 0.5rem;
+@media (max-width: 768px) {
+  .examHeaderCard {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
   }
 
-  .examHeaderCard,
+  .examIconLarge {
+    align-self: center;
+  }
+
+  .examTitle {
+    font-size: 1.5rem;
+  }
+
+  .examDescription {
+    font-size: 0.875rem;
+  }
+
+  .examMetrics {
+    grid-template-columns: 1fr;
+  }
+
   .detailsSection,
   .rulesSection {
     padding: 1rem;
   }
 
-  .quickInfoCard,
   .tipsCard {
     padding: 1rem;
+  }
+
+  .startExamButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .metricInfo {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .metricLabel,
+  .metricValue {
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .contentWrapper {
+    padding: 0.75rem;
+  }
+
+  .examHeaderCard,
+  .detailsSection,
+  .rulesSection {
+    padding: 0.875rem;
+  }
+
+  .examTitle {
+    font-size: 1.25rem;
+  }
+
+  .examDescription {
+    font-size: 0.8rem;
+  }
+
+  .startExamButton {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Desktop: show tips beside header, hide mobile tips */
+@media (min-width: 1024px) {
+  .tipsCard {
+    display: block;
+  }
+
+  .tipsCardMobile {
+    display: none;
+  }
+
+  .rightSidebar {
+    display: none;
+  }
+}
+
+/* Mobile: hide desktop tips, show mobile tips */
+@media (max-width: 1023px) {
+  .tipsCard {
+    display: none;
+  }
+
+  .tipsCardMobile {
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #dcfce7;
+  }
+
+  .examHeaderSection {
+    display: block;
+  }
+
+  .rightSidebar {
+    display: flex;
+    width: 100%;
   }
 }

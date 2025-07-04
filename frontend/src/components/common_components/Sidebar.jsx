@@ -63,7 +63,7 @@ const Sidebar = () => {
         <div className={styles.logoContainer}>
           <div className={styles.logoBox}>
             <img
-              src="/images/logo_latest.png"
+              src="/images/SD-logo.png"
               alt="Shiksha Digital Logo"
               className={styles.logoImage}
             />

@@ -1,6 +1,18 @@
+"use client"
+
+import { useNavigate } from "react-router-dom"
 import styles from "./CourseCard.module.css"
 
 const CourseCard = ({ course }) => {
+  const navigate = useNavigate()
+
+  const handleViewCourse = () => {
+    // Navigate to course details page with course data
+    navigate(`/StudentDashboard/Courses/${encodeURIComponent(course.title)}`, {
+      state: { course },
+    })
+  }
+
   // Function to render stars based on rating
   const renderStars = (rating) => {
     const stars = []
@@ -47,14 +59,14 @@ const CourseCard = ({ course }) => {
           className={styles.courseImage}
         />
         <div className={styles.courseOverlay}>
-          <button className={styles.viewCourseBtn}>View Course</button>
+          <button className={styles.viewCourseBtn} onClick={handleViewCourse}>
+            View Course
+          </button>
         </div>
       </div>
-
       <div className={styles.courseInfo}>
         <h3 className={styles.courseTitle}>{course.title}</h3>
         <p className={styles.courseDescription}>{course.description}</p>
-
         {/* Duration */}
         {course.duration && (
           <div className={styles.courseDuration}>
@@ -62,7 +74,6 @@ const CourseCard = ({ course }) => {
             <span>{course.duration} days</span>
           </div>
         )}
-
         <div className={styles.courseFooter}>
           <div className={styles.courseRating}>
             <div className={styles.stars}>{renderStars(course.rating)}</div>
@@ -71,7 +82,6 @@ const CourseCard = ({ course }) => {
               {course.reviewCount && <span className={styles.reviewCount}>({course.reviewCount})</span>}
             </div>
           </div>
-
           <div className={styles.coursePrice}>
             <span className={styles.currentPrice}>{course.price}</span>
           </div>

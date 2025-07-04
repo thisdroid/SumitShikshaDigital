@@ -1,223 +1,303 @@
 "use client"
-
-import { useEffect, useState } from "react"
-import { useParams, useLocation, useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+import { useParams, useNavigate, useLocation } from "react-router-dom"
 import styles from "./CourseDetails.module.css"
+import Header from "../header/Header"
+import { enrolledCourses, availableCourses } from "./Courses"
 
-// You can import your course list here or fetch from API
-import { availableCourses } from "./Courses" // Adjust path as needed
+const allCourses = [...enrolledCourses, ...availableCourses]
 
 const CourseDetails = () => {
   const { courseId } = useParams()
-  const location = useLocation()
   const navigate = useNavigate()
-  const [isEnrolled, setIsEnrolled] = useState(false)
+  const location = useLocation()
 
   // Try to get course from location.state (if navigated from Courses page)
   let course = location.state?.course
 
-  // If not found, find it from your course list using courseId (decode if needed)
   if (!course && courseId) {
-    course = availableCourses.find((c) => encodeURIComponent(c.title) === courseId)
+    course = allCourses.find((c) => encodeURIComponent(c.title) === courseId)
   }
 
-  // Fallback if course not found
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+  }, [])
+
   if (!course) {
     return (
-      <div className={styles.courseDetailsWrapper}>
-        <button className={styles.backButton} onClick={() => navigate(-1)}>
-          <span className="material-icons">arrow_back</span>
-          Back to Courses
-        </button>
-        <div className={styles.section}>
-          <h2>Course not found.</h2>
+      <div className={styles.courseDetailsContainer}>
+        <div className={styles.mainContent}>
+          <Header />
+          <div className={styles.contentWrapper}>
+            <div className={styles.errorCard}>
+              <div className={styles.errorIcon}>
+                <span className="material-icons">error_outline</span>
+              </div>
+              <h2 className={styles.errorTitle}>Course Not Found</h2>
+              <p className={styles.errorText}>The course you're looking for doesn't exist or has been removed.</p>
+              <button className={styles.errorButton} onClick={() => navigate("/StudentDashboard/Courses")}>
+                <span className="material-icons">arrow_back</span>
+                Back to Courses
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     )
   }
 
+  const handleEnrollCourse = () => {
+    console.log("Enrolling in course:", course.title)
+    alert("Course enrollment functionality will be implemented here!")
+  }
+
+  const handleStartCourse = () => {
+    console.log("Starting course:", course.title)
+    alert("Course learning functionality will be implemented here!")
+  }
+
+  // Enhanced course data with additional details
   const courseData = {
-    image: course.image || "/images/FrontEnd.jpg",
-    title: course.title || "Frontend for Beginners",
-    description: course.description || "Learn the basics of React.js with hands-on projects.",
-    rating: course.rating || 4.8,
-    reviewCount: course.reviewCount || 120,
-    duration: course.duration || 30,
-    price: course.price || "Free",
-    originalPrice: "₹549.0",
-    questionsCount: 75,
-    totalMarks: 150,
-    timeLimit: 60,
+    ...course,
     studentsCount: 1250,
-
+    lessonsCount: 24,
+    projectsCount: 5,
+    certificateAvailable: true,
+    level: course.level || "Beginner",
+    language: "English",
+    lastUpdated: "December 2024",
     whatYouLearn: [
-      "Fundamental & Essential",
-      "Logical & Structured",
-      "Core Programming Language",
-      "Efficient & Performance-Oriented",
-      "Great for Beginners",
-      "Powerful & Versatile",
-      "Foundation for Other Languages",
-      "Fast & Low-Level",
-      "System-Oriented & Practical",
-      "Educational & Career-Boosting",
-      "Basic to Advanced Learning",
-      "Evergreen & Industry Standard",
-      "Widely Used & Reliable",
-      "Ideal for System Programming",
-      "Great for Competitive Coding",
-      "High-Performance & Efficient",
-      "Structured & Procedural",
-      "Perfect for Logical Thinking",
-      "Portable & Cross-Platform",
-      "Foundation of Modern Programming",
+      "Master the fundamentals and core concepts",
+      "Build real-world projects from scratch",
+      "Understand best practices and industry standards",
+      "Learn debugging and problem-solving techniques",
+      "Gain hands-on experience with practical exercises",
+      "Develop portfolio-worthy applications",
+      "Understand advanced concepts and patterns",
+      "Learn to optimize performance and efficiency",
     ],
-
-    keyHighlights: [
-      "Essential for Embedded Systems",
-      "Great for Software Development",
-      "Popular in Tech & Academia",
-      "Versatile & Hardware-Friendly",
-      "Timeless & Widely Adopted",
-      "Key to Understanding Programming",
-      "Ideal for Low-Level Development",
-      "Highly Structured & Scalable",
+    courseContent: [
+      { title: "Introduction and Setup", lessons: 3, duration: "45 mins" },
+      { title: "Core Concepts", lessons: 6, duration: "2 hours" },
+      { title: "Practical Applications", lessons: 8, duration: "3 hours" },
+      { title: "Advanced Topics", lessons: 5, duration: "2.5 hours" },
+      { title: "Projects and Practice", lessons: 2, duration: "1.5 hours" },
     ],
-
-    features: [
-      "Lifetime access to materials",
-      "Learn at your own pace",
-      "Expert instructor guidance",
-      "Downloadable resources & assignments",
+    requirements: [
+      "Basic computer knowledge",
+      "No prior programming experience required",
+      "Willingness to learn and practice",
+      "Access to a computer with internet connection",
     ],
   }
-
-  const handleEnroll = () => {
-    setIsEnrolled(true)
-    // Add enrollment logic here
-  }
-
-  const renderStars = (rating) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <span
-        key={index}
-        className={`${styles.star} ${index < Math.floor(rating) ? styles.starFilled : styles.starEmpty}`}
-      >
-        ★
-      </span>
-    ))
-  }
-
-  // Scroll to top when this component mounts
-  useEffect(() => {
-    window.scrollTo({ top: 0});
-  }, []);
 
   return (
-    <div className={styles.courseDetailsWrapper}>
-      <button className={styles.backButton} onClick={() => navigate(-1)}>
-        <span className="material-icons">arrow_back</span>
-        Back to Courses
-      </button>
-
-      <div className={styles.courseContent}>
-        {/* Course Header Section */}
-        <div className={styles.courseHeader}>
-          <div className={styles.courseImageContainer}>
-            <img src={courseData.image || "/placeholder.svg"} alt={courseData.title} className={styles.courseImage} />
-          </div>
-
-          <div className={styles.courseInfo}>
-            <h2 className={styles.courseTitle}>{courseData.title}</h2>
-
-            <div className={styles.ratingSection}>
-              <div className={styles.stars}>{renderStars(courseData.rating)}</div>
-              <span className={styles.ratingText}>
-                {courseData.rating} ({courseData.studentsCount} students)
-              </span>
-            </div>
-
-            <div className={styles.courseStats}>
-              <div className={styles.stat}>
-                <span className="material-icons">quiz</span>
-                <span>{courseData.questionsCount} Questions</span>
-              </div>
-              <div className={styles.stat}>
-                <span className="material-icons">grade</span>
-                <span>{courseData.totalMarks} Total Marks</span>
-              </div>
-              <div className={styles.stat}>
-                <span className="material-icons">schedule</span>
-                <span>{courseData.timeLimit} Min</span>
-              </div>
-            </div>
-
-            <div className={styles.priceSection}>
-              <span className={styles.currentPrice}>
-                {courseData.price === "Free" ? "Free" : `₹${courseData.price}`}
-              </span>
-              {courseData.price !== "Free" && <span className={styles.originalPrice}>{courseData.originalPrice}</span>}
-            </div>
-
-            <button
-              className={`${styles.enrollButton} ${isEnrolled ? styles.enrolled : ""}`}
-              onClick={handleEnroll}
-              disabled={isEnrolled}
-            >
-              <span className="material-icons">{isEnrolled ? "check_circle" : "shopping_cart"}</span>
-              {isEnrolled ? "Enrolled" : "Enroll Now"}
+    <div className={styles.courseDetailsContainer}>
+      <div className={styles.mainContent}>
+        <Header />
+        <div className={styles.contentWrapper}>
+          {/* Left Content */}
+          <div className={styles.leftContent}>
+            {/* Back Button */}
+            <button className={styles.backButton} onClick={() => navigate("/StudentDashboard/Courses")}>
+              <span className="material-icons">arrow_back</span>
+              Back to Courses
             </button>
-          </div>
-        </div>
 
-        {/* What You'll Learn Section */}
-        <div className={styles.section}>
-          <h3 className={styles.sectionTitle}>What You'll Learn</h3>
-          <div className={styles.learningGrid}>
-            {courseData.whatYouLearn.map((item, index) => (
-              <div key={index} className={styles.learningItem}>
-                <span className={`material-icons ${styles.checkIcon}`}>check_circle</span>
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+            {/* Course Header Section */}
+            <div className={styles.courseHeaderSection}>
+              {/* Course Header Card */}
+              <div className={styles.courseHeaderCard}>
+                <div className={styles.courseImageColumn}>
+                  <div className={styles.courseImageContainer}>
+                    <img
+                      src={courseData.image || "/placeholder.svg?height=200&width=300"}
+                      alt={courseData.title}
+                      className={styles.courseImage}
+                    />
+                    <div className={styles.courseOverlay}>
+                      <button className={styles.previewBtn}>
+                        <span className="material-icons">play_circle</span>
+                        Preview Course
+                      </button>
+                    </div>
+                  </div>
+                  <div className={styles.imageButtonsSection}>
+                    <button className={styles.enrollButton} onClick={handleEnrollCourse}>
+                      <span className="material-icons">school</span>
+                      Enroll in Course
+                    </button>
+                    <button className={styles.startButton} onClick={handleStartCourse}>
+                      <span className="material-icons">play_arrow</span>
+                      Start Learning
+                    </button>
+                  </div>
+                </div>
+                <div className={styles.courseHeaderInfo}>
+                  <h1 className={styles.courseTitle}>{courseData.title}</h1>
+                  <p className={styles.courseDescription}>{courseData.description}</p>
 
-        {/* Key Highlights Section */}
-        <div className={styles.section}>
-          <h3 className={styles.sectionTitle}>Key Highlights</h3>
-          <div className={styles.highlightsGrid}>
-            {courseData.keyHighlights.map((highlight, index) => (
-              <div key={index} className={styles.highlightItem}>
-                <span className={`material-icons ${styles.highlightIcon}`}>verified</span>
-                <span>{highlight}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+                  <div className={styles.priceSection}>
+                    <span className={styles.currentPrice}>
+                      {courseData.price === "Free" ? "Free" : courseData.price}
+                    </span>
+                    {courseData.price !== "Free" && <span className={styles.originalPrice}>₹2,499</span>}
+                  </div>
 
-        {/* Enhancement Section */}
-        <div className={styles.enhancementSection}>
-          <h3 className={styles.enhancementTitle}>Enhance Your Skills with Expert Guidance</h3>
-          <p className={styles.enhancementDescription}>
-            Gain in-depth knowledge and hands-on experience with this comprehensive course. Join thousands of learners
-            who have already mastered new skills!
-          </p>
-          <div className={styles.featuresList}>
-            {courseData.features.map((feature, index) => (
-              <div key={index} className={styles.featureItem}>
-                <span className={`material-icons ${styles.featureIcon}`}>check_circle</span>
-                <span>{feature}</span>
+                  <div className={styles.courseRating}>
+                    <div className={styles.stars}>
+                      {Array.from({ length: 5 }, (_, index) => (
+                        <span
+                          key={index}
+                          className={`${styles.star} ${index < Math.floor(courseData.rating) ? styles.filled : ""}`}
+                        >
+                          ★
+                        </span>
+                      ))}
+                    </div>
+                    <span className={styles.ratingText}>
+                      {courseData.rating} ({courseData.studentsCount} students)
+                    </span>
+                  </div>
+
+                  <div className={styles.courseMetrics}>
+                    <div className={styles.metric}>
+                      <span className="material-icons">schedule</span>
+                      <div className={styles.metricInfo}>
+                        <span className={styles.metricLabel}>Duration</span>
+                        <span className={styles.metricValue}>{courseData.duration} hours</span>
+                      </div>
+                    </div>
+                    <div className={styles.metric}>
+                      <span className="material-icons">play_lesson</span>
+                      <div className={styles.metricInfo}>
+                        <span className={styles.metricLabel}>Lessons</span>
+                        <span className={styles.metricValue}>{courseData.lessonsCount}</span>
+                      </div>
+                    </div>
+                    <div className={styles.metric}>
+                      <span className="material-icons">assignment</span>
+                      <div className={styles.metricInfo}>
+                        <span className={styles.metricLabel}>Projects</span>
+                        <span className={styles.metricValue}>{courseData.projectsCount}</span>
+                      </div>
+                    </div>
+                    <div className={styles.metric}>
+                      <span className="material-icons">trending_up</span>
+                      <div className={styles.metricInfo}>
+                        <span className={styles.metricLabel}>Level</span>
+                        <span className={styles.metricValue}>{courseData.level}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            ))}
+
+              {/* Course Info Card */}
+              <div className={styles.courseInfoCard}>
+                <h3 className={styles.infoTitle}>Course Information</h3>
+                <div className={styles.infoList}>
+                  <div className={styles.infoItem}>
+                    <span className="material-icons">people</span>
+                    <span>{courseData.studentsCount} students enrolled</span>
+                  </div>
+                  <div className={styles.infoItem}>
+                    <span className="material-icons">language</span>
+                    <span>Language: {courseData.language}</span>
+                  </div>
+                  <div className={styles.infoItem}>
+                    <span className="material-icons">update</span>
+                    <span>Last updated: {courseData.lastUpdated}</span>
+                  </div>
+                  <div className={styles.infoItem}>
+                    <span className="material-icons">workspace_premium</span>
+                    <span>Certificate included</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* What You'll Learn Section */}
+            <div className={styles.learningSection}>
+              <h2 className={styles.sectionTitle}>What You'll Learn</h2>
+              <div className={styles.learningGrid}>
+                {courseData.whatYouLearn.map((item, index) => (
+                  <div key={index} className={styles.learningItem}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="12" fill="#10b981" />
+                      <path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19l10-10-1.4-1.4z" fill="white" />
+                    </svg>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Course Content Section */}
+            <div className={styles.contentSection}>
+              <h2 className={styles.sectionTitle}>Course Content</h2>
+              <div className={styles.contentList}>
+                {courseData.courseContent.map((section, index) => (
+                  <div key={index} className={styles.contentItem}>
+                    <div className={styles.contentHeader}>
+                      <span className={styles.contentTitle}>{section.title}</span>
+                      <span className={styles.contentMeta}>
+                        {section.lessons} lessons • {section.duration}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Key Highlights Section */}
+            <div className={styles.keyHighlightsSection}>
+              <h2 className={styles.sectionTitle}>Key Highlights</h2>
+              <div className={styles.keyHighlightsList}>
+                {[
+                  "Critical Thinking Development",
+                  "Real-World Problem-Solving Skills",
+                  "Goal-Oriented Learning Approach",
+                  "Objective & Fair Skill Evaluation",
+                  "Foundation for Career Planning",
+                ].map((highlight, index) => (
+                  <div key={index} className={styles.keyHighlightItem}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="12" fill="#10b981" />
+                      <path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19l10-10-1.4-1.4z" fill="white" />
+                    </svg>
+                    <span>{highlight}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          <p className={styles.supportText}>
-            To enroll, please visit our{" "}
-            <a href="#" className={styles.link}>
-              Courses Page
-            </a>{" "}
-            or contact support for assistance.
-          </p>
+
+          {/* Right Sidebar */}
+          <div className={styles.rightSidebar}>
+            {/* Course Info Card - Mobile only */}
+            <div className={styles.courseInfoCardMobile}>
+              <h3 className={styles.infoTitle}>Course Information</h3>
+              <div className={styles.infoList}>
+                <div className={styles.infoItem}>
+                  <span className="material-icons">people</span>
+                  <span>{courseData.studentsCount} students enrolled</span>
+                </div>
+                <div className={styles.infoItem}>
+                  <span className="material-icons">language</span>
+                  <span>Language: {courseData.language}</span>
+                </div>
+                <div className={styles.infoItem}>
+                  <span className="material-icons">update</span>
+                  <span>Last updated: {courseData.lastUpdated}</span>
+                </div>
+                <div className={styles.infoItem}>
+                  <span className="material-icons">workspace_premium</span>
+                  <span>Certificate included</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -157,33 +157,84 @@
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  font-family: "Poppins", sans-serif;
+  flex-wrap: nowrap;           /* Prevent wrapping by default */
+  justify-content: flex-start; /* Align left */
 }
 
 .tab {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  transition: all 0.2s;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: #f3f4f6;
-  border: none;
-  border-radius: 0.5rem;
-  color: #6b7280;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
+  font-family: "Poppins", sans-serif;
+  min-width: fit-content;
+  justify-content: center;
 }
 
 .tab:hover {
-  background: #e5e7eb;
+  background-color: #f3f4f6;
+  color: #374151;
 }
 
 .activeTab {
-  background: #3b82f6;
-  color: white;
+  background-color: #eff6ff;
+  color: #2563eb;
 }
 
 .activeTab .material-icons {
-  color: white;
+  color: #2563eb;
+}
+
+.tab .material-icons {
+  font-size: 1.25rem;
+}
+
+/* --- Responsive: Make tabs bigger on mobile --- */
+@media (max-width: 768px) {
+  .tab {
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+  }
+}
+@media (max-width: 480px) {
+  .tab {
+    padding: 1rem 1.25rem;
+    font-size: 1.125rem;
+    min-width: calc(50% - 0.25rem);
+  }
+  .tab span:not(.material-icons) {
+    display: inline;
+    font-size: 1rem;
+  }
+}
+
+/* Responsive: allow wrap and center on small screens */
+@media (max-width: 1023px) {
+  .tabsContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Mobile: keep tabs in a row, not stacked */
+@media (max-width: 480px) {
+  .tabsContainer {
+    flex-wrap: nowrap;         /* Prevent stacking */
+    justify-content: center;   /* Center horizontally */
+  }
+  .tab {
+    min-width: calc(50% - 0.25rem);
+    flex: 1 1 0;
+  }
 }
 
 /* Exams Section */

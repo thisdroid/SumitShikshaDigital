@@ -29,7 +29,7 @@ const Footer = () => {
                     {/* Logo and Description */}
                     <div className={styles.footerBrand}>
                         <div className={styles.footerLogo}>
-                            <img src="/images/logo_latest.png" alt="Shiksha Digital Logo" className={styles.footerLogoImg} />
+                            <img src="/images/SD-logo.png" alt="Shiksha Digital Logo" className={styles.footerLogoImg} />
                         </div>
 
                         <p className={styles.footerDescription}>

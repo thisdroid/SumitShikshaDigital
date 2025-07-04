@@ -53,7 +53,9 @@ const CourseDetails = () => {
 
   const handleStartCourse = () => {
     console.log("Starting course:", course.title)
-    alert("Course learning functionality will be implemented here!")
+    navigate(`/StudentDashboard/Courses/${encodeURIComponent(course.title)}/player`, {
+      state: { course },
+    })
   }
 
   // Remove the hardcoded courseData object and replace it with:
@@ -125,7 +127,7 @@ const CourseDetails = () => {
                       ))}
                     </div>
                     <span className={styles.ratingText}>
-                      {course.rating} ({course.reviewCount} reviews)
+                      {course.rating} ({course.studentsCount} students)
                     </span>
                   </div>
 

@@ -89,7 +89,7 @@ const Navbar = () => {
           <div className={styles.mobileSingleRow}>
             <div className={styles.mobileLogo}>
               <a href="/">
-                <img src="/images/logo_latest.png" className={styles.logoImgMobile} alt="SD Shiksha Digital Logo" />
+                <img src="/images/SD-logo.png" className={styles.logoImgMobile} alt="SD Shiksha Digital Logo" />
               </a>
             </div>
 

@@ -135,7 +135,7 @@ const StudentDashboard = () => {
 
   return (
     <div className={styles.dashboardContainer}>
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className={styles.mainContent}>
         {/* Header Component */}
         <Header />

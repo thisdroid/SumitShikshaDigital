@@ -23,6 +23,7 @@ import StudentSecurity from './pages/studentPortal/Profile_icon/StudentSecurity'
 import StudentPerformance from './pages/studentPortal/StudentPerformance'
 import CourseDetails from './pages/studentPortal/Courses/CourseDetails'
 import ExamDetails from './pages/studentPortal/Exams/ExamDetails'
+import CoursePlayer from './pages/studentPortal/Courses/CoursePlayer'
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
           <Route index element={<StudentDashboard />} />
           <Route path="Courses" element={<Courses />} />
           <Route path="Courses/:courseId" element={<CourseDetails />} />
+           <Route path="/StudentDashboard/Courses/:courseId/player" element={<CoursePlayer />} />
           <Route path="Examination" element={<Examination />} />
           <Route path="Examination/:examName" element={<ExamDetails />} />
           <Route path="Certificates" element={<Certificates />} />

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import styles from "./TrainingPromo.module.css"
+import { Link } from "react-router-dom"
 
 const TrainingPromo = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -104,12 +105,12 @@ const TrainingPromo = () => {
               </li>
             </ul>
 
-            <a href="/student/studentsignup" className={styles.trainingCtaBtn}>
+            <Link to="/StudentSignup" className={styles.trainingCtaBtn}>
               Enroll Now
               <svg className={styles.trainingArrowIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
-            </a>
+            </Link>
 
             <div className={styles.trainingCountdown}>
               <span className={styles.countdownLabel}>Offer ends in:</span>
@@ -173,12 +174,12 @@ const TrainingPromo = () => {
                 </div>
                 <span>4.7 (128 reviews)</span>
               </div>
-              <a href="/training/" className={styles.trainingCardBtn}>
+              <Link to="/StudentLogin" className={styles.trainingCardBtn}>
                 Explore All
                 <svg className={styles.trainingChevronIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -216,12 +217,12 @@ const TrainingPromo = () => {
                 </div>
                 <span>4.9 (256 reviews)</span>
               </div>
-              <a href="/home_course_list/" className={styles.trainingCardBtn}>
+              <Link to="/StudentLogin" className={styles.trainingCardBtn}>
                 Browse All
                 <svg className={styles.trainingChevronIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

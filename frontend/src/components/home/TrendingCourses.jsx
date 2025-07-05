@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { Link } from "react-router-dom"
 import styles from './TrendingCourses.module.css'
 
 const TrendingCourses = () => {
@@ -102,9 +103,9 @@ const TrendingCourses = () => {
                   <span className={styles.aiTrendingCurrentPrice}>₹{course.currentPrice}</span>
                   <span className={styles.aiTrendingOriginalPrice}>₹{course.originalPrice}</span>
                 </div>
-                <a href={`/course/${course.id}`} className={styles.aiTrendingViewDetailsBtn}>
+                <Link to="/StudentLogin" className={styles.aiTrendingViewDetailsBtn}>
                   View Details
-                </a>
+                </Link>
               </div>
             </div>
           ))}

@@ -1,4 +1,5 @@
 import styles from './AptitudeBanner.module.css'
+import { Link } from 'react-router-dom';
 
 const AptitudeBanner = () => {
   return (
@@ -24,7 +25,8 @@ const AptitudeBanner = () => {
               </p>
 
               <div className={styles.buttonContainer}>
-                <a href="/home-courses/37/">
+                <Link to="/StudentLogin" className={styles.ctaLink}>
+                {/* <a href="/home-courses/37/"> */}
                   <button className={styles.ctaButton}>
                     Start Your Assessment
                     <svg
@@ -41,7 +43,8 @@ const AptitudeBanner = () => {
                       <path d="m9 18 6-6-6-6"></path>
                     </svg>
                   </button>
-                </a>
+                  </Link>
+                {/* </a> */}
               </div>
             </div>
 

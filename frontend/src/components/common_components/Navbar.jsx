@@ -121,7 +121,7 @@ const Navbar = () => {
           <div className={styles.leftSection}>
             <div className={styles.logo}>
               <a href="/">
-                <img src="/images/logo_latest.png" className={styles.logoImg} alt="SD Shiksha Digital Logo" />
+                <img src="/images/SD-logo.png" className={styles.logoImg} alt="SD Shiksha Digital Logo" />
               </a>
             </div>
 

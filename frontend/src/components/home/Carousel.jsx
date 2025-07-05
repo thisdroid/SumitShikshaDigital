@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from "react"
 import { Cloud, Shield, Database, Code, Cpu, Server, Smartphone, Wifi, Settings, Zap, Globe, Lock, Monitor, Layers, GitBranch } from 'lucide-react'
 import styles from "./Carousel.module.css"
@@ -51,6 +49,12 @@ const Carousel = () => {
     { Icon: Monitor, top: "70%", right: "55%" },
     { Icon: Layers, top: "75%", right: "40%" },
     { Icon: GitBranch, top: "80%", right: "30%" },
+  ]
+
+  const buttonLinks = [
+    "/StudentLogin",   // For "Enroll Now"
+    "/Training",       // For "Training Programs"
+    "/ContactUs",      // For "Contact Us"
   ]
 
   const nextSlide = () => {
@@ -127,23 +131,25 @@ const Carousel = () => {
               </h1>
               <p className={styles.carouselSubtitle}>{slides[currentSlide].subtitle}</p>
               <div className={styles.buttonContainer}>
-                <button
-                  className={styles.carouselButton}
-                  onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = "rgba(255, 255, 255, 0.3)"
-                    e.target.style.borderColor = "rgba(255, 255, 255, 0.5)"
-                    e.target.style.transform = "translateY(-2px)"
-                    e.target.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.2)"
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = "rgba(255, 255, 255, 0.2)"
-                    e.target.style.borderColor = "rgba(255, 255, 255, 0.3)"
-                    e.target.style.transform = "translateY(0)"
-                    e.target.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)"
-                  }}
-                >
-                  {slides[currentSlide].buttonText}
-                </button>
+                <Link to={buttonLinks[currentSlide]}>
+                  <button
+                    className={styles.carouselButton}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor = "rgba(255, 255, 255, 0.3)"
+                      e.target.style.borderColor = "rgba(255, 255, 255, 0.5)"
+                      e.target.style.transform = "translateY(-2px)"
+                      e.target.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.2)"
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = "rgba(255, 255, 255, 0.2)"
+                      e.target.style.borderColor = "rgba(255, 255, 255, 0.3)"
+                      e.target.style.transform = "translateY(0)"
+                      e.target.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)"
+                    }}
+                  >
+                    {slides[currentSlide].buttonText}
+                  </button>
+                </Link>
               </div>
             </div>
 

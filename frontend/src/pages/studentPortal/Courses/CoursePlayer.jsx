@@ -4,8 +4,76 @@ import { useParams, useNavigate, useLocation } from "react-router-dom"
 import styles from "./CoursePlayer.module.css"
 import Header from "../header/Header"
 import { enrolledCourses, availableCourses } from "./Courses"
+import VideoPlayer from "./VideoPlayer"
 
 const allCourses = [...enrolledCourses, ...availableCourses]
+
+// Sample lesson data with different YouTube videos
+const lessonVideos = {
+  "0-0": {
+    // youtubeId: "dQw4w9WgXcQ",
+    videoUrl: "https://vimeo.com/1098951138?share=copy#t=1.84", // Optional, if you have direct video links
+    title: "Introduction to React Native Setup",
+    description:
+      "Learn the fundamentals and build practical skills in this comprehensive lesson about React Native setup and configuration.",
+  },
+  "0-1": {
+    // youtubeId: "9bZkp7q19f0",
+    videoUrl: "https://drive.google.com/file/d/1IkH_WazNXZuErgm-D_G3bGOdZ4lNIdtb/view?usp=sharing",// ggl drive link
+    title: "Environment Configuration",
+    description: "Set up your development environment for React Native development with all necessary tools.",
+  },
+  "0-2": {
+    youtubeId: "kJQP7kiw5Fk",
+    title: "First React Native App",
+    description: "Create your first React Native application and understand the basic structure.",
+  },
+  "1-0": {
+    youtubeId: "L72fhGm1tfE",
+    title: "Core Components Overview",
+    description: "Explore the essential React Native components and their usage patterns.",
+  },
+  "1-1": {
+    youtubeId: "vr0qNXmkUJ8",
+    title: "Styling Components",
+    description: "Learn how to style React Native components effectively using StyleSheet.",
+  },
+  "1-2": {
+    youtubeId: "ZXsQAXx_ao0",
+    title: "Component Props and State",
+    description: "Understanding props and state management in React Native components.",
+  },
+  "2-0": {
+    youtubeId: "hQAHSlTtcmY",
+    title: "Navigation Basics",
+    description: "Introduction to navigation patterns in React Native applications.",
+  },
+  "2-1": {
+    youtubeId: "WcFoBma0RXU",
+    title: "Stack Navigation",
+    description: "Implementing stack navigation for seamless user experience.",
+  },
+  "2-2": {
+    youtubeId: "1yup-QqJjEQ",
+    title: "Tab Navigation",
+    description: "Creating tab-based navigation for better app organization.",
+  },
+  "3-0": {
+    youtubeId: "YQHsXMglC9A",
+    title: "Native Features Introduction",
+    description: "Accessing device native features in React Native applications.",
+  },
+  "3-1": {
+    youtubeId: "ktvtqJ7bbXI",
+    title: "Camera Integration",
+    description: "Integrating camera functionality into your React Native app.",
+  },
+  "4-0": {
+    youtubeId: "fq4N0hgOWzU",
+    title: "Deployment Preparation",
+    description: "Preparing your React Native app for production deployment.",
+  },
+}
 
 const CoursePlayer = () => {
   const { courseId } = useParams()
@@ -17,7 +85,9 @@ const CoursePlayer = () => {
   const [progress, setProgress] = useState(0)
   const [notes, setNotes] = useState("")
   const [showNotes, setShowNotes] = useState(false)
+  const [showResources, setShowResources] = useState(false)
   const [completedLessons, setCompletedLessons] = useState(new Set())
+  const [expandedSections, setExpandedSections] = useState(new Set([0])) // First section expanded by default
 
   // Get course data
   let course = location.state?.course
@@ -52,13 +122,19 @@ const CoursePlayer = () => {
     )
   }
 
-  // Sample video data - in real app this would come from course data
-  const videoData = {
-    // YouTube embedded video
-    youtubeId: "dQw4w9WgXcQ", // Sample YouTube ID
-    // Or uploaded video URL
-    videoUrl: "/sample-video.mp4",
-    useYouTube: true, // Toggle between YouTube and uploaded video
+  const getCurrentVideoData = () => {
+    const lessonKey = `${currentSection}-${currentLesson}`
+    return lessonVideos[lessonKey] || lessonVideos["0-0"]
+  }
+
+  const toggleSection = (sectionIndex) => {
+    const newExpanded = new Set(expandedSections)
+    if (newExpanded.has(sectionIndex)) {
+      newExpanded.delete(sectionIndex)
+    } else {
+      newExpanded.add(sectionIndex)
+    }
+    setExpandedSections(newExpanded)
   }
 
   const handleLessonSelect = (sectionIndex, lessonIndex) => {
@@ -93,10 +169,6 @@ const CoursePlayer = () => {
     setProgress(0)
   }
 
-  const getCurrentLessonTitle = () => {
-    return `${course.courseContent[currentSection].title} - Lesson ${currentLesson + 1}`
-  }
-
   const isLessonCompleted = (sectionIndex, lessonIndex) => {
     return completedLessons.has(`${sectionIndex}-${lessonIndex}`)
   }
@@ -105,6 +177,29 @@ const CoursePlayer = () => {
     const totalLessons = course.courseContent.reduce((sum, section) => sum + section.lessons, 0)
     return Math.round((completedLessons.size / totalLessons) * 100)
   }
+
+  const handleSaveNotes = () => {
+    // In a real app, this would save to a database
+    localStorage.setItem(`notes-${currentSection}-${currentLesson}`, notes)
+    alert("Notes saved successfully!")
+  }
+
+  const handleNotesToggle = () => {
+    if (!showNotes) {
+      // Load saved notes when opening
+      const savedNotes = localStorage.getItem(`notes-${currentSection}-${currentLesson}`) || ""
+      setNotes(savedNotes)
+    }
+    setShowNotes(!showNotes)
+    setShowResources(false) // Close resources if open
+  }
+
+  const handleResourcesToggle = () => {
+    setShowResources(!showResources)
+    setShowNotes(false) // Close notes if open
+  }
+
+  const currentVideoData = getCurrentVideoData()
 
   return (
     <div className={styles.coursePlayerContainer}>
@@ -134,37 +229,27 @@ const CoursePlayer = () => {
               {/* Video Player Section */}
               <div className={styles.videoSection}>
                 <div className={styles.videoContainer}>
-                  {videoData.useYouTube ? (
-                    <iframe
-                      className={styles.videoPlayer}
-                      src={`https://www.youtube.com/embed/${videoData.youtubeId}?autoplay=0&rel=0&modestbranding=1`}
-                      title="Course Video"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  ) : (
-                    <video
-                      className={styles.videoPlayer}
-                      controls
-                      poster={course.image}
-                      onPlay={() => setIsPlaying(true)}
-                      onPause={() => setIsPlaying(false)}
-                    >
-                      <source src={videoData.videoUrl} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  )}
+                  <VideoPlayer
+                    type={
+                      currentVideoData.youtubeId
+                        ? "youtube"
+                        : currentVideoData.videoUrl && currentVideoData.videoUrl.includes("vimeo.com")
+                        ? "vimeo"
+                        : currentVideoData.videoUrl
+                        ? "mp4"
+                        : null
+                    }
+                    url={currentVideoData.youtubeId
+                      ? `https://www.youtube.com/watch?v=${currentVideoData.youtubeId}`
+                      : currentVideoData.videoUrl || ""}
+                    className={styles.videoPlayer}
+                  />
                 </div>
 
-                {/* Video Controls */}
-                <div className={styles.videoControls}>
-                  <div className={styles.lessonInfo}>
-                    <h2 className={styles.lessonTitle}>{getCurrentLessonTitle()}</h2>
-                    <p className={styles.lessonDescription}>
-                      Learn the fundamentals and build practical skills in this comprehensive lesson.
-                    </p>
-                  </div>
+                {/* Video Info and Controls */}
+                <div className={styles.videoInfo}>
+                  <h2 className={styles.lessonTitle}>{currentVideoData.title}</h2>
+                  <p className={styles.lessonDescription}>{currentVideoData.description}</p>
                   <div className={styles.controlButtons}>
                     <button
                       className={styles.controlBtn}
@@ -173,10 +258,6 @@ const CoursePlayer = () => {
                     >
                       <span className="material-icons">skip_previous</span>
                       Previous
-                    </button>
-                    <button className={styles.markCompleteBtn} onClick={handleMarkComplete}>
-                      <span className="material-icons">check_circle</span>
-                      Mark Complete
                     </button>
                     <button
                       className={styles.controlBtn}
@@ -189,25 +270,33 @@ const CoursePlayer = () => {
                       Next
                       <span className="material-icons">skip_next</span>
                     </button>
+                    <button className={styles.markCompleteBtn} onClick={handleMarkComplete}>
+                      <span className="material-icons">check_circle</span>
+                      Mark Complete
+                    </button>
                   </div>
                 </div>
               </div>
 
-              {/* Notes Section */}
+              {/* Notes and Resources Section */}
               <div className={styles.notesSection}>
                 <div className={styles.notesHeader}>
                   <button
                     className={`${styles.notesToggle} ${showNotes ? styles.active : ""}`}
-                    onClick={() => setShowNotes(!showNotes)}
+                    onClick={handleNotesToggle}
                   >
                     <span className="material-icons">note_add</span>
                     My Notes
                   </button>
-                  <button className={styles.resourcesBtn}>
+                  <button
+                    className={`${styles.resourcesBtn} ${showResources ? styles.active : ""}`}
+                    onClick={handleResourcesToggle}
+                  >
                     <span className="material-icons">folder</span>
                     Resources
                   </button>
                 </div>
+
                 {showNotes && (
                   <div className={styles.notesContent}>
                     <textarea
@@ -216,10 +305,47 @@ const CoursePlayer = () => {
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
                     />
-                    <button className={styles.saveNotesBtn}>
+                    <button className={styles.saveNotesBtn} onClick={handleSaveNotes}>
                       <span className="material-icons">save</span>
                       Save Notes
                     </button>
+                  </div>
+                )}
+
+                {showResources && (
+                  <div className={styles.resourcesContent}>
+                    <div className={styles.resourcesList}>
+                      <div className={styles.resourceItem}>
+                        <span className="material-icons">picture_as_pdf</span>
+                        <div className={styles.resourceInfo}>
+                          <span className={styles.resourceName}>Course Slides - Lesson {currentLesson + 1}</span>
+                          <span className={styles.resourceSize}>2.5 MB</span>
+                        </div>
+                        <button className={styles.downloadBtn}>
+                          <span className="material-icons">download</span>
+                        </button>
+                      </div>
+                      <div className={styles.resourceItem}>
+                        <span className="material-icons">code</span>
+                        <div className={styles.resourceInfo}>
+                          <span className={styles.resourceName}>Source Code Examples</span>
+                          <span className={styles.resourceSize}>1.2 MB</span>
+                        </div>
+                        <button className={styles.downloadBtn}>
+                          <span className="material-icons">download</span>
+                        </button>
+                      </div>
+                      <div className={styles.resourceItem}>
+                        <span className="material-icons">link</span>
+                        <div className={styles.resourceInfo}>
+                          <span className={styles.resourceName}>Additional Reading</span>
+                          <span className={styles.resourceSize}>External Link</span>
+                        </div>
+                        <button className={styles.downloadBtn}>
+                          <span className="material-icons">open_in_new</span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
@@ -234,45 +360,56 @@ const CoursePlayer = () => {
                     {course.lessonsCount} lessons • {course.duration} hours
                   </span>
                 </div>
-
                 <div className={styles.contentList}>
                   {course.courseContent.map((section, sectionIndex) => (
                     <div key={sectionIndex} className={styles.contentSection}>
-                      <div className={styles.sectionHeader}>
-                        <h4 className={styles.sectionTitle}>{section.title}</h4>
-                        <span className={styles.sectionMeta}>
-                          {section.lessons} lessons • {section.duration}
+                      <button className={styles.sectionHeader} onClick={() => toggleSection(sectionIndex)}>
+                        <div className={styles.sectionInfo}>
+                          <h4 className={styles.sectionTitle}>{section.title}</h4>
+                          <span className={styles.sectionMeta}>
+                            {section.lessons} lessons • {section.duration}
+                          </span>
+                        </div>
+                        <span
+                          className={`material-icons ${styles.expandIcon} ${expandedSections.has(sectionIndex) ? styles.expanded : ""}`}
+                        >
+                          expand_more
                         </span>
-                      </div>
-                      <div className={styles.lessonsList}>
-                        {Array.from({ length: section.lessons }, (_, lessonIndex) => (
-                          <button
-                            key={lessonIndex}
-                            className={`${styles.lessonItem} ${
-                              currentSection === sectionIndex && currentLesson === lessonIndex
-                                ? styles.currentLesson
-                                : ""
-                            } ${isLessonCompleted(sectionIndex, lessonIndex) ? styles.completedLesson : ""}`}
-                            onClick={() => handleLessonSelect(sectionIndex, lessonIndex)}
-                          >
-                            <div className={styles.lessonIcon}>
-                              {isLessonCompleted(sectionIndex, lessonIndex) ? (
-                                <span className="material-icons">check_circle</span>
-                              ) : currentSection === sectionIndex && currentLesson === lessonIndex ? (
-                                <span className="material-icons">play_circle</span>
-                              ) : (
-                                <span className="material-icons">play_circle_outline</span>
-                              )}
-                            </div>
-                            <div className={styles.lessonInfo}>
-                              <span className={styles.lessonName}>
-                                Lesson {lessonIndex + 1}: Introduction to {section.title}
-                              </span>
-                              <span className={styles.lessonDuration}>8:30</span>
-                            </div>
-                          </button>
-                        ))}
-                      </div>
+                      </button>
+
+                      {expandedSections.has(sectionIndex) && (
+                        <div className={styles.lessonsList}>
+                          {Array.from({ length: section.lessons }, (_, lessonIndex) => (
+                            <button
+                              key={lessonIndex}
+                              className={`${styles.lessonItem} ${
+                                currentSection === sectionIndex && currentLesson === lessonIndex
+                                  ? styles.currentLesson
+                                  : ""
+                              } ${isLessonCompleted(sectionIndex, lessonIndex) ? styles.completedLesson : ""}`}
+                              onClick={() => handleLessonSelect(sectionIndex, lessonIndex)}
+                            >
+                              <div className={styles.lessonIcon}>
+                                {isLessonCompleted(sectionIndex, lessonIndex) ? (
+                                  <span className="material-icons">check_circle</span>
+                                ) : currentSection === sectionIndex && currentLesson === lessonIndex ? (
+                                  <span className="material-icons">play_circle</span>
+                                ) : (
+                                  <span className="material-icons">play_circle_outline</span>
+                                )}
+                              </div>
+                              <div className={styles.lessonInfo}>
+                                <span className={styles.lessonName}>
+                                  Lesson {lessonIndex + 1}:{" "}
+                                  {lessonVideos[`${sectionIndex}-${lessonIndex}`]?.title ||
+                                    `Introduction to ${section.title}`}
+                                </span>
+                                <span className={styles.lessonDuration}>8:30</span>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

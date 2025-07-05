@@ -138,22 +138,19 @@
   border: none;
 }
 
-.videoControls {
+/* Updated Video Info and Controls */
+.videoInfo {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1.5rem;
-}
-
-.lessonInfo {
-  flex: 1;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .lessonTitle {
   font-size: 1.25rem;
   font-weight: 600;
   color: #1f2937;
-  margin: 0 0 0.5rem 0;
+  margin: 0;
+  line-height: 1.4;
 }
 
 .lessonDescription {
@@ -167,7 +164,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 .controlBtn {
@@ -232,28 +229,7 @@
   margin-bottom: 1rem;
 }
 
-.notesToggle {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #f8fafc;
-  color: #374151;
-  border: 1px solid #e5e7eb;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 0.875rem;
-}
-
-.notesToggle.active,
-.notesToggle:hover {
-  background: #3b82f6;
-  color: white;
-  border-color: #3b82f6;
-}
-
+.notesToggle,
 .resourcesBtn {
   display: flex;
   align-items: center;
@@ -269,13 +245,17 @@
   font-size: 0.875rem;
 }
 
+.notesToggle.active,
+.resourcesBtn.active,
+.notesToggle:hover,
 .resourcesBtn:hover {
-  background: #f1f5f9;
+  background: #3b82f6;
+  color: white;
   border-color: #3b82f6;
-  color: #3b82f6;
 }
 
-.notesContent {
+.notesContent,
+.resourcesContent {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -319,6 +299,71 @@
   background: #047857;
 }
 
+/* Resources Content */
+.resourcesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.resourceItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.resourceItem:hover {
+  background: #f1f5f9;
+  border-color: #3b82f6;
+}
+
+.resourceItem .material-icons {
+  color: #3b82f6;
+  font-size: 1.5rem;
+}
+
+.resourceInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.resourceName {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.resourceSize {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.downloadBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.downloadBtn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
 /* Right Sidebar */
 .rightSidebar {
   display: flex;
@@ -332,7 +377,6 @@
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border: 1px solid #e2e8f0;
-  flex: 1;
 }
 
 .contentHeader {
@@ -354,9 +398,7 @@
 .contentList {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  max-height: 500px;
-  overflow-y: auto;
+  gap: 0.5rem;
 }
 
 .contentSection {
@@ -366,9 +408,24 @@
 }
 
 .sectionHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   padding: 1rem;
-  border-bottom: 1px solid #e5e7eb;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.sectionHeader:hover {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.sectionInfo {
+  flex: 1;
 }
 
 .sectionTitle {
@@ -383,9 +440,19 @@
   color: #6b7280;
 }
 
+.expandIcon {
+  color: #6b7280;
+  transition: transform 0.2s;
+}
+
+.expandIcon.expanded {
+  transform: rotate(180deg);
+}
+
 .lessonsList {
   display: flex;
   flex-direction: column;
+  background: white;
 }
 
 .lessonItem {
@@ -399,6 +466,7 @@
   transition: all 0.2s;
   border-bottom: 1px solid #f3f4f6;
   text-align: left;
+  width: 100%;
 }
 
 .lessonItem:hover {
@@ -576,28 +644,33 @@
 
   .progressInfo {
     width: 100%;
+    gap: 1rem;
   }
 
   .progressBar {
-    max-width: none;
+    max-width: none; /* Remove width constraint */
+    min-width: 250px; /* Ensure minimum width */
+    flex: 2; /* Take up more space relative to text */
+    height: 8px;
+    border-radius: 6px;
+  }
+
+  .progressText {
+    font-size: 0.875rem;
+    font-weight: 600;
+    flex-shrink: 0; /* Prevent text from shrinking */
   }
 }
 
 @media (max-width: 768px) {
-  .videoControls {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
   .controlButtons {
-    width: 100%;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
   }
 
   .controlBtn,
   .markCompleteBtn {
-    flex: 1;
     justify-content: center;
   }
 
@@ -608,7 +681,25 @@
   }
 
   .contentList {
-    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .progressBar {
+    min-width: 200px; /* Ensure good width on mobile */
+    flex: 3; /* Take up even more space relative to text */
+    height: 8px;
+    border-radius: 7px;
+  }
+
+  .progressInfo {
+    gap: 1.5rem;
+  }
+
+  .progressText {
+    font-size: 0.9rem;
+    font-weight: 600;
   }
 }
 
@@ -625,13 +716,20 @@
     padding: 1rem;
   }
 
-  .controlButtons {
-    flex-direction: column;
-    gap: 0.5rem;
+  .progressBar {
+    min-width: 180px; /* Maintain good width even on smallest screens */
+    flex: 2.5;
+    height: 8px;
+    border-radius: 8px;
   }
 
-  .controlBtn,
-  .markCompleteBtn {
+  .progressInfo {
+    gap: 1.5rem;
     width: 100%;
+  }
+
+  .progressText {
+    font-size: 0.95rem;
+    font-weight: 600;
   }
 }

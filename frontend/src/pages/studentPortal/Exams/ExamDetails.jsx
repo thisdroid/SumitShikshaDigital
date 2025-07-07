@@ -50,9 +50,10 @@ const ExamDetails = () => {
   }
 
   const handleStartExam = () => {
-    // Add your exam start logic here
-    console.log("Starting exam:", exam.name)
-    alert("Exam functionality will be implemented here!")
+    // Navigate to exam test page with exam data
+    navigate(`/StudentDashboard/Examination/${examName}/test`, {
+      state: { exam },
+    })
   }
 
   return (

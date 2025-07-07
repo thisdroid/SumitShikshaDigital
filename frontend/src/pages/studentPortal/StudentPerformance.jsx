@@ -1,11 +1,13 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styles from "./StudentPerformance.module.css"
 import Header from "./header/Header"
 import Calendar from "../../components/common_components/Calendar"
+import StudentPerformanceSkeleton from "./StudentPerformanceSkeleton"
 
 const StudentPerformance = () => {
   const [selectedCourse, setSelectedCourse] = useState("All Courses")
+  const [loading, setLoading] = useState(true)
 
   // Function to calculate performance based on percentage
   const calculatePerformance = (obtainedMarks, totalMarks) => {
@@ -131,6 +133,13 @@ const StudentPerformance = () => {
   const handleDateClick = (dateInfo) => {
     console.log("Date clicked:", dateInfo)
   }
+
+   useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <StudentPerformanceSkeleton />
 
   return (
     <div className={styles.dashboardContainer}>

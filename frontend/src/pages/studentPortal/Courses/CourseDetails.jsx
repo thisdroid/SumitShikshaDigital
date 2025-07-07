@@ -1,13 +1,15 @@
 "use client"
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useParams, useNavigate, useLocation } from "react-router-dom"
 import styles from "./CourseDetails.module.css"
 import Header from "../header/Header"
 import { enrolledCourses, availableCourses } from "./Courses"
+import CourseDetailsSkeleton from "./CourseDetailsSkeleton"
 
 const allCourses = [...enrolledCourses, ...availableCourses]
 
 const CourseDetails = () => {
+  const [loading, setLoading] = useState(true)
   const { courseId } = useParams()
   const navigate = useNavigate()
   const location = useLocation()
@@ -22,6 +24,13 @@ const CourseDetails = () => {
   useEffect(() => {
     window.scrollTo({ top: 0 })
   }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (loading) return <CourseDetailsSkeleton />
 
   if (!course) {
     return (

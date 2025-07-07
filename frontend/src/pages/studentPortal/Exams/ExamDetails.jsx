@@ -1,10 +1,11 @@
 "use client"
 
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useParams, useNavigate, useLocation } from "react-router-dom"
 import styles from "./ExamDetails.module.css"
 import Header from "../header/Header"
 import { courseExams, availableExams, upcomingExams } from "./Examination"
+import ExamDetailsSkeleton from "./ExamDetailsSkeleton"
 
 const allExams = [...courseExams, ...availableExams, ...upcomingExams]
 
@@ -12,6 +13,7 @@ const ExamDetails = () => {
   const { examName } = useParams()
   const navigate = useNavigate()
   const location = useLocation()
+  const [loading, setLoading] = useState(true)
 
   // Try to get exam from location.state (if navigated from Exams page)
   let exam = location.state?.exam
@@ -23,6 +25,13 @@ const ExamDetails = () => {
   useEffect(() => {
     window.scrollTo({ top: 0 })
   }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (loading) return <ExamDetailsSkeleton />
 
   if (!exam) {
     return (

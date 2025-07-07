@@ -1,10 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styles from "./Examination.module.css"
 import Header from "../header/Header"
 import ExamCard from "../../../components/Exam_card/ExamCard"
 import Calendar from "../../../components/common_components/Calendar"
+import ExaminationSkeleton from "./ExaminationSkeleton"
 
 // Course completion exams - only available after course completion
 export const courseExams = [
@@ -175,10 +176,15 @@ export const upcomingExams = [
 ]
 
 const Examination = () => {
+  const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState("course-exams")
   const [examCode, setExamCode] = useState("")
   const [codeError, setCodeError] = useState("")
 
+   useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
   const examStats = [
     {
       icon: "school",
@@ -263,6 +269,8 @@ const Examination = () => {
   const handleDateClick = (dateInfo) => {
     console.log("Date clicked:", dateInfo)
   }
+
+  if (loading) return <ExaminationSkeleton />
 
   return (
     <div className={styles.dashboardContainer}>

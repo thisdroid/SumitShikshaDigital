@@ -5,6 +5,7 @@ import Header from "../header/Header"
 import CertificateTemplate from "./CertificateTemplate"
 import CertificateCard from "./CertificateCard"
 import html2pdf from "html2pdf.js"
+import CertificatesSkeleton from "./CertificateSkeleton"
 
 const earnedCertificates = [
   {
@@ -37,6 +38,7 @@ const earnedCertificates = [
 ]
 
 const Certificates = () => {
+  const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState("")
   const [selectedCert, setSelectedCert] = useState(null)
   const [downloadCert, setDownloadCert] = useState(null)
@@ -85,6 +87,13 @@ const Certificates = () => {
       setDownloadCert(null)
     }
   }, [downloadCert])
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <CertificatesSkeleton />
 
   return (
     <>

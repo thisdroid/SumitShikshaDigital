@@ -5,6 +5,7 @@ import styles from "./CoursePlayer.module.css"
 import Header from "../header/Header"
 import { enrolledCourses, availableCourses } from "./Courses"
 import VideoPlayer from "./VideoPlayer"
+import CoursePlayerSkeleton from "./CoursePlayerSkeleton"
 
 const allCourses = [...enrolledCourses, ...availableCourses]
 
@@ -88,6 +89,7 @@ const CoursePlayer = () => {
   const [showResources, setShowResources] = useState(false)
   const [completedLessons, setCompletedLessons] = useState(new Set())
   const [expandedSections, setExpandedSections] = useState(new Set([0])) // First section expanded by default
+  const [loading, setLoading] = useState(true)
 
   // Get course data
   let course = location.state?.course
@@ -98,6 +100,13 @@ const CoursePlayer = () => {
   useEffect(() => {
     window.scrollTo({ top: 0 })
   }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (loading) return <CoursePlayerSkeleton />
 
   if (!course) {
     return (

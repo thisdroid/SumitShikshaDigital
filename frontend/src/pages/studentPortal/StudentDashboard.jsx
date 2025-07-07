@@ -1,13 +1,15 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styles from "./StudentDashboard.module.css"
 import Sidebar from "../../components/common_components/Sidebar"
 import Header from "./header/Header"
 import Calendar from "../../components/common_components/Calendar"
+import StudentDashboardSkeleton from "./StudentDashboardSkeleton"
 
 const StudentDashboard = () => {
   const [selectedCourseTab, setSelectedCourseTab] = useState("All")
+  const [loading, setLoading] = useState(true)
 
   // Sample data
   const statsData = [
@@ -131,6 +133,15 @@ const StudentDashboard = () => {
   const handleDateClick = (dateInfo) => {
     console.log("Date clicked:", dateInfo)
     // Add your date click logic here
+  }
+
+   useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <StudentDashboardSkeleton />
   }
 
   return (

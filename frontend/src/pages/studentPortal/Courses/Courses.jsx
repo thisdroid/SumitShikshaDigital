@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import styles from "./Courses.module.css"
 import Header from "../header/Header"
 import CourseCard from "./CourseCard"
+import CoursesSkeleton from "./CoursesSkeleton"
 
 function getTodayString() {
   const today = new Date()
@@ -28,35 +29,44 @@ function setLocalStreak(streak, date) {
 const Courses = () => {
   const [activeTab, setActiveTab] = useState("enrolled")
   const [streak, setStreak] = useState(1)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const today = new Date()
-    const todayStr = today.toISOString().slice(0, 10) // YYYY-MM-DD
-    const { streak: storedStreak, lastDate } = getLocalStreak()
+    // Always show skeleton for 500ms, then run streak logic and show content
+    const timer = setTimeout(() => {
+      // Streak logic after skeleton
+      const today = new Date()
+      const todayStr = today.toISOString().slice(0, 10)
+      const { streak: storedStreak, lastDate } = getLocalStreak()
 
-    if (!lastDate) {
-      setLocalStreak(1, todayStr)
-      setStreak(1)
-      return
-    }
+      if (!lastDate) {
+        setLocalStreak(1, todayStr)
+        setStreak(1)
+        setLoading(false)
+        return
+      }
 
-    if (lastDate === todayStr) {
-      setStreak(storedStreak)
-      return
-    }
+      if (lastDate === todayStr) {
+        setStreak(storedStreak)
+        setLoading(false)
+        return
+      }
 
-    const last = new Date(lastDate)
-    const diff = Math.floor((today - last) / (1000 * 60 * 60 * 24))
+      const last = new Date(lastDate)
+      const diff = Math.floor((today - last) / (1000 * 60 * 60 * 24))
 
-    if (diff === 1) {
-      setLocalStreak(storedStreak + 1, todayStr)
-      setStreak(storedStreak + 1)
-    } else if (diff > 1) {
-      setLocalStreak(1, todayStr)
-      setStreak(1)
-    } else {
-      setStreak(storedStreak)
-    }
+      if (diff === 1) {
+        setLocalStreak(storedStreak + 1, todayStr)
+        setStreak(storedStreak + 1)
+      } else if (diff > 1) {
+        setLocalStreak(1, todayStr)
+        setStreak(1)
+      } else {
+        setStreak(storedStreak)
+      }
+      setLoading(false)
+    }, 500)
+    return () => clearTimeout(timer)
   }, [])
 
   const recommendedCourses = [
@@ -101,6 +111,8 @@ const Courses = () => {
     { id: "enrolled", label: "Enrolled Courses", icon: "school" },
     { id: "available", label: "Available Courses", icon: "library_books" },
   ]
+
+  if (loading) return <CoursesSkeleton />
 
   return (
     <div className={styles.dashboardContainer}>

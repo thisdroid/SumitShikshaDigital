@@ -1,6 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setExams, setCurrentExam } from '../../../slices/examsSlice';
 import styles from "./Examination.module.css"
 import Header from "../header/Header"
 import ExamCard from "../../../components/Exam_card/ExamCard"
@@ -176,10 +178,13 @@ export const upcomingExams = [
 ]
 
 const Examination = () => {
+  const [activeTab, setActiveTab] = useState('course-exams');
+  const [examCode, setExamCode] = useState("");
+  const [codeError, setCodeError] = useState("");
+  const exams = useSelector((state) => state.exams.exams);
+  const currentExam = useSelector((state) => state.exams.currentExam);
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState("course-exams")
-  const [examCode, setExamCode] = useState("")
-  const [codeError, setCodeError] = useState("")
 
    useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 500);

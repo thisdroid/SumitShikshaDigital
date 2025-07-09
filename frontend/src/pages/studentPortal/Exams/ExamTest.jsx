@@ -1,6 +1,8 @@
 "use client"
 
-import { useState, useEffect, useRef, useCallback } from "react"
+import React, { useEffect, useCallback, useState, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setExamResult, setCurrentExam } from '../../../slices/examsSlice';
 import { useParams, useNavigate, useLocation } from "react-router-dom"
 import styles from "./ExamTest.module.css"
 import Header from "../header/Header"
@@ -67,6 +69,10 @@ const ExamTest = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
+  const currentExam = useSelector((state) => state.exams.currentExam);
+  const results = useSelector((state) => state.exams.results);
+  const dispatch = useDispatch();
+
   // Get exam data
   let exam = location.state?.exam
   if (!exam && examName) {
@@ -74,8 +80,6 @@ const ExamTest = () => {
   }
 
   // Exam state
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState({})
   const [timeLeft, setTimeLeft] = useState(0)
   const [examStarted, setExamStarted] = useState(false)
   const [examSubmitted, setExamSubmitted] = useState(false)
@@ -83,6 +87,8 @@ const ExamTest = () => {
   const [questions, setQuestions] = useState([])
   const [flaggedQuestions, setFlaggedQuestions] = useState(new Set())
   const [showSidebar, setShowSidebar] = useState(false)
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState({});
 
   // Security state
   const [securityWarnings, setSecurityWarnings] = useState(0)

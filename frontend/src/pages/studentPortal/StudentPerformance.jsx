@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import styles from "./StudentPerformance.module.css"
 import Header from "./header/Header"
 import Calendar from "../../components/common_components/Calendar"

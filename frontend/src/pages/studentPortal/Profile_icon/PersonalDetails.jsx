@@ -1,20 +1,26 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateProfile } from '../../../slices/userSlice';
 import styles from "./PersonalDetails.module.css"
 
 const PersonalDetails = () => {
-  const [headline, setHeadline] = useState("")
-  const [biography, setBiography] = useState("")
-  const [wordCount, setWordCount] = useState(0)
-  const editorRef = useRef(null)
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  const [wordCount, setWordCount] = React.useState(0);
+  const editorRef = React.useRef(null)
   const maxWords = 120
 
-  const handleHeadlineChange = (e) => {
-    if (e.target.value.length <= 60) {
-      setHeadline(e.target.value)
+  useEffect(() => {
+    if (user && user.biography) {
+      setWordCount(user.biography.length);
     }
-  }
+  }, [user]);
+
+  const handleHeadlineChange = (e) => {
+    dispatch(updateProfile({ headline: e.target.value }));
+  };
 
   const countWords = (text) => {
     // Remove HTML tags and get plain text
@@ -29,11 +35,11 @@ const PersonalDetails = () => {
       const currentWordCount = countWords(content)
 
       if (currentWordCount <= maxWords) {
-        setBiography(content)
+        dispatch(updateProfile({ biography: content }));
         setWordCount(currentWordCount)
       } else {
         // If word limit exceeded, revert to previous content
-        editorRef.current.innerHTML = biography
+        editorRef.current.innerHTML = user.biography // Assuming user.biography is the source of truth
         // Set cursor to end
         const range = document.createRange()
         const selection = window.getSelection()
@@ -102,13 +108,6 @@ const PersonalDetails = () => {
     }
   }
 
-  // Update word count when component mounts
-  useEffect(() => {
-    if (editorRef.current) {
-      setWordCount(countWords(editorRef.current.innerHTML))
-    }
-  }, [])
-
   return (
     <div className={styles.personalDetailsWrapper}>
       <div className={`${styles.headerBackground} ${styles.theme}`}>
@@ -142,11 +141,11 @@ const PersonalDetails = () => {
                   type="text"
                   className={styles.input}
                   placeholder="e.g., Software Engineer at Google"
-                  value={headline}
+                  value={user?.headline || ""}
                   onChange={handleHeadlineChange}
                   maxLength={60}
                 />
-                <span className={styles.charCounter}>{60 - headline.length}</span>
+                <span className={styles.charCounter}>{60 - (user?.headline || "").length}</span>
               </div>
               <p className={styles.helperText}>
                 Add a professional headline like "Instructor at Udemy" or "Software Architect"

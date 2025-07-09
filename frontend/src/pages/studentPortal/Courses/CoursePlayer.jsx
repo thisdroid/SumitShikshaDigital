@@ -1,5 +1,7 @@
 "use client"
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateProgress } from '../../../slices/coursesSlice';
 import { useParams, useNavigate, useLocation } from "react-router-dom"
 import styles from "./CoursePlayer.module.css"
 import Header from "../header/Header"

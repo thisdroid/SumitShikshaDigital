@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { Link, useNavigate } from "react-router-dom"
 
@@ -17,15 +18,14 @@ const staticUser = {
 }
 
 const Profile = () => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const [user] = useState(staticUser)
+  const user = useSelector((state) => state.user.user);
+  const [isOpen, setIsOpen] = React.useState(false)
 
   const navigate = useNavigate()
 
-  const dropdownRef = useRef(null)
+  const dropdownRef = React.useRef(null)
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false)
@@ -69,9 +69,9 @@ const Profile = () => {
               <img src="/images/default-user.png" alt="User" className={styles.dropdownProfileImage} />
 
               <div>
-                <p className={styles.username}>{user.username}</p>
+                <p className={styles.username}>{user?.username || "Guest"}</p>
 
-                <p className={styles.useremail}>{user.email}</p>
+                <p className={styles.useremail}>{user?.email || "No email"}</p>
               </div>
             </div>
           </div>

@@ -1,5 +1,7 @@
 "use client"
-import { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCertificates, selectCertificate } from '../../../slices/certificatesSlice';
 import styles from "./Certificates.module.css"
 import Header from "../header/Header"
 import CertificateTemplate from "./CertificateTemplate"
@@ -38,9 +40,11 @@ const earnedCertificates = [
 ]
 
 const Certificates = () => {
+  const certificates = useSelector((state) => state.certificates.certificates);
+  const selectedCertificate = useSelector((state) => state.certificates.selectedCertificate);
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState("")
-  const [selectedCert, setSelectedCert] = useState(null)
   const [downloadCert, setDownloadCert] = useState(null)
   const templateRef = useRef()
 
@@ -51,11 +55,11 @@ const Certificates = () => {
   )
 
   const handleViewCertificate = (cert) => {
-    setSelectedCert(cert)
+    dispatch(selectCertificate(cert))
   }
 
   const closeModal = () => {
-    setSelectedCert(null)
+    dispatch(selectCertificate(null))
   }
 
   const generatePdf = (cert, filename) => {
@@ -73,8 +77,8 @@ const Certificates = () => {
   }
 
   const handleDownloadFromModal = () => {
-    if (!selectedCert) return
-    generatePdf(selectedCert)
+    if (!selectedCertificate) return
+    generatePdf(selectedCertificate)
   }
 
   const handleDownloadFromList = (cert) => {
@@ -192,21 +196,21 @@ const Certificates = () => {
             <CertificateTemplate ref={templateRef} cert={downloadCert} />
           </div>
         )}
-        {!downloadCert && selectedCert && (
+        {!downloadCert && selectedCertificate && (
           <div className="pdfMode">
-            <CertificateTemplate ref={templateRef} cert={selectedCert} />
+            <CertificateTemplate ref={templateRef} cert={selectedCertificate} />
           </div>
         )}
       </div>
 
       {/* Modal for viewing certificate */}
-      {selectedCert && (
+      {selectedCertificate && (
         <div className={styles.modalOverlay} onClick={closeModal}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <button className={styles.modalClose} onClick={closeModal} aria-label="Close modal">
               <span className="material-icons">close</span>
             </button>
-            <CertificateTemplate ref={templateRef} cert={selectedCert} />
+            <CertificateTemplate ref={templateRef} cert={selectedCertificate} />
             <div className={styles.modalActions}>
               <button className={styles.modalDownloadBtn} onClick={handleDownloadFromModal}>
                 <span className="material-icons">download</span>

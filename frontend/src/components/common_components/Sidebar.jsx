@@ -1,26 +1,34 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleSidebar, openSidebar, closeSidebar } from '../../slices/uiSlice';
 import styles from './Sidebar.module.css';
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const dispatch = useDispatch();
+  const isOpen = useSelector((state) => state.ui.isSidebarOpen);
+  const [activeLink, setActiveLink] = React.useState('');
   const sidebarRef = useRef(null);
   const buttonRef = useRef(null);
+  const location = useLocation();
 
   // Track window width to control responsive behavior
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 1024);
+  const [isMobileView, setIsMobileView] = React.useState(window.innerWidth < 1024);
 
   useEffect(() => {
     const handleResize = () => {
       const mobileView = window.innerWidth < 1024;
       setIsMobileView(mobileView);
-      setIsOpen(!mobileView); // Open if large screen, close if mobile
+      if (mobileView) {
+        dispatch(closeSidebar());
+      } else {
+        dispatch(openSidebar());
+      }
     };
     window.addEventListener('resize', handleResize);
     handleResize(); // Trigger on mount
-
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     // Only add click outside listener on mobile view and when sidebar is open
@@ -32,13 +40,18 @@ const Sidebar = () => {
           buttonRef.current &&
           !buttonRef.current.contains(event.target)
         ) {
-          setIsOpen(false);
+          dispatch(closeSidebar());
         }
       };
       document.addEventListener('mousedown', handleClickOutside);
       return () => document.removeEventListener('mousedown', handleClickOutside);
     }
-  }, [isMobileView, isOpen]);
+  }, [isMobileView, isOpen, dispatch]);
+
+  useEffect(() => {
+    // Update active link based on current location
+    setActiveLink(location.pathname);
+  }, [location]);
 
   return (
     <>
@@ -47,7 +60,7 @@ const Sidebar = () => {
         <button
           ref={buttonRef}
           className={styles.hamburgerButton}
-          onClick={() => setIsOpen(prev => !prev)}
+          onClick={() => dispatch(toggleSidebar())}
           aria-label="Toggle sidebar"
           type="button"
         >
@@ -73,40 +86,55 @@ const Sidebar = () => {
         <nav className={styles.nav}>
           <Link
             to="/StudentDashboard"
-            className={styles.navLink}
-            onClick={() => isMobileView && setIsOpen(false)}
+            className={`${styles.navLink} ${activeLink === '/StudentDashboard' ? styles.navLinkActive : ''}`}
+            onClick={() => {
+              setActiveLink('/StudentDashboard');
+              if (isMobileView) dispatch(closeSidebar());
+            }}
           >
             <span className={`material-icons ${styles.navIcon}`}>dashboard</span>
             Dashboard
           </Link>
           <Link
             to="/StudentDashboard/Courses"
-            className={styles.navLink}
-            onClick={() => isMobileView && setIsOpen(false)}
+            className={`${styles.navLink} ${activeLink === '/StudentDashboard/Courses' ? styles.navLinkActive : ''}`}
+            onClick={() => {
+              setActiveLink('/StudentDashboard/Courses');
+              if (isMobileView) dispatch(closeSidebar());
+            }}
           >
             <span className={`material-icons ${styles.navIcon}`}>menu_book</span>
             Courses
           </Link>
           <Link
             to="/StudentDashboard/Examination"
-            className={styles.navLink}
-            onClick={() => isMobileView && setIsOpen(false)}
+            className={`${styles.navLink} ${activeLink === '/StudentDashboard/Examination' ? styles.navLinkActive : ''}`}
+            onClick={() => {
+              setActiveLink('/StudentDashboard/Examination');
+              if (isMobileView) dispatch(closeSidebar());
+            }}
           >
             <span className={`material-icons ${styles.navIcon}`}>edit</span>
             Examination
           </Link>
           <Link
             to="/StudentDashboard/StudentPerformance"
-            className={styles.navLink}
-            onClick={() => isMobileView && setIsOpen(false)}
+            className={`${styles.navLink} ${activeLink === '/StudentDashboard/StudentPerformance' ? styles.navLinkActive : ''}`}
+            onClick={() => {
+              setActiveLink('/StudentDashboard/StudentPerformance');
+              if (isMobileView) dispatch(closeSidebar());
+            }}
           >
             <span className={`material-icons ${styles.navIcon}`}>analytics</span>
             Performance
           </Link>
           <Link
             to="/StudentDashboard/Certificates"
-            className={styles.navLink}
-            onClick={() => isMobileView && setIsOpen(false)}
+            className={`${styles.navLink} ${activeLink === '/StudentDashboard/Certificates' ? styles.navLinkActive : ''}`}
+            onClick={() => {
+              setActiveLink('/StudentDashboard/Certificates');
+              if (isMobileView) dispatch(closeSidebar());
+            }}
           >
             <span className={`material-icons ${styles.navIcon}`}>verified</span>
             Certificates

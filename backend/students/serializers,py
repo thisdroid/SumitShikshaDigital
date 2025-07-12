@@ -1,0 +1,9 @@
+# backend/students/serializers.py
+
+from rest_framework import serializers
+from .models import Student  # or your appropriate model
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = '__all__'

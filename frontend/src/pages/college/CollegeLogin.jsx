@@ -102,10 +102,10 @@ export default function Collegelogin() {
                     </div>
                   </div>
 
-                  <button type="submit" className={styles.loginButton}>
+                  <Link to="/CollegeDashboard" type="submit" className={styles.loginButton}>
                     <ArrowRight className="w-5 h-5" />
                     Login
-                  </button>
+                  </Link>
                 </form>
 
                 <div className={styles.collegeloginFooterLinks}>

@@ -1,0 +1,144 @@
+
+
+.mainContent {
+  flex: 1;
+  margin-left: 16rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  flex: 1;
+}
+
+.statsSection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-height: 250px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.childStats {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 5%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.childStats:hover {
+  background-color: #4a4a4a;
+  transform: translateY(-5px);
+}
+
+.StatsCollege {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+  padding: 1rem;
+}
+
+.StatsCollege .material-icons {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.StatsCollege h3 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.StatsCollege p {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.StatsCollege a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.StatsCollege a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width<=1204px) {
+  .mainContent {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .dashboardContainer {
+    flex-direction: column;
+  }
+
+  .mainContent {
+    margin-left: 0;
+  }
+
+  .statsSection {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .contentWrapper {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contentWrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .StatsCollege {
+    padding: 0.75rem;
+  }
+
+  .StatsCollege .material-icons {
+    font-size: 2rem;
+  }
+
+  .StatsCollege h3 {
+    font-size: 1rem;
+  }
+
+  .StatsCollege p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .StatsCollege {
+    padding: 0.5rem;
+  }
+
+  .StatsCollege .material-icons {
+    font-size: 1.5rem;
+  }
+
+  .StatsCollege h3 {
+    font-size: 0.9rem;
+  }
+
+  .StatsCollege p {
+    font-size: 1rem;
+  }
+}

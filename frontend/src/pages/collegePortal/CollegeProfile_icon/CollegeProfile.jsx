@@ -6,6 +6,9 @@ import { Link, useNavigate } from "react-router-dom"
 
 import styles from "./CollegeProfile.module.css"
 
+import { useSelector, useDispatch } from 'react-redux';
+import { setIsOpen } from '../../../slices/collegeProfileUiSlice';
+
 // Static user object
 
 const staticUser = {
@@ -17,7 +20,8 @@ const staticUser = {
 }
 
 const CollegeProfile = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const dispatch = useDispatch();
+  const isOpen = useSelector((state) => state.collegeProfileUi.isOpen);
 
   const [user] = useState(staticUser)
 
@@ -28,26 +32,23 @@ const CollegeProfile = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false)
+        dispatch(setIsOpen(false));
       }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside)
-
+    };
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dispatch]);
 
   const handleSignOut = () => {
-    setIsOpen(false)
-
-    navigate("/login")
-  }
+    dispatch(setIsOpen(false));
+    navigate("/login");
+  };
 
   return (
     <div className={styles.profileContainer} ref={dropdownRef}>
-      <div className={styles.userProfile} onClick={() => setIsOpen(!isOpen)}>
+      <div className={styles.userProfile} onClick={() => dispatch(setIsOpen(!isOpen))}>
         <img src="/images/default-user.png" alt="User" className={styles.userAvatar} />
 
         {/* Hide the user info by default - only show avatar and dropdown arrow */}
@@ -78,7 +79,7 @@ const CollegeProfile = () => {
 
           <ul className={styles.dropdownMenu}>
             <li>
-              <Link to="/CollegeDashboard/CollegeDetails" className={styles.menuItem} onClick={() => setIsOpen(false)}>
+              <Link to="/CollegeDashboard/CollegeDetails" className={styles.menuItem} onClick={() => dispatch(setIsOpen(false))}>
                 <svg className={styles.menuIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
@@ -92,7 +93,7 @@ const CollegeProfile = () => {
             </li>
 
             <li>
-              <Link to="/CollegeDashboard/CollegeSecurity" className={styles.menuItem} onClick={() => setIsOpen(false)}>
+              <Link to="/CollegeDashboard/CollegeSecurity" className={styles.menuItem} onClick={() => dispatch(setIsOpen(false))}>
                 <svg className={styles.menuIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
@@ -106,7 +107,7 @@ const CollegeProfile = () => {
             </li>
 
             <li className={styles.borderTop}>
-              <Link to="/GetHelp" className={styles.menuItem} onClick={() => setIsOpen(false)}>
+              <Link to="/GetHelp" className={styles.menuItem} onClick={() => dispatch(setIsOpen(false))}>
                 <span className="material-icons" style={{ marginRight: "0.75rem", fontSize: "20px", color: "#6b7280" }}>
                   help
                 </span>
@@ -119,9 +120,8 @@ const CollegeProfile = () => {
                 to="/CollegeLogin"
                 className={styles.menuItem}
                 onClick={() => {
-                  setIsOpen(false)
-
-                  handleSignOut()
+                  dispatch(setIsOpen(false));
+                  handleSignOut();
                 }}
               >
                 <svg className={styles.menuIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">

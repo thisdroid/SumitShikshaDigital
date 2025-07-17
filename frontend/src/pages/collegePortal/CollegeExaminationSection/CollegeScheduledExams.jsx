@@ -1,10 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { setSelectedExam } from '../../../slices/collegeScheduledExamsUiSlice';
 import styles from "./CollegeScheduledExams.module.css";
 import Header from "../CollegeHeader/CollegeHeaderFile";
 
 const ScheduledExams = () => {
-  const [selectedExam, setSelectedExam] = useState(null);
+  const dispatch = useDispatch();
+  const selectedExam = useSelector((state) => state.collegeScheduledExamsUi.selectedExam);
 
   // Dummy data for scheduled exams
   const dummyExams = [
@@ -64,7 +66,7 @@ const ScheduledExams = () => {
   ];
 
   const handleCardClick = (exam) => {
-    setSelectedExam(exam);
+    dispatch(setSelectedExam(exam));
   };
 
   return (
@@ -106,7 +108,7 @@ const ScheduledExams = () => {
                   <p className={styles.questionMarks}><strong>Marks:</strong> {question.marks}</p>
                 </div>
               ))}
-              <button onClick={() => setSelectedExam(null)} className={styles.closeButton}>
+              <button onClick={() => dispatch(setSelectedExam(null))} className={styles.closeButton}>
                 Close
               </button>
             </div>

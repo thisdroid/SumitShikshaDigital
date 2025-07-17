@@ -2,20 +2,36 @@
 import { useState, useRef, useEffect } from "react"
 import styles from "./CollegeSecurity.module.css"
 import Header from '../CollegeHeader/CollegeHeaderFile'
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  setActiveTab,
+  setCurrentPassword,
+  setNewPassword,
+  setConfirmPassword,
+  setShowCurrentPassword,
+  setShowNewPassword,
+  setShowConfirmPassword,
+  setCurrentEmail,
+  setNewEmail,
+  setConfirmEmail,
+  setEmailPassword,
+  setShowEmailPassword,
+} from '../../../slices/collegeSecurityUiSlice';
 
 const CollegeSecurity = () => {
-  const [activeTab, setActiveTab] = useState("email")
-  const [currentPassword, setCurrentPassword] = useState("")
-  const [newPassword, setNewPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const [showCurrentPassword, setShowCurrentPassword] = useState(false)
-  const [showNewPassword, setShowNewPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [currentEmail, setCurrentEmail] = useState("user@example.com")
-  const [newEmail, setNewEmail] = useState("")
-  const [confirmEmail, setConfirmEmail] = useState("")
-  const [emailPassword, setEmailPassword] = useState("")
-  const [showEmailPassword, setShowEmailPassword] = useState(false)
+  const dispatch = useDispatch();
+  const activeTab = useSelector((state) => state.collegeSecurityUi.activeTab);
+  const currentPassword = useSelector((state) => state.collegeSecurityUi.currentPassword);
+  const newPassword = useSelector((state) => state.collegeSecurityUi.newPassword);
+  const confirmPassword = useSelector((state) => state.collegeSecurityUi.confirmPassword);
+  const showCurrentPassword = useSelector((state) => state.collegeSecurityUi.showCurrentPassword);
+  const showNewPassword = useSelector((state) => state.collegeSecurityUi.showNewPassword);
+  const showConfirmPassword = useSelector((state) => state.collegeSecurityUi.showConfirmPassword);
+  const currentEmail = useSelector((state) => state.collegeSecurityUi.currentEmail);
+  const newEmail = useSelector((state) => state.collegeSecurityUi.newEmail);
+  const confirmEmail = useSelector((state) => state.collegeSecurityUi.confirmEmail);
+  const emailPassword = useSelector((state) => state.collegeSecurityUi.emailPassword);
+  const showEmailPassword = useSelector((state) => state.collegeSecurityUi.showEmailPassword);
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault()
@@ -58,13 +74,13 @@ const CollegeSecurity = () => {
               <div className={styles.tabs}>
                 <button
                   className={`${styles.tabBtn} ${activeTab === "email" ? styles.activeTab : ""}`}
-                  onClick={() => setActiveTab("email")}
+                  onClick={() => dispatch(setActiveTab("email"))}
                 >
                   Change Email
                 </button>
                 <button
                   className={`${styles.tabBtn} ${activeTab === "password" ? styles.activeTab : ""}`}
-                  onClick={() => setActiveTab("password")}
+                  onClick={() => dispatch(setActiveTab("password"))}
                 >
                   Change Password
                 </button>
@@ -94,7 +110,7 @@ const CollegeSecurity = () => {
                         } ${newEmail && isValidEmail(newEmail) ? styles.inputSuccess : ""}`}
                         placeholder="Enter your new email address"
                         value={newEmail}
-                        onChange={(e) => setNewEmail(e.target.value)}
+                        onChange={(e) => dispatch(setNewEmail(e.target.value))}
                         required
                       />
                       {newEmail && !isValidEmail(newEmail) && (
@@ -115,7 +131,7 @@ const CollegeSecurity = () => {
                         } ${confirmEmail && emailsMatch ? styles.inputSuccess : ""}`}
                         placeholder="Re-enter your new email address"
                         value={confirmEmail}
-                        onChange={(e) => setConfirmEmail(e.target.value)}
+                        onChange={(e) => dispatch(setConfirmEmail(e.target.value))}
                         required
                       />
                       {confirmEmail && !emailsMatch && (
@@ -143,13 +159,13 @@ const CollegeSecurity = () => {
                           className={styles.input}
                           placeholder="Enter your current password to confirm"
                           value={emailPassword}
-                          onChange={(e) => setEmailPassword(e.target.value)}
+                          onChange={(e) => dispatch(setEmailPassword(e.target.value))}
                           required
                         />
                         <button
                           type="button"
                           className={styles.togglePassword}
-                          onClick={() => setShowEmailPassword(!showEmailPassword)}
+                          onClick={() => dispatch(setShowEmailPassword(!showEmailPassword))}
                         >
                           <span className="material-icons">{showEmailPassword ? "visibility_off" : "visibility"}</span>
                         </button>
@@ -186,13 +202,13 @@ const CollegeSecurity = () => {
                           className={styles.input}
                           placeholder="Enter your current password"
                           value={currentPassword}
-                          onChange={(e) => setCurrentPassword(e.target.value)}
+                          onChange={(e) => dispatch(setCurrentPassword(e.target.value))}
                           required
                         />
                         <button
                           type="button"
                           className={styles.togglePassword}
-                          onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                          onClick={() => dispatch(setShowCurrentPassword(!showCurrentPassword))}
                         >
                           <span className="material-icons">{showCurrentPassword ? "visibility_off" : "visibility"}</span>
                         </button>
@@ -206,13 +222,13 @@ const CollegeSecurity = () => {
                           className={styles.input}
                           placeholder="Enter your new password"
                           value={newPassword}
-                          onChange={(e) => setNewPassword(e.target.value)}
+                          onChange={(e) => dispatch(setNewPassword(e.target.value))}
                           required
                         />
                         <button
                           type="button"
                           className={styles.togglePassword}
-                          onClick={() => setShowNewPassword(!showNewPassword)}
+                          onClick={() => dispatch(setShowNewPassword(!showNewPassword))}
                         >
                           <span className="material-icons">{showNewPassword ? "visibility_off" : "visibility"}</span>
                         </button>
@@ -270,13 +286,13 @@ const CollegeSecurity = () => {
                           } ${confirmPassword && passwordsMatch ? styles.inputSuccess : ""}`}
                           placeholder="Re-enter your new password"
                           value={confirmPassword}
-                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          onChange={(e) => dispatch(setConfirmPassword(e.target.value))}
                           required
                         />
                         <button
                           type="button"
                           className={styles.togglePassword}
-                          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                          onClick={() => dispatch(setShowConfirmPassword(!showConfirmPassword))}
                         >
                           <span className="material-icons">{showConfirmPassword ? "visibility_off" : "visibility"}</span>
                         </button>

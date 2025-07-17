@@ -1,20 +1,35 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import styles from "./CollegeDetails.module.css";
 import Header from '../CollegeHeader/CollegeHeaderFile';
+import {
+  setCollegeName,
+  setEstablishedYear,
+  setAddress,
+  setCity,
+  setState,
+  setZipCode,
+  setCountry,
+  setContactNumber,
+  setEmail,
+  setWebsite,
+  setAccreditation,
+  setDescription,
+} from '../../../slices/collegeProfileUiSlice';
 
 const CollegeDetails = () => {
-  const [collegeName, setCollegeName] = useState("");
-  const [establishedYear, setEstablishedYear] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [country, setCountry] = useState("");
-  const [contactNumber, setContactNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [website, setWebsite] = useState("");
-  const [accreditation, setAccreditation] = useState("");
-  const [description, setDescription] = useState("");
+  const dispatch = useDispatch();
+  const collegeName = useSelector((state) => state.collegeProfileUi.collegeName);
+  const establishedYear = useSelector((state) => state.collegeProfileUi.establishedYear);
+  const address = useSelector((state) => state.collegeProfileUi.address);
+  const city = useSelector((state) => state.collegeProfileUi.city);
+  const stateVal = useSelector((state) => state.collegeProfileUi.state);
+  const zipCode = useSelector((state) => state.collegeProfileUi.zipCode);
+  const country = useSelector((state) => state.collegeProfileUi.country);
+  const contactNumber = useSelector((state) => state.collegeProfileUi.contactNumber);
+  const email = useSelector((state) => state.collegeProfileUi.email);
+  const website = useSelector((state) => state.collegeProfileUi.website);
+  const accreditation = useSelector((state) => state.collegeProfileUi.accreditation);
+  const description = useSelector((state) => state.collegeProfileUi.description);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +55,7 @@ const CollegeDetails = () => {
                     className={styles.input}
                     placeholder="Enter your college name"
                     value={collegeName}
-                    onChange={(e) => setCollegeName(e.target.value)}
+                    onChange={(e) => dispatch(setCollegeName(e.target.value))}
                     required
                   />
                 </div>
@@ -51,7 +66,7 @@ const CollegeDetails = () => {
                     className={styles.input}
                     placeholder="Enter the year your college was established"
                     value={establishedYear}
-                    onChange={(e) => setEstablishedYear(e.target.value)}
+                    onChange={(e) => dispatch(setEstablishedYear(e.target.value))}
                     required
                   />
                 </div>
@@ -62,7 +77,7 @@ const CollegeDetails = () => {
                     className={styles.input}
                     placeholder="Enter your college address"
                     value={address}
-                    onChange={(e) => setAddress(e.target.value)}
+                    onChange={(e) => dispatch(setAddress(e.target.value))}
                     required
                   />
                 </div>
@@ -74,7 +89,7 @@ const CollegeDetails = () => {
                       className={styles.input}
                       placeholder="Enter your city"
                       value={city}
-                      onChange={(e) => setCity(e.target.value)}
+                      onChange={(e) => dispatch(setCity(e.target.value))}
                       required
                     />
                   </div>
@@ -84,8 +99,8 @@ const CollegeDetails = () => {
                       type="text"
                       className={styles.input}
                       placeholder="Enter your state"
-                      value={state}
-                      onChange={(e) => setState(e.target.value)}
+                      value={stateVal}
+                      onChange={(e) => dispatch(setState(e.target.value))}
                       required
                     />
                   </div>
@@ -98,7 +113,7 @@ const CollegeDetails = () => {
                       className={styles.input}
                       placeholder="Enter your zip code"
                       value={zipCode}
-                      onChange={(e) => setZipCode(e.target.value)}
+                      onChange={(e) => dispatch(setZipCode(e.target.value))}
                       required
                     />
                   </div>
@@ -109,7 +124,7 @@ const CollegeDetails = () => {
                       className={styles.input}
                       placeholder="Enter your country"
                       value={country}
-                      onChange={(e) => setCountry(e.target.value)}
+                      onChange={(e) => dispatch(setCountry(e.target.value))}
                       required
                     />
                   </div>
@@ -121,7 +136,7 @@ const CollegeDetails = () => {
                     className={styles.input}
                     placeholder="Enter your contact number"
                     value={contactNumber}
-                    onChange={(e) => setContactNumber(e.target.value)}
+                    onChange={(e) => dispatch(setContactNumber(e.target.value))}
                     required
                   />
                 </div>
@@ -132,7 +147,7 @@ const CollegeDetails = () => {
                     className={styles.input}
                     placeholder="Enter your email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => dispatch(setEmail(e.target.value))}
                     required
                   />
                 </div>
@@ -143,7 +158,7 @@ const CollegeDetails = () => {
                     className={styles.input}
                     placeholder="Enter your website URL"
                     value={website}
-                    onChange={(e) => setWebsite(e.target.value)}
+                    onChange={(e) => dispatch(setWebsite(e.target.value))}
                     required
                   />
                 </div>
@@ -154,7 +169,7 @@ const CollegeDetails = () => {
                     className={styles.input}
                     placeholder="Enter accreditation details"
                     value={accreditation}
-                    onChange={(e) => setAccreditation(e.target.value)}
+                    onChange={(e) => dispatch(setAccreditation(e.target.value))}
                     required
                   />
                 </div>
@@ -164,7 +179,7 @@ const CollegeDetails = () => {
                     className={styles.textarea}
                     placeholder="Describe your college"
                     value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    onChange={(e) => dispatch(setDescription(e.target.value))}
                     required
                   />
                 </div>

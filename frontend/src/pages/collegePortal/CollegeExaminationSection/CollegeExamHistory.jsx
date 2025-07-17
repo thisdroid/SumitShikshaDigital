@@ -1,12 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { setSelectedExam, setFilter, setIsDropdownOpen } from '../../../slices/collegeExamHistoryUiSlice';
 import styles from "./CollegeExamHistory.module.css";
 import Header from "../CollegeHeader/CollegeHeaderFile";
 
 const CollegeExamHistory = () => {
-  const [selectedExam, setSelectedExam] = useState(null);
-  const [filter, setFilter] = useState("All");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dispatch = useDispatch();
+  const selectedExam = useSelector((state) => state.collegeExamHistoryUi.selectedExam);
+  const filter = useSelector((state) => state.collegeExamHistoryUi.filter);
+  const isDropdownOpen = useSelector((state) => state.collegeExamHistoryUi.isDropdownOpen);
 
   // Dummy data for exam history
   const dummyExams = [
@@ -66,16 +68,16 @@ const CollegeExamHistory = () => {
   ];
 
   const handleCardClick = (exam) => {
-    setSelectedExam(exam);
+    dispatch(setSelectedExam(exam));
   };
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+    dispatch(setIsDropdownOpen(!isDropdownOpen));
   };
 
   const handleFilterChange = (selectedFilter) => {
-    setFilter(selectedFilter);
-    setIsDropdownOpen(false);
+    dispatch(setFilter(selectedFilter));
+    dispatch(setIsDropdownOpen(false));
   };
 
   const filterExams = (exams) => {
@@ -165,7 +167,7 @@ const CollegeExamHistory = () => {
                   <p className={styles.questionMarks}><strong>Marks:</strong> {question.marks}</p>
                 </div>
               ))}
-              <button onClick={() => setSelectedExam(null)} className={styles.closeButton}>
+              <button onClick={() => dispatch(setSelectedExam(null))} className={styles.closeButton}>
                 Close
               </button>
             </div>

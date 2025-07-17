@@ -23,6 +23,9 @@ import StudentSecurity from './pages/studentPortal/Profile_icon/StudentSecurity'
 import StudentPerformance from './pages/studentPortal/StudentPerformance'
 import CourseDetails from './pages/studentPortal/Courses/CourseDetails'
 import ExamDetails from './pages/studentPortal/Exams/ExamDetails'
+import CoursePlayer from './pages/studentPortal/Courses/CoursePlayer';
+import ExamTest from './pages/studentPortal/Exams/ExamTest';
+import ExamResults from './pages/studentPortal/Exams/ExamResults';
 
 //College
 import CollegeDashboardLayout from './pages/collegePortal/CollegeDashboardLayout'
@@ -60,8 +63,11 @@ function App() {
           <Route index element={<StudentDashboard />} />
           <Route path="Courses" element={<Courses />} />
           <Route path="Courses/:courseId" element={<CourseDetails />} />
+          <Route path="Courses/:courseId/player" element={<CoursePlayer />} />
           <Route path="Examination" element={<Examination />} />
           <Route path="Examination/:examName" element={<ExamDetails />} />
+          <Route path="Examination/:examName/test" element={<ExamTest />} />
+          <Route path="Examination/:examName/results" element={<ExamResults />} />
           <Route path="Certificates" element={<Certificates />} />
           <Route path="Profile" element={<Profile />} />
           <Route path="PersonalDetails" element={<PersonalDetails />} />

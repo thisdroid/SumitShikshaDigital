@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setExams, setCurrentExam } from '../../../slices/examsSlice';
+import { setActiveTab, setExamCode, setCodeError, setLoading } from '../../../slices/examsUiSlice';
 import styles from "./Examination.module.css"
 import Header from "../header/Header"
 import ExamCard from "../../../components/Exam_card/ExamCard"
@@ -178,18 +179,18 @@ export const upcomingExams = [
 ]
 
 const Examination = () => {
-  const [activeTab, setActiveTab] = useState('course-exams');
-  const [examCode, setExamCode] = useState("");
-  const [codeError, setCodeError] = useState("");
+  const dispatch = useDispatch();
+  const activeTab = useSelector((state) => state.examsUi.activeTab);
+  const examCode = useSelector((state) => state.examsUi.examCode);
+  const codeError = useSelector((state) => state.examsUi.codeError);
+  const loading = useSelector((state) => state.examsUi.loading);
   const exams = useSelector((state) => state.exams.exams);
   const currentExam = useSelector((state) => state.exams.currentExam);
-  const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true)
 
    useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 500);
+    const timer = setTimeout(() => dispatch(setLoading(false)), 500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [dispatch]);
   const examStats = [
     {
       icon: "school",
@@ -252,18 +253,18 @@ const Examination = () => {
   const handleExamCodeSubmit = (e) => {
     e.preventDefault()
     if (examCode.length !== 6) {
-      setCodeError("Please enter a 6-digit exam code")
+      dispatch(setCodeError("Please enter a 6-digit exam code"))
       return
     }
     // Here you would validate the code with your backend
     console.log("Validating exam code:", examCode)
-    setCodeError("")
+    dispatch(setCodeError(""))
     // For demo purposes, show success/error
     if (examCode === "123456") {
       alert("Exam found! Redirecting to exam...")
-      setExamCode("")
+      dispatch(setExamCode(""))
     } else {
-      setCodeError("Invalid exam code. Please check and try again.")
+      dispatch(setCodeError("Invalid exam code. Please check and try again."))
     }
   }
 
@@ -324,7 +325,7 @@ const Examination = () => {
                 <button
                   key={tab.id}
                   className={`${styles.tab} ${activeTab === tab.id ? styles.activeTab : ""}`}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => dispatch(setActiveTab(tab.id))}
                 >
                   <span className="material-icons">{tab.icon}</span>
                   <span>{tab.label}</span>
@@ -362,8 +363,8 @@ const Examination = () => {
                         value={examCode}
                         onChange={(e) => {
                           const value = e.target.value.replace(/\D/g, "").slice(0, 6)
-                          setExamCode(value)
-                          setCodeError("")
+                          dispatch(setExamCode(value))
+                          dispatch(setCodeError(""))
                         }}
                         className={`${styles.codeInput} ${codeError ? styles.codeInputError : ""}`}
                         maxLength="6"

@@ -2,6 +2,18 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateProgress } from '../../../slices/coursesSlice';
+import {
+  setCurrentLesson,
+  setCurrentSection,
+  setIsPlaying,
+  setProgress,
+  setNotes,
+  setShowNotes,
+  setShowResources,
+  setCompletedLessons,
+  setExpandedSections,
+  setLoading,
+} from '../../../slices/coursePlayerUiSlice';
 import { useParams, useNavigate, useLocation } from "react-router-dom"
 import styles from "./CoursePlayer.module.css"
 import Header from "../header/Header"
@@ -82,16 +94,17 @@ const CoursePlayer = () => {
   const { courseId } = useParams()
   const navigate = useNavigate()
   const location = useLocation()
-  const [currentLesson, setCurrentLesson] = useState(0)
-  const [currentSection, setCurrentSection] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const [notes, setNotes] = useState("")
-  const [showNotes, setShowNotes] = useState(false)
-  const [showResources, setShowResources] = useState(false)
-  const [completedLessons, setCompletedLessons] = useState(new Set())
-  const [expandedSections, setExpandedSections] = useState(new Set([0])) // First section expanded by default
-  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch();
+  const currentLesson = useSelector((state) => state.coursePlayerUi.currentLesson);
+  const currentSection = useSelector((state) => state.coursePlayerUi.currentSection);
+  const isPlaying = useSelector((state) => state.coursePlayerUi.isPlaying);
+  const progress = useSelector((state) => state.coursePlayerUi.progress);
+  const notes = useSelector((state) => state.coursePlayerUi.notes);
+  const showNotes = useSelector((state) => state.coursePlayerUi.showNotes);
+  const showResources = useSelector((state) => state.coursePlayerUi.showResources);
+  const completedLessons = useSelector((state) => state.coursePlayerUi.completedLessons);
+  const expandedSections = useSelector((state) => state.coursePlayerUi.expandedSections);
+  const loading = useSelector((state) => state.coursePlayerUi.loading);
 
   // Get course data
   let course = location.state?.course
@@ -104,9 +117,9 @@ const CoursePlayer = () => {
   }, [])
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 500)
+    const timer = setTimeout(() => dispatch(setLoading(false)), 500)
     return () => clearTimeout(timer)
-  }, [])
+  }, [dispatch])
 
   if (loading) return <CoursePlayerSkeleton />
 
@@ -140,53 +153,55 @@ const CoursePlayer = () => {
 
   const toggleSection = (sectionIndex) => {
     const newExpanded = new Set(expandedSections)
-    if (newExpanded.has(sectionIndex)) {
+    if (expandedSections.includes(sectionIndex)) {
       newExpanded.delete(sectionIndex)
     } else {
       newExpanded.add(sectionIndex)
     }
-    setExpandedSections(newExpanded)
+    dispatch(setExpandedSections(Array.from(newExpanded)))
   }
 
   const handleLessonSelect = (sectionIndex, lessonIndex) => {
-    setCurrentSection(sectionIndex)
-    setCurrentLesson(lessonIndex)
-    setProgress(0)
+    dispatch(setCurrentSection(sectionIndex))
+    dispatch(setCurrentLesson(lessonIndex))
+    dispatch(setProgress(0))
   }
 
   const handleMarkComplete = () => {
     const lessonKey = `${currentSection}-${currentLesson}`
-    setCompletedLessons((prev) => new Set([...prev, lessonKey]))
+    const updated = new Set(completedLessons)
+    updated.add(lessonKey)
+    dispatch(setCompletedLessons(Array.from(updated)))
   }
 
   const handleNextLesson = () => {
     const currentSectionData = course.courseContent[currentSection]
     if (currentLesson < currentSectionData.lessons - 1) {
-      setCurrentLesson(currentLesson + 1)
+      dispatch(setCurrentLesson(currentLesson + 1))
     } else if (currentSection < course.courseContent.length - 1) {
-      setCurrentSection(currentSection + 1)
-      setCurrentLesson(0)
+      dispatch(setCurrentSection(currentSection + 1))
+      dispatch(setCurrentLesson(0))
     }
-    setProgress(0)
+    dispatch(setProgress(0))
   }
 
   const handlePrevLesson = () => {
     if (currentLesson > 0) {
-      setCurrentLesson(currentLesson - 1)
+      dispatch(setCurrentLesson(currentLesson - 1))
     } else if (currentSection > 0) {
-      setCurrentSection(currentSection - 1)
-      setCurrentLesson(course.courseContent[currentSection - 1].lessons - 1)
+      dispatch(setCurrentSection(currentSection - 1))
+      dispatch(setCurrentLesson(course.courseContent[currentSection - 1].lessons - 1))
     }
-    setProgress(0)
+    dispatch(setProgress(0))
   }
 
   const isLessonCompleted = (sectionIndex, lessonIndex) => {
-    return completedLessons.has(`${sectionIndex}-${lessonIndex}`)
+    return completedLessons.includes(`${sectionIndex}-${lessonIndex}`)
   }
 
   const calculateOverallProgress = () => {
     const totalLessons = course.courseContent.reduce((sum, section) => sum + section.lessons, 0)
-    return Math.round((completedLessons.size / totalLessons) * 100)
+    return Math.round((completedLessons.length / totalLessons) * 100)
   }
 
   const handleSaveNotes = () => {
@@ -199,15 +214,15 @@ const CoursePlayer = () => {
     if (!showNotes) {
       // Load saved notes when opening
       const savedNotes = localStorage.getItem(`notes-${currentSection}-${currentLesson}`) || ""
-      setNotes(savedNotes)
+      dispatch(setNotes(savedNotes))
     }
-    setShowNotes(!showNotes)
-    setShowResources(false) // Close resources if open
+    dispatch(setShowNotes(!showNotes))
+    dispatch(setShowResources(false)) // Close resources if open
   }
 
   const handleResourcesToggle = () => {
-    setShowResources(!showResources)
-    setShowNotes(false) // Close notes if open
+    dispatch(setShowResources(!showResources))
+    dispatch(setShowNotes(false)) // Close notes if open
   }
 
   const currentVideoData = getCurrentVideoData()
@@ -314,7 +329,7 @@ const CoursePlayer = () => {
                       className={styles.notesTextarea}
                       placeholder="Take notes for this lesson..."
                       value={notes}
-                      onChange={(e) => setNotes(e.target.value)}
+                      onChange={(e) => dispatch(setNotes(e.target.value))}
                     />
                     <button className={styles.saveNotesBtn} onClick={handleSaveNotes}>
                       <span className="material-icons">save</span>
@@ -382,13 +397,13 @@ const CoursePlayer = () => {
                           </span>
                         </div>
                         <span
-                          className={`material-icons ${styles.expandIcon} ${expandedSections.has(sectionIndex) ? styles.expanded : ""}`}
+                          className={`material-icons ${styles.expandIcon} ${expandedSections.includes(sectionIndex) ? styles.expanded : ""}`}
                         >
                           expand_more
                         </span>
                       </button>
 
-                      {expandedSections.has(sectionIndex) && (
+                      {expandedSections.includes(sectionIndex) && (
                         <div className={styles.lessonsList}>
                           {Array.from({ length: section.lessons }, (_, lessonIndex) => (
                             <button
@@ -434,7 +449,7 @@ const CoursePlayer = () => {
                     <span className="material-icons">school</span>
                     <div className={styles.statInfo}>
                       <span className={styles.statLabel}>Completed</span>
-                      <span className={styles.statValue}>{completedLessons.size} lessons</span>
+                      <span className={styles.statValue}>{completedLessons.length} lessons</span>
                     </div>
                   </div>
                   <div className={styles.statItem}>

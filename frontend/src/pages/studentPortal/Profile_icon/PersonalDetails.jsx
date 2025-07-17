@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateProfile } from '../../../slices/userSlice';
 import styles from "./PersonalDetails.module.css"
+import Header from '../header/Header';
 
 const PersonalDetails = () => {
   const user = useSelector((state) => state.user.user);
@@ -110,170 +111,145 @@ const PersonalDetails = () => {
 
   return (
     <div className={styles.personalDetailsWrapper}>
-      <div className={`${styles.headerBackground} ${styles.theme}`}>
-        <div className={styles.header}>
-          <h1 className={styles.title}>Personal Details</h1>
-        </div>
-      </div>
-
-      <div className={styles.formContainer}>
-        {/* Basics Section */}
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <h2 className={styles.sectionTitle}>Basic Information</h2>
-            <p className={styles.sectionDescription}>Tell us about yourself</p>
-          </div>
-          <div className={styles.cardContent}>
-            <div className={styles.inputRow}>
-              <div className={styles.inputGroup}>
-                <label className={styles.label}>First Name</label>
-                <input type="text" className={styles.input} placeholder="Enter your first name" />
-              </div>
-              <div className={styles.inputGroup}>
-                <label className={styles.label}>Last Name</label>
-                <input type="text" className={styles.input} placeholder="Enter your last name" />
-              </div>
+      <div className={styles.mainContent}>
+        <Header />
+        <div className={styles.formContainer}>
+          <div className={styles.card}>
+            <div className={styles.cardHeader}>
+              <h2 className={styles.sectionTitle}>Personal Details</h2>
+              <p className={styles.sectionDescription}>Update your personal information</p>
             </div>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>Professional Headline</label>
-              <div className={styles.headlineContainer}>
-                <input
-                  type="text"
-                  className={styles.input}
-                  placeholder="e.g., Software Engineer at Google"
-                  value={user?.headline || ""}
-                  onChange={handleHeadlineChange}
-                  maxLength={60}
-                />
-                <span className={styles.charCounter}>{60 - (user?.headline || "").length}</span>
-              </div>
-              <p className={styles.helperText}>
-                Add a professional headline like "Instructor at Udemy" or "Software Architect"
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Education Section */}
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <h2 className={styles.sectionTitle}>Education Details</h2>
-            <p className={styles.sectionDescription}>Share your educational background</p>
-          </div>
-          <div className={styles.cardContent}>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>College/University</label>
-              <input type="text" className={styles.input} placeholder="Enter your college or university name" />
-            </div>
-            <div className={styles.inputRow}>
-              <div className={styles.inputGroup}>
-                <label className={styles.label}>Degree</label>
-                <input type="text" className={styles.input} placeholder="e.g., Bachelor of Computer Science" />
-              </div>
-              <div className={styles.inputGroup}>
-                <label className={styles.label}>Graduation Year</label>
-                <input type="text" className={styles.input} placeholder="e.g., 2024" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Biography Section */}
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <h2 className={styles.sectionTitle}>Biography</h2>
-            <p className={styles.sectionDescription}>Tell your story and showcase your expertise</p>
-          </div>
-          <div className={styles.cardContent}>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>About You</label>
-              <div className={styles.biographyContainer}>
-                <div className={styles.biographyEditor}>
-                  <div className={styles.editorToolbar}>
-                    <button
-                      className={styles.toolbarButton}
-                      type="button"
-                      onClick={() => formatText("bold")}
-                      title="Bold"
-                    >
-                      <strong>B</strong>
-                    </button>
-                    <button
-                      className={styles.toolbarButton}
-                      type="button"
-                      onClick={() => formatText("italic")}
-                      title="Italic"
-                    >
-                      <em>I</em>
-                    </button>
+            <div className={styles.cardContent}>
+              <form>
+                {/* Basics Section */}
+                <div className={styles.inputRow}>
+                  <div className={styles.inputGroup}>
+                    <label className={styles.label}>First Name</label>
+                    <input type="text" className={styles.input} placeholder="Enter your first name" />
                   </div>
-                  <div
-                    ref={editorRef}
-                    className={styles.biographyEditorContent}
-                    contentEditable
-                    suppressContentEditableWarning={true}
-                    onInput={handleBiographyChange}
-                    onKeyDown={handleKeyDown}
-                    onPaste={handlePaste}
-                    data-placeholder="Write a compelling biography that highlights your skills, experience, and what makes you unique..."
-                  />
+                  <div className={styles.inputGroup}>
+                    <label className={styles.label}>Last Name</label>
+                    <input type="text" className={styles.input} placeholder="Enter your last name" />
+                  </div>
                 </div>
-                <div className={styles.wordCountContainer}>
-                  <span className={`${styles.wordCounter} ${wordCount >= maxWords ? styles.wordCounterLimit : ""}`}>
-                    {wordCount}/{maxWords} words
-                  </span>
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>Professional Headline</label>
+                  <div className={styles.headlineContainer}>
+                    <input
+                      type="text"
+                      className={styles.input}
+                      placeholder="e.g., Software Engineer at Google"
+                      value={user?.headline || ""}
+                      onChange={handleHeadlineChange}
+                      maxLength={60}
+                    />
+                    <span className={styles.charCounter}>{60 - (user?.headline || "").length}</span>
+                  </div>
+                  <p className={styles.helperText}>
+                    Add a professional headline like "Instructor at Udemy" or "Software Architect"
+                  </p>
                 </div>
-              </div>
-              <p className={styles.warningText}>
-                <span className="material-icons" style={{ fontSize: "16px" }}>
-                  warning
-                </span>
-                Links and coupon codes are not permitted in this section
-              </p>
-            </div>
-          </div>
-        </div>
 
-        {/* Links Section */}
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <h2 className={styles.sectionTitle}>Professional Links</h2>
-            <p className={styles.sectionDescription}>Connect your professional profiles</p>
-          </div>
-          <div className={styles.cardContent}>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>Website</label>
-              <input type="url" className={styles.input} placeholder="https://yourwebsite.com" />
-            </div>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>LinkedIn Profile</label>
-              <div className={styles.prefixInput}>
-                <span className={styles.prefix}>linkedin.com/</span>
-                <input type="text" className={styles.prefixedInput} placeholder="in/yourname" />
-              </div>
-              <p className={styles.helperText}>
-                Input your LinkedIn public profile URL (e.g., in/johnsmith, company/udemy)
-              </p>
-            </div>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>GitHub Profile</label>
-              <div className={styles.prefixInput}>
-                <span className={styles.prefix}>github.com/</span>
-                <input type="text" className={styles.prefixedInput} placeholder="username" />
-              </div>
-              <p className={styles.helperText}>Input your GitHub username (e.g., johnsmith)</p>
-            </div>
-          </div>
-        </div>
+                {/* Education Section */}
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>College/University</label>
+                  <input type="text" className={styles.input} placeholder="Enter your college or university name" />
+                </div>
+                <div className={styles.inputRow}>
+                  <div className={styles.inputGroup}>
+                    <label className={styles.label}>Degree</label>
+                    <input type="text" className={styles.input} placeholder="e.g., Bachelor of Computer Science" />
+                  </div>
+                  <div className={styles.inputGroup}>
+                    <label className={styles.label}>Graduation Year</label>
+                    <input type="text" className={styles.input} placeholder="e.g., 2024" />
+                  </div>
+                </div>
 
-        {/* Save Button */}
-        <div className={styles.saveButtonContainer}>
-          <button className={styles.saveButton} type="button">
-            <span className="material-icons" style={{ marginRight: "0.5rem" }}>
-              save
-            </span>
-            Save Profile
-          </button>
+                {/* Biography Section */}
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>About You</label>
+                  <div className={styles.biographyContainer}>
+                    <div className={styles.biographyEditor}>
+                      <div className={styles.editorToolbar}>
+                        <button
+                          className={styles.toolbarButton}
+                          type="button"
+                          onClick={() => formatText("bold")}
+                          title="Bold"
+                        >
+                          <strong>B</strong>
+                        </button>
+                        <button
+                          className={styles.toolbarButton}
+                          type="button"
+                          onClick={() => formatText("italic")}
+                          title="Italic"
+                        >
+                          <em>I</em>
+                        </button>
+                      </div>
+                      <div
+                        ref={editorRef}
+                        className={styles.biographyEditorContent}
+                        contentEditable
+                        suppressContentEditableWarning={true}
+                        onInput={handleBiographyChange}
+                        onKeyDown={handleKeyDown}
+                        onPaste={handlePaste}
+                        data-placeholder="Write a compelling biography that highlights your skills, experience, and what makes you unique..."
+                      />
+                    </div>
+                    <div className={styles.wordCountContainer}>
+                      <span className={`${styles.wordCounter} ${wordCount >= maxWords ? styles.wordCounterLimit : ""}`}>
+                        {wordCount}/{maxWords} words
+                      </span>
+                    </div>
+                  </div>
+                  <p className={styles.warningText}>
+                    <span className="material-icons" style={{ fontSize: "16px" }}>
+                      warning
+                    </span>
+                    Links and coupon codes are not permitted in this section
+                  </p>
+                </div>
+
+                {/* Links Section */}
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>Website</label>
+                  <input type="url" className={styles.input} placeholder="https://yourwebsite.com" />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>LinkedIn Profile</label>
+                  <div className={styles.prefixInput}>
+                    <span className={styles.prefix}>linkedin.com/</span>
+                    <input type="text" className={styles.prefixedInput} placeholder="in/yourname" />
+                  </div>
+                  <p className={styles.helperText}>
+                    Input your LinkedIn public profile URL (e.g., in/johnsmith, company/udemy)
+                  </p>
+                </div>
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>GitHub Profile</label>
+                  <div className={styles.prefixInput}>
+                    <span className={styles.prefix}>github.com/</span>
+                    <input type="text" className={styles.prefixedInput} placeholder="username" />
+                  </div>
+                  <p className={styles.helperText}>Input your GitHub username (e.g., johnsmith)</p>
+                </div>
+
+                {/* Save Button */}
+                <div className={styles.buttonContainer}>
+                  <button className={styles.saveButton} type="button">
+                    <span className="material-icons" style={{ marginRight: "0.5rem" }}>
+                      save
+                    </span>
+                    Save Profile
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>

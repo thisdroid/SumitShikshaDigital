@@ -1,31 +1,23 @@
 "use client"
 
-import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import styles from "./CollegeStudents.module.css";
 import CollegeSidebar from "../../components/common_components/CollegeSidebar";
 import Header from "./CollegeHeader/CollegeHeaderFile"
+import { setView, acceptRequest, rejectRequest } from '../../slices/collegeStudentsUiSlice';
 
 const CollegeStudents = () => {
-  const [view, setView] = useState("activities");
-
-  const [students, setStudents] = useState([
-    { id: 1, name: "John Doe", class: "10A", rollNo: "101", exams: [{ name: "Math", marks: 85 }, { name: "Science", marks: 90 }] },
-    { id: 2, name: "Jane Smith", class: "10B", rollNo: "102", exams: [{ name: "History", marks: 75 }, { name: "English", marks: 80 }] },
-  ]);
-
-  const [requests, setRequests] = useState([
-    { id: 3, name: "Alice Johnson", class: "10C", rollNo: "103" },
-    { id: 4, name: "Bob Brown", class: "10A", rollNo: "104" },
-  ]);
+  const dispatch = useDispatch();
+  const view = useSelector((state) => state.collegeStudentsUi.view);
+  const students = useSelector((state) => state.collegeStudentsUi.students);
+  const requests = useSelector((state) => state.collegeStudentsUi.requests);
 
   const handleAccept = (id) => {
-    const newStudent = requests.find(request => request.id === id);
-    setStudents([...students, { ...newStudent, exams: [] }]);
-    setRequests(requests.filter(request => request.id !== id));
+    dispatch(acceptRequest(id));
   };
 
   const handleReject = (id) => {
-    setRequests(requests.filter(request => request.id !== id));
+    dispatch(rejectRequest(id));
   };
 
   const calculateAverage = (marks) => {
@@ -47,10 +39,10 @@ const CollegeStudents = () => {
         <Header/>
 
         <div className={styles.toggleButtons}>
-          <button onClick={() => setView("activities")} className={view === "activities" ? styles.activeButton : ""}>
+          <button onClick={() => dispatch(setView("activities"))} className={view === "activities" ? styles.activeButton : ""}>
             Activities
           </button>
-          <button onClick={() => setView("requests")} className={view === "requests" ? styles.activeButton : ""}>
+          <button onClick={() => dispatch(setView("requests"))} className={view === "requests" ? styles.activeButton : ""}>
             Requests
           </button>
         </div>

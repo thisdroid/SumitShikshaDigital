@@ -135,3 +135,14 @@
   background-color: #f3f4f6;
   color: #2563eb;
 }
+
+.dropdownLink.active {
+  background-color: #f3f4f6;
+  color: #2563eb;
+}
+
+/* Ensure .navLink.active is visually consistent */
+.navLink.active {
+  background-color: #f3f4f6;
+  color: #2563eb;
+}

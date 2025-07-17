@@ -7,6 +7,15 @@ import certificatesReducer from './slices/certificatesSlice';
 import studentSignupReducer from './slices/studentSignupSlice';
 import studentLoginReducer from './slices/studentLoginSlice';
 import studentUiReducer from './slices/studentUiSlice';
+import coursesUiReducer from './slices/coursesUiSlice';
+import coursePlayerUiReducer from './slices/coursePlayerUiSlice';
+import examsUiReducer from './slices/examsUiSlice';
+import collegeProfileUiReducer from './slices/collegeProfileUiSlice';
+import collegeSecurityUiReducer from './slices/collegeSecurityUiSlice';
+import collegeStudentsUiReducer from './slices/collegeStudentsUiSlice';
+import collegeCreateExamUiReducer from './slices/collegeCreateExamUiSlice';
+import collegeScheduledExamsUiReducer from './slices/collegeScheduledExamsUiSlice';
+import collegeExamHistoryUiReducer from './slices/collegeExamHistoryUiSlice';
 
 const store = configureStore({
   reducer: {
@@ -18,6 +27,15 @@ const store = configureStore({
     studentSignup: studentSignupReducer,
     studentLogin: studentLoginReducer,
     studentUi: studentUiReducer,
+    coursesUi: coursesUiReducer,
+    coursePlayerUi: coursePlayerUiReducer,
+    examsUi: examsUiReducer,
+    collegeProfileUi: collegeProfileUiReducer,
+    collegeSecurityUi: collegeSecurityUiReducer,
+    collegeStudentsUi: collegeStudentsUiReducer,
+    collegeCreateExamUi: collegeCreateExamUiReducer,
+    collegeScheduledExamsUi: collegeScheduledExamsUiReducer,
+    collegeExamHistoryUi: collegeExamHistoryUiReducer,
   },
 });
 

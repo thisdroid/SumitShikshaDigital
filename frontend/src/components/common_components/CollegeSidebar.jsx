@@ -47,6 +47,11 @@ const CollegeSidebar = () => {
     return location.pathname === path ? styles.active : '';
   };
 
+  // Helper for dropdown links (partial match)
+  const isDropdownActive = (paths) => {
+    return paths.some((p) => location.pathname === p);
+  };
+
   return (
     <>
       {isMobileView && (
@@ -94,23 +99,23 @@ const CollegeSidebar = () => {
           </Link>
           <div>
             <button
-              className={`${styles.navLink} ${isExamDropdownOpen ? styles.active : ''}`}
+              className={`${styles.navLink} ${(isDropdownActive(['/CollegeDashboard/ExamHistory','/CollegeDashboard/CreateExam','/CollegeDashboard/ScheduledExams']) || isExamDropdownOpen) ? styles.active : ''}`}
               onClick={() => setIsExamDropdownOpen(!isExamDropdownOpen)}
             >
               <span className={`material-icons ${styles.navIcon}`}>edit</span>
               Examination
             </button>
-            {isExamDropdownOpen && (
+            {(isExamDropdownOpen || isDropdownActive(['/CollegeDashboard/ExamHistory','/CollegeDashboard/CreateExam','/CollegeDashboard/ScheduledExams'])) && (
               <div className={styles.dropdown}>
-                <Link to="/CollegeDashboard/ExamHistory" className={styles.dropdownLink}>
+                <Link to="/CollegeDashboard/ExamHistory" className={`${styles.dropdownLink} ${isActiveLink('/CollegeDashboard/ExamHistory')}` }>
                   <span className={`material-icons ${styles.navIcon}`}>check_circle</span>
                   Exam History
                 </Link>
-                <Link to="/CollegeDashboard/CreateExam" className={styles.dropdownLink}>
+                <Link to="/CollegeDashboard/CreateExam" className={`${styles.dropdownLink} ${isActiveLink('/CollegeDashboard/CreateExam')}` }>
                   <span className={`material-icons ${styles.navIcon}`}>add_circle</span>
                   Create Exams
                 </Link>
-                <Link to="/CollegeDashboard/ScheduledExams" className={styles.dropdownLink}>
+                <Link to="/CollegeDashboard/ScheduledExams" className={`${styles.dropdownLink} ${isActiveLink('/CollegeDashboard/ScheduledExams')}` }>
                   <span className={`material-icons ${styles.navIcon}`}>schedule</span>
                   Scheduled Exams
                 </Link>

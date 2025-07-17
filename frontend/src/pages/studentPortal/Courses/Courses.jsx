@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCourses, selectCourse, updateProgress } from '../../../slices/coursesSlice';
+import { setActiveTab, setStreak, setLoading } from '../../../slices/coursesUiSlice';
 import styles from "./Courses.module.css"
 import Header from "../header/Header"
 import CourseCard from "./CourseCard"
@@ -29,12 +30,9 @@ function setLocalStreak(streak, date) {
 }
 
 const Courses = () => {
-  const [activeTab, setActiveTab] = useState('enrolled');
-  const [streak, setStreak] = useState(1);
-  const [loading, setLoading] = useState(true)
-  const courses = useSelector((state) => state.courses.courses);
-  const selectedCourse = useSelector((state) => state.courses.selectedCourse);
-  const progress = useSelector((state) => state.courses.progress);
+  const activeTab = useSelector((state) => state.coursesUi.activeTab);
+  const streak = useSelector((state) => state.coursesUi.streak);
+  const loading = useSelector((state) => state.coursesUi.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -47,14 +45,14 @@ const Courses = () => {
 
       if (!lastDate) {
         setLocalStreak(1, todayStr)
-        setStreak(1)
-        setLoading(false)
+        dispatch(setStreak(1))
+        dispatch(setLoading(false))
         return
       }
 
       if (lastDate === todayStr) {
-        setStreak(storedStreak)
-        setLoading(false)
+        dispatch(setStreak(storedStreak))
+        dispatch(setLoading(false))
         return
       }
 
@@ -63,17 +61,17 @@ const Courses = () => {
 
       if (diff === 1) {
         setLocalStreak(storedStreak + 1, todayStr)
-        setStreak(storedStreak + 1)
+        dispatch(setStreak(storedStreak + 1))
       } else if (diff > 1) {
         setLocalStreak(1, todayStr)
-        setStreak(1)
+        dispatch(setStreak(1))
       } else {
-        setStreak(storedStreak)
+        dispatch(setStreak(storedStreak))
       }
-      setLoading(false)
+      dispatch(setLoading(false))
     }, 500)
     return () => clearTimeout(timer)
-  }, [])
+  }, [dispatch])
 
   const recommendedCourses = [
     {
@@ -146,7 +144,7 @@ const Courses = () => {
                 <button
                   key={tab.id}
                   className={`${styles.tab} ${activeTab === tab.id ? styles.activeTab : ""}`}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => dispatch(setActiveTab(tab.id))}
                 >
                   <span className="material-icons">{tab.icon}</span>
                   <span>{tab.label}</span>

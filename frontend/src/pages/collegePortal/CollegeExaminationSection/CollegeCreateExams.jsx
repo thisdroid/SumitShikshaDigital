@@ -4,55 +4,50 @@ import styles from "./CollegeCreateExams.module.css";
 import { getItem, setItem } from "../../../utils/storage";
 import { Helmet } from "react-helmet-async";
 import CollegeHeader from "../CollegeHeader/CollegeHeaderFile";
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  setFormData,
+  setExcelFile,
+  setParsedQuestions,
+  setShowManualEntry,
+  setManualQuestions,
+  setGeneratedCode,
+  setShowPreview,
+  setMinDateTime,
+  setMaxDateTime,
+} from '../../../slices/collegeCreateExamUiSlice';
 
 const CollegeCreateExam = () => {
-  const [formData, setFormData] = useState({
-    examType: "college",
-    ProfessorName: "",
-    examName: "",
-    totalQuestions: "",
-    totalMarks: "",
-    examDurationHours: "",
-    examDurationMinutes: "",
-    createdAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
-    scheduledAt: "",
-  });
-
-  const [excelFile, setExcelFile] = useState(null);
-  const [parsedQuestions, setParsedQuestions] = useState([]);
-  const [showManualEntry, setShowManualEntry] = useState(false);
-  const [manualQuestions, setManualQuestions] = useState([
-    {
-      question: "",
-      options: ["", "", "", ""],
-      correctAnswer: "",
-      marks: "",
-    },
-  ]);
-  const [generatedCode, setGeneratedCode] = useState(null);
-  const [showPreview, setShowPreview] = useState(false);
-  const [minDateTime, setMinDateTime] = useState("");
-  const [maxDateTime, setMaxDateTime] = useState("");
+  const dispatch = useDispatch();
+  const formData = useSelector((state) => state.collegeCreateExamUi.formData);
+  const excelFile = useSelector((state) => state.collegeCreateExamUi.excelFile);
+  const parsedQuestions = useSelector((state) => state.collegeCreateExamUi.parsedQuestions);
+  const showManualEntry = useSelector((state) => state.collegeCreateExamUi.showManualEntry);
+  const manualQuestions = useSelector((state) => state.collegeCreateExamUi.manualQuestions);
+  const generatedCode = useSelector((state) => state.collegeCreateExamUi.generatedCode);
+  const showPreview = useSelector((state) => state.collegeCreateExamUi.showPreview);
+  const minDateTime = useSelector((state) => state.collegeCreateExamUi.minDateTime);
+  const maxDateTime = useSelector((state) => state.collegeCreateExamUi.maxDateTime);
 
   useEffect(() => {
     const now = new Date();
     const min = now.toISOString().slice(0, 16);
-    setMinDateTime(min);
+    dispatch(setMinDateTime(min));
 
     const max = new Date(now);
     max.setDate(now.getDate() + 30);
     const maxISO = max.toISOString().slice(0, 16);
-    setMaxDateTime(maxISO);
-  }, []);
+    dispatch(setMaxDateTime(maxISO));
+  }, [dispatch]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    dispatch(setFormData({ [name]: value }));
   };
 
   const handleExcelFileChange = (e) => {
     const file = e.target.files[0];
-    setExcelFile(file || null);
+    dispatch(setExcelFile(file || null));
     if (file) {
       const reader = new FileReader();
       reader.onload = (evt) => {
@@ -83,11 +78,11 @@ const CollegeCreateExam = () => {
               marks: Number(rowObj["Marks"]) || 0,
             };
           });
-        setParsedQuestions(questions);
+        dispatch(setParsedQuestions(questions));
       };
       reader.readAsBinaryString(file);
     } else {
-      setParsedQuestions([]);
+      dispatch(setParsedQuestions([]));
     }
   };
 
@@ -98,13 +93,13 @@ const CollegeCreateExam = () => {
     } else {
       updated[qIndex][field] = value;
     }
-    setManualQuestions(updated);
+    dispatch(setManualQuestions(updated));
   };
 
   const handleOptionChange = (qIndex, optIndex, value) => {
     const updated = [...manualQuestions];
     updated[qIndex].options[optIndex] = value;
-    setManualQuestions(updated);
+    dispatch(setManualQuestions(updated));
   };
 
   const addManualQuestion = () => {
@@ -113,15 +108,16 @@ const CollegeCreateExam = () => {
       alert(`${totalQuestions} questions are done. To add more, increase the limit above.`);
       return;
     }
-    setManualQuestions([
+    dispatch(setManualQuestions([
       ...manualQuestions,
       { question: "", options: ["", "", "", ""], correctAnswer: "", marks: "" },
-    ]);
+    ]));
   };
 
   const removeManualQuestion = (index) => {
     if (manualQuestions.length > 1) {
-      setManualQuestions((prev) => prev.filter((_, i) => i !== index));
+      const updated = manualQuestions.filter((_, i) => i !== index);
+      dispatch(setManualQuestions(updated));
     }
   };
 
@@ -172,8 +168,8 @@ const CollegeCreateExam = () => {
     }
 
     alert(`College Exam Created Successfully!\nYour Exam Code is: ${examCode}`);
-    setGeneratedCode(examCode);
-    setFormData({
+    dispatch(setGeneratedCode(examCode));
+    dispatch(setFormData({
       examType: "college",
       ProfessorName: "",
       examName: "",
@@ -183,19 +179,19 @@ const CollegeCreateExam = () => {
       examDurationMinutes: "",
       createdAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
       scheduledAt: "",
-    });
-    setExcelFile(null);
-    setParsedQuestions([]);
-    setManualQuestions([{ question: "", options: ["", "", "", ""], correctAnswer: "", marks: "" }]);
-    setShowManualEntry(false);
+    }));
+    dispatch(setExcelFile(null));
+    dispatch(setParsedQuestions([]));
+    dispatch(setManualQuestions([{ question: "", options: ["", "", "", ""], correctAnswer: "", marks: "" }]));
+    dispatch(setShowManualEntry(false));
   };
 
   const handleFinish = () => {
-    setShowPreview(true);
+    dispatch(setShowPreview(true));
   };
 
   const closePreview = () => {
-    setShowPreview(false);
+    dispatch(setShowPreview(false));
   };
 
   return (
@@ -338,7 +334,7 @@ const CollegeCreateExam = () => {
               </h3>
               <button
                 type="button"
-                onClick={() => setShowManualEntry((prev) => !prev)}
+                onClick={() => dispatch(setShowManualEntry((prev) => !prev))}
                 className={styles.toggleButton}
               >
                 {showManualEntry ? "Hide Manual Entry" : "Add Questions Manually"}
@@ -451,7 +447,7 @@ const CollegeCreateExam = () => {
               <span className="material-icons">add</span> Create Exam
             </button>
             <button type="button" className={styles.finishButton} onClick={handleFinish}>
-              Finish
+              Preview
             </button>
           </div>
         </form>

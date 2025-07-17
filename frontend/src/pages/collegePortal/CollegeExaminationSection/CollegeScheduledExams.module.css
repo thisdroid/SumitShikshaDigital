@@ -1,0 +1,303 @@
+.dashboardContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.mainContent {
+  flex: 1;
+  margin-left: 16rem;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Ensure this is positioned relatively */
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  flex: 1;
+  flex-direction: column;
+}
+
+.statsSection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.childStats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, background-color 0.3s;
+  cursor: pointer;
+}
+
+.childStats:hover {
+  background-color: #4a4a4a;
+  transform: translateY(-5px);
+}
+
+.StatsCollege {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+  padding: 1rem;
+  width: 100%;
+}
+
+.examTitle {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.examProfessor, .examSchedule {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+.examDetailsOverlay {
+  position: fixed;
+  top: 0;
+  left: 16rem;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.examDetailsContent {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 80%;
+  width: 80%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  margin: auto;
+  align-self: center;
+}
+
+.examDetailTitle {
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.examDetailInfo {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.questionsTitle {
+  color: #333;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.questionDetails {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.questionText {
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.optionsList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.optionItem {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  color: #666;
+}
+
+.correctAnswer, .questionMarks {
+  margin: 0.5rem 0;
+  color: #444;
+}
+
+.closeButton {
+  display: block;
+  margin: 1rem auto;
+  background: #5865f2;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.closeButton:hover {
+  background: #4752c4;
+}
+
+@media (max-width: 1204px) {
+  .mainContent {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .dashboardContainer {
+    flex-direction: column;
+  }
+  
+.examDetailsOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+  .mainContent {
+    margin-left: 0;
+  }
+
+  .statsSection {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .contentWrapper {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .StatsCollege {
+    padding: 0.75rem;
+  }
+
+  .examTitle {
+    font-size: 1rem;
+  }
+
+  .examProfessor, .examSchedule {
+    font-size: 0.9rem;
+  }
+}
+/* Existing CSS remains the same until the last media query */
+
+@media (max-width: 480px) {
+  .StatsCollege {
+    padding: 0.5rem;
+  }
+  .examTitle {
+    font-size: 0.9rem;
+  }
+  .examProfessor, .examSchedule {
+    font-size: 0.8rem;
+  }
+}
+
+/* New media query for mobile view when width is below 500px */
+@media (max-width: 500px) {
+  .mainContent {
+    margin-left: 0;
+    padding: 0.5rem;
+  }
+
+  .contentWrapper {
+    padding: 0.5rem;
+  }
+
+  .statsSection {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .childStats {
+    align-items: flex-start;
+  }
+
+  .StatsCollege {
+    padding: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .examTitle {
+    font-size: 1rem;
+    margin: 0.25rem 0;
+  }
+
+  .examProfessor, .examSchedule {
+    font-size: 0.8rem;
+    margin: 0.2rem 0;
+  }
+
+  .examDetailsOverlay {
+    left: 0;
+  }
+
+  .examDetailsContent {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .examDetailTitle {
+    font-size: 1.2rem;
+  }
+
+  .examDetailInfo {
+    font-size: 0.9rem;
+  }
+
+  .questionsTitle {
+    font-size: 1.1rem;
+  }
+
+  .questionDetails {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .questionText {
+    font-size: 0.9rem;
+  }
+
+  .optionItem {
+    font-size: 0.85rem;
+    padding: 0.25rem 0;
+  }
+
+  .correctAnswer, .questionMarks {
+    font-size: 0.85rem;
+  }
+
+  .closeButton {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.8rem;
+  }
+}
+

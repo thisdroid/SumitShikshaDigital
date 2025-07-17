@@ -3,17 +3,20 @@ import styles from './Student.module.css';
 import Navbar from '../../components/common_components/Navbar';
 import { Link } from 'react-router-dom';
 import Animated from '../../components/common_components/Animated';
+import { useSelector, useDispatch } from 'react-redux';
+import { setMousePosition } from '../../slices/studentUiSlice';
 const Student = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const dispatch = useDispatch();
+  const mousePosition = useSelector((state) => state.studentUi.mousePosition);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      dispatch(setMousePosition({ x: e.clientX, y: e.clientY }));
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

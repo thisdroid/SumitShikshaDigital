@@ -46,6 +46,7 @@
   .hamburgerButton {
     display: flex;
   }
+
   .sidebarWrapper {
     position: fixed;
     top: 0;
@@ -106,7 +107,7 @@
   text-align: left;
 }
 
-.navLink:hover {
+.navLink:hover, .navLink.active {
   background-color: #f3f4f6;
   color: #2563eb;
 }

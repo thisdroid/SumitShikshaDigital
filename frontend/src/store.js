@@ -4,6 +4,9 @@ import userReducer from './slices/userSlice';
 import coursesReducer from './slices/coursesSlice';
 import examsReducer from './slices/examsSlice';
 import certificatesReducer from './slices/certificatesSlice';
+import studentSignupReducer from './slices/studentSignupSlice';
+import studentLoginReducer from './slices/studentLoginSlice';
+import studentUiReducer from './slices/studentUiSlice';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +15,9 @@ const store = configureStore({
     courses: coursesReducer,
     exams: examsReducer,
     certificates: certificatesReducer,
+    studentSignup: studentSignupReducer,
+    studentLogin: studentLoginReducer,
+    studentUi: studentUiReducer,
   },
 });
 

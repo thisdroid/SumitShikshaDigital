@@ -31,6 +31,9 @@ import CollegeStudents from './pages/collegePortal/CollegeStudents'
 import CollegeProfile from './pages/collegePortal/CollegeProfile_icon/CollegeProfile'
 import CollegeDetails from './pages/collegePortal/CollegeProfile_icon/CollegeDetails'
 import CollegeSecurity from './pages/collegePortal/CollegeProfile_icon/CollegeSecurity'
+import CollegeCreateExam from './pages/collegePortal/CollegeExaminationSection/CollegeCreateExams'
+import CollegeScheduledExams from './pages/collegePortal/CollegeExaminationSection/CollegeScheduledExams'
+import CollegeExamHistory from './pages/collegePortal/CollegeExaminationSection/CollegeExamHistory'
 
 
 function App() {
@@ -72,6 +75,9 @@ function App() {
             <Route path="CollegeProfile" element={<CollegeProfile/>}/>
             <Route path="CollegeDetails" element={<CollegeDetails/>}/>
             <Route path="CollegeSecurity" element={<CollegeSecurity/>}/>
+            <Route path="CreateExam" element={<CollegeCreateExam/>}/>
+            <Route path="ScheduledExams" element={<CollegeScheduledExams/>}/>
+            <Route path="ExamHistory" element={<CollegeExamHistory/>}/>
             
         </Route>
         

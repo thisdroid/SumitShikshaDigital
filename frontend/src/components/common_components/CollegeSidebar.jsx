@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './CollegeSidebar.module.css';
 
 const CollegeSidebar = () => {
@@ -7,6 +7,7 @@ const CollegeSidebar = () => {
   const [isExamDropdownOpen, setIsExamDropdownOpen] = useState(false);
   const sidebarRef = useRef(null);
   const buttonRef = useRef(null);
+  const location = useLocation();
 
   // Track window width to control responsive behavior
   const [isMobileView, setIsMobileView] = useState(window.innerWidth < 1024);
@@ -17,6 +18,7 @@ const CollegeSidebar = () => {
       setIsMobileView(mobileView);
       setIsOpen(!mobileView);
     };
+
     window.addEventListener('resize', handleResize);
     handleResize();
 
@@ -35,10 +37,15 @@ const CollegeSidebar = () => {
           setIsOpen(false);
         }
       };
+
       document.addEventListener('mousedown', handleClickOutside);
       return () => document.removeEventListener('mousedown', handleClickOutside);
     }
   }, [isMobileView, isOpen]);
+
+  const isActiveLink = (path) => {
+    return location.pathname === path ? styles.active : '';
+  };
 
   return (
     <>
@@ -71,7 +78,7 @@ const CollegeSidebar = () => {
         <nav className={styles.nav}>
           <Link
             to="/CollegeDashboard"
-            className={styles.navLink}
+            className={`${styles.navLink} ${isActiveLink('/CollegeDashboard')}`}
             onClick={() => isMobileView && setIsOpen(false)}
           >
             <span className={`material-icons ${styles.navIcon}`}>dashboard</span>
@@ -79,7 +86,7 @@ const CollegeSidebar = () => {
           </Link>
           <Link
             to="/CollegeDashboard/CollegeStudents"
-            className={styles.navLink}
+            className={`${styles.navLink} ${isActiveLink('/CollegeDashboard/CollegeStudents')}`}
             onClick={() => isMobileView && setIsOpen(false)}
           >
             <span className={`material-icons ${styles.navIcon}`}>group</span>
@@ -87,7 +94,7 @@ const CollegeSidebar = () => {
           </Link>
           <div>
             <button
-              className={styles.navLink}
+              className={`${styles.navLink} ${isExamDropdownOpen ? styles.active : ''}`}
               onClick={() => setIsExamDropdownOpen(!isExamDropdownOpen)}
             >
               <span className={`material-icons ${styles.navIcon}`}>edit</span>
@@ -95,15 +102,15 @@ const CollegeSidebar = () => {
             </button>
             {isExamDropdownOpen && (
               <div className={styles.dropdown}>
-                <Link to="" className={styles.dropdownLink}>
+                <Link to="/CollegeDashboard/ExamHistory" className={styles.dropdownLink}>
                   <span className={`material-icons ${styles.navIcon}`}>check_circle</span>
                   Exam History
                 </Link>
-                <Link to="" className={styles.dropdownLink}>
+                <Link to="/CollegeDashboard/CreateExam" className={styles.dropdownLink}>
                   <span className={`material-icons ${styles.navIcon}`}>add_circle</span>
                   Create Exams
                 </Link>
-                <Link to="/StudentDashboard/ScheduledExams" className={styles.dropdownLink}>
+                <Link to="/CollegeDashboard/ScheduledExams" className={styles.dropdownLink}>
                   <span className={`material-icons ${styles.navIcon}`}>schedule</span>
                   Scheduled Exams
                 </Link>

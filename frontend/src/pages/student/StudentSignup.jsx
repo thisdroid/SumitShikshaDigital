@@ -4,27 +4,18 @@ import styles from "./StudentSignup.module.css";
 import Navbar from "../../components/common_components/Navbar";
 import Animate from "../../components/common_components/Animated";
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setFormData, setShowPassword, setShowConfirmPassword } from '../../slices/studentSignupSlice';
 
 export default function StudentSignUp() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
-    address: "",
-    college: "",
-  });
+  const dispatch = useDispatch();
+  const formData = useSelector((state) => state.studentSignup.formData);
+  const showPassword = useSelector((state) => state.studentSignup.showPassword);
+  const showConfirmPassword = useSelector((state) => state.studentSignup.showConfirmPassword);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
+    dispatch(setFormData({ [name]: value }));
   };
 
   const handleSubmit = (e) => {
@@ -131,7 +122,7 @@ export default function StudentSignUp() {
                         <button
                           type="button"
                           className={styles["studentsignup-password-toggle"]}
-                          onClick={() => setShowPassword(!showPassword)}
+                          onClick={() => dispatch(setShowPassword(!showPassword))}
                         >
                           {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>
@@ -152,7 +143,7 @@ export default function StudentSignUp() {
                         <button
                           type="button"
                           className={styles["studentsignup-password-toggle"]}
-                          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                          onClick={() => dispatch(setShowConfirmPassword(!showConfirmPassword))}
                         >
                           {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>

@@ -1,5 +1,3 @@
-
-
 .mainContent {
   flex: 1;
   margin-left: 16rem;
@@ -12,6 +10,7 @@
   gap: 2rem;
   padding: 2rem;
   flex: 1;
+  flex-direction: column;
 }
 
 .statsSection {
@@ -76,8 +75,105 @@
   text-decoration: underline;
 }
 
+.recentActivitiesSection {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 0rem;
+}
+
+.recentExams {
+  width: 70%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.recentExams:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.recentExams h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #4a4a4a;
+  padding-bottom: 0.5rem;
+}
+
+.recentExams ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.recentExams li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.recentExams li:last-child {
+  border-bottom: none;
+}
+
+.topPerformers {
+  width: 30%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topPerformers:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.topPerformers h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #4a4a4a;
+  padding-bottom: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.topPerformers ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.topPerformers li {
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.topPerformers li:last-child {
+  border-bottom: none;
+}
+
+.performanceChart {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #4CAF50 0% 30%,
+    #2196F3 30% 60%,
+    #FFC107 60% 100%
+  );
+  margin: 1rem auto;
+}
+
 /* Responsive Styles */
-@media (max-width<=1204px) {
+@media (max-width: 1204px) {
   .mainContent {
     width: 100%;
   }
@@ -99,6 +195,14 @@
 
   .contentWrapper {
     padding: 1rem;
+  }
+
+  .recentActivitiesSection {
+    flex-direction: column;
+  }
+
+  .recentExams, .topPerformers {
+    width: 100%;
   }
 }
 
@@ -124,10 +228,53 @@
     font-size: 1.2rem;
   }
 }
+/* Existing CSS remains the same until the last media query */
 
 @media (max-width: 480px) {
   .StatsCollege {
     padding: 0.5rem;
+  }
+  .StatsCollege .material-icons {
+    font-size: 1.5rem;
+  }
+  .StatsCollege h3 {
+    font-size: 0.9rem;
+  }
+  .StatsCollege p {
+    font-size: 1rem;
+  }
+}
+
+/* New media query for mobile view when width is below 500px */
+@media (max-width: 500px) {
+  .dashboardContainer {
+    flex-direction: column;
+  }
+
+  .mainContent {
+    margin-left: 0;
+    padding: 0.5rem;
+  }
+
+  .contentWrapper {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .statsSection {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    max-height: none;
+  }
+
+  .childStats {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .StatsCollege {
+    padding: 0.5rem;
+    align-items: center;
   }
 
   .StatsCollege .material-icons {
@@ -136,9 +283,34 @@
 
   .StatsCollege h3 {
     font-size: 0.9rem;
+    margin: 0.25rem 0;
   }
 
   .StatsCollege p {
     font-size: 1rem;
+    margin: 0.25rem 0;
+  }
+
+  .recentActivitiesSection {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .recentExams, .topPerformers {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  .recentExams h3, .topPerformers h3 {
+    font-size: 1rem;
+  }
+
+  .recentExams ul, .topPerformers ul {
+    font-size: 0.9rem;
+  }
+
+  .performanceChart {
+    width: 80px;
+    height: 80px;
   }
 }

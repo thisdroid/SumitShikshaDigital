@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { setLoginFormData, setLoginShowPassword } from '../../slices/studentLoginSlice';
 import { Eye, EyeOff, CircleArrowRight, ArrowRight } from "lucide-react";
 import styles from "./StudentLogin.module.css";
 import Navbar from '../../components/common_components/Navbar';
@@ -6,18 +7,13 @@ import Animated from "../../components/common_components/Animated";
 import { Link } from 'react-router-dom';
 
 const StudentLogin = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    contactNumber: "",
-    password: "",
-  });
+  const dispatch = useDispatch();
+  const formData = useSelector((state) => state.studentLogin.formData);
+  const showPassword = useSelector((state) => state.studentLogin.showPassword);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    dispatch(setLoginFormData({ [name]: value }));
   };
 
   const handleSubmit = (e) => {
@@ -98,7 +94,7 @@ const StudentLogin = () => {
                       />
                       <button
                         type="button"
-                        onClick={() => setShowPassword(!showPassword)}
+                        onClick={() => dispatch(setLoginShowPassword(!showPassword))}
                         className={styles.passwordToggle}
                       >
                         {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}

@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
@@ -5,17 +6,37 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login
 from django.db import transaction
+
 from .models import Student, Course, Enrollment, Exam, ExamAttempt, Certificate
 from .serializers import (
     StudentSerializer, CourseSerializer, EnrollmentSerializer,
     ExamSerializer, ExamAttemptSerializer, CertificateSerializer
 )
 
-# Student Views
+
+# ✅ Home Page View
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def home_view(request):
+    return Response({
+        'message': 'Welcome to ShikshaDigital API',
+        'endpoints': [
+            '/api/register/',
+            '/api/login/',
+            '/api/token/',
+            '/api/token/refresh/',
+            '/api/courses/',
+            '/api/exams/',
+            '/api/profile/',
+            '/api/enroll/',
+        ]
+    })
+
+
+# ✅ Student Registration
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def student_register(request):
-    """Register a new student"""
     serializer = StudentSerializer(data=request.data)
     if serializer.is_valid():
         try:
@@ -33,10 +54,11 @@ def student_register(request):
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+# ✅ Optional login endpoint (JWT already handles login/token generation)
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def student_login(request):
-    """Student login"""
     username = request.data.get('username')
     password = request.data.get('password')
     
@@ -49,10 +71,11 @@ def student_login(request):
         return Response(StudentSerializer(user).data, status=status.HTTP_200_OK)
     return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
+
+# ✅ Student profile (GET / PUT)
 @api_view(['GET', 'PUT'])
 @permission_classes([IsAuthenticated])
 def student_profile(request):
-    """Get or update student profile"""
     if request.method == 'GET':
         serializer = StudentSerializer(request.user)
         return Response(serializer.data)
@@ -63,44 +86,42 @@ def student_profile(request):
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# Course Views
+
+# ✅ Course list and detail
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def course_list(request):
-    """Get all courses"""
-    courses = Course.objects.all()  # type: ignore
+    courses = Course.objects.all()
     serializer = CourseSerializer(courses, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def course_detail(request, pk):
-    """Get specific course"""
     try:
-        course = Course.objects.get(pk=pk)  # type: ignore
+        course = Course.objects.get(pk=pk)
         serializer = CourseSerializer(course)
         return Response(serializer.data)
-    except Course.DoesNotExist:  # type: ignore
+    except Course.DoesNotExist:
         return Response({'error': 'Course not found'}, status=status.HTTP_404_NOT_FOUND)
 
-# Enrollment Views
+
+# ✅ Enroll in course
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def enroll_course(request):
-    """Enroll in a course"""
     serializer = EnrollmentSerializer(data=request.data)
     if serializer.is_valid():
         try:
-            with transaction.atomic():  # type: ignore
-                # Check if already enrolled
-                existing_enrollment = Enrollment.objects.filter(  # type: ignore
+            with transaction.atomic():
+                existing_enrollment = Enrollment.objects.filter(
                     student=request.user,
-                    course_id=serializer.validated_data['course_id']  # type: ignore
+                    course_id=serializer.validated_data['course_id']
                 ).first()
                 
                 if existing_enrollment:
                     return Response({'error': 'Already enrolled in this course'}, 
-                                 status=status.HTTP_400_BAD_REQUEST)
+                                    status=status.HTTP_400_BAD_REQUEST)
                 
                 enrollment = serializer.save(student=request.user)
             return Response(EnrollmentSerializer(enrollment).data, status=status.HTTP_201_CREATED)
@@ -111,49 +132,46 @@ def enroll_course(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def my_enrollments(request):
-    """Get student's enrollments"""
-    enrollments = Enrollment.objects.filter(student=request.user)  # type: ignore
+    enrollments = Enrollment.objects.filter(student=request.user)
     serializer = EnrollmentSerializer(enrollments, many=True)
     return Response(serializer.data)
 
-# Exam Views
+
+# ✅ Exam list and detail
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def exam_list(request):
-    """Get all exams"""
-    exams = Exam.objects.all()  # type: ignore
+    exams = Exam.objects.all()
     serializer = ExamSerializer(exams, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def exam_detail(request, pk):
-    """Get specific exam"""
     try:
-        exam = Exam.objects.get(pk=pk)  # type: ignore
+        exam = Exam.objects.get(pk=pk)
         serializer = ExamSerializer(exam)
         return Response(serializer.data)
-    except Exam.DoesNotExist:  # type: ignore
+    except Exam.DoesNotExist:
         return Response({'error': 'Exam not found'}, status=status.HTTP_404_NOT_FOUND)
 
-# Exam Attempt Views
+
+# ✅ Submit exam attempt and view history
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def submit_exam_attempt(request):
-    """Submit exam attempt"""
     serializer = ExamAttemptSerializer(data=request.data)
     if serializer.is_valid():
         try:
-            with transaction.atomic():  # type: ignore
-                # Check if already attempted
-                existing_attempt = ExamAttempt.objects.filter(  # type: ignore
+            with transaction.atomic():
+                existing_attempt = ExamAttempt.objects.filter(
                     student=request.user,
-                    exam_id=serializer.validated_data['exam_id']  # type: ignore
+                    exam_id=serializer.validated_data['exam_id']
                 ).first()
                 
                 if existing_attempt:
                     return Response({'error': 'Already attempted this exam'}, 
-                                 status=status.HTTP_400_BAD_REQUEST)
+                                    status=status.HTTP_400_BAD_REQUEST)
                 
                 attempt = serializer.save(student=request.user)
             return Response(ExamAttemptSerializer(attempt).data, status=status.HTTP_201_CREATED)
@@ -164,37 +182,34 @@ def submit_exam_attempt(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def my_exam_attempts(request):
-    """Get student's exam attempts"""
-    attempts = ExamAttempt.objects.filter(student=request.user)  # type: ignore
+    attempts = ExamAttempt.objects.filter(student=request.user)
     serializer = ExamAttemptSerializer(attempts, many=True)
     return Response(serializer.data)
 
-# Certificate Views
+
+# ✅ Certificates (view + issue)
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def my_certificates(request):
-    """Get student's certificates"""
-    certificates = Certificate.objects.filter(student=request.user)  # type: ignore
+    certificates = Certificate.objects.filter(student=request.user)
     serializer = CertificateSerializer(certificates, many=True)
     return Response(serializer.data)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def issue_certificate(request):
-    """Issue certificate (admin function)"""
     serializer = CertificateSerializer(data=request.data)
     if serializer.is_valid():
         try:
-            with transaction.atomic():  # type: ignore
-                # Check if certificate already exists
-                existing_certificate = Certificate.objects.filter(  # type: ignore
-                    student_id=serializer.validated_data['student_id'],  # type: ignore
-                    course_id=serializer.validated_data['course_id']  # type: ignore
+            with transaction.atomic():
+                existing_certificate = Certificate.objects.filter(
+                    student_id=serializer.validated_data['student_id'],
+                    course_id=serializer.validated_data['course_id']
                 ).first()
                 
                 if existing_certificate:
                     return Response({'error': 'Certificate already issued'}, 
-                                 status=status.HTTP_400_BAD_REQUEST)
+                                    status=status.HTTP_400_BAD_REQUEST)
                 
                 certificate = serializer.save()
             return Response(CertificateSerializer(certificate).data, status=status.HTTP_201_CREATED)

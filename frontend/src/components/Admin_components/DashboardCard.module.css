@@ -1,0 +1,130 @@
+
+.dashboardCard {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  border-left: 4px solid;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px; /* Prevents cards from getting too wide */
+  min-width: 280px; /* Ensures minimum width for consistency */
+}
+
+.dashboardCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.cardTitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03125rem;
+  line-height: 1.4;
+  max-width: 70%;
+}
+
+.cardIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardIcon.blue {
+  background-color: #4f7cff;
+}
+
+.cardIcon.purple {
+  background-color: #8b5cf6;
+}
+
+.cardIcon.pink {
+  background-color: #ec4899;
+}
+
+.cardIcon.cyan {
+  background-color: #06b6d4;
+}
+
+.cardIcon.orange {
+  background-color: #f59e0b;
+}
+
+.cardIcon.green {
+  background-color: #10b981;
+}
+
+.cardIcon .material-icons {
+  color: white;
+  font-size: 1.25rem;
+}
+
+.cardCount {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.cardAction {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.cardAction:hover {
+  color: #4f7cff;
+}
+
+.cardAction .material-icons {
+  font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+  .dashboardCard {
+    padding: 1rem;
+    min-width: 250px;
+    max-width: 100%;
+  }
+
+  .cardTitle {
+    font-size: 0.8125rem;
+    max-width: 65%;
+  }
+
+  .cardIcon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .cardIcon .material-icons {
+    font-size: 1.125rem;
+  }
+
+  .cardCount {
+    font-size: 1.75rem;
+  }
+
+  .cardAction {
+    font-size: 0.8125rem;
+  }
+}

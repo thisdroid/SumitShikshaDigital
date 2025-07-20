@@ -1,0 +1,130 @@
+.pageContainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.mainContent {
+  flex: 1;
+  margin-left: 16rem;
+  padding-top: 64px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 1023px) {
+  .mainContent {
+    margin-left: 0;
+    padding-top: 64px;
+  }
+}
+
+.mainHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 2000;
+  background: white;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  /* LEFT aligned on large screens */
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  transition: justify-content 0.3s ease;
+}
+
+@media (max-width: 1023px) {
+  .mainHeader {
+    /* CENTER on small screens */
+    justify-content: center !important;
+  }
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Center content on mobile */
+  transition: justify-content 0.3s ease;
+}
+
+@media (max-width: 1023px) {
+  .headerLeft {
+    justify-content: center;
+  }
+}
+
+.headerIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #4f7cff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerIcon .material-icons {
+  color: white;
+  font-size: 1.125rem;
+}
+
+.headerTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #4f7cff;
+  white-space: nowrap;
+}
+
+.contentArea {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Hamburger button */
+.hamburgerButton {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2100; /* highest */
+  background-color: white;
+  border: 1.5px solid #4f7cff;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.hamburgerButton .material-icons {
+  color: #4f7cff;
+  font-size: 1.5rem;
+}
+
+/* Overlay backdrop - covers only on mobile */
+.overlay {
+  position: fixed;
+  top: 0;
+  /* Position overlay from left 0 because sidebar slides over or off screen */
+  left: 16rem;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1350;
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+}

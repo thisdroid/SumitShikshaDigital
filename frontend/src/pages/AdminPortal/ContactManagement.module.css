@@ -1,0 +1,206 @@
+/* .inboxContainer {
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inboxHeader {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.inboxTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.inboxTable th,
+.inboxTable td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+}
+
+.inboxTable th {
+  background-color: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+}
+
+.inboxTable td {
+  color: #374151;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.viewButton {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.deleteButton {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.noData {
+  text-align: center;
+  padding: 1.5rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+@media screen and (max-width: 768px) {
+  .inboxHeader {
+    font-size: 1.4rem;
+  }
+
+  .viewButton,
+  .deleteButton {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .inboxTable th,
+  .inboxTable td {
+    padding: 0.5rem;
+  }
+} */
+
+
+.inboxContainer {
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f5f7fa;
+}
+
+.inboxHeader {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3730a3;
+  margin-bottom: 1.5rem;
+}
+
+.tableWrapper {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  overflow-x: auto;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 3fr 2fr 1.5fr;
+  background: linear-gradient(to right, #4338ca, #6366f1);
+  color: white;
+  font-weight: 600;
+  padding: 1rem;
+  text-align: left;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 3fr 2fr 1.5fr;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  align-items: center;
+  color: #374151;
+}
+
+.messageCell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.viewButton {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.viewButton:hover {
+  background-color: #2563eb;
+}
+
+.deleteButton {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.deleteButton:hover {
+  background-color: #dc2626;
+}
+
+.noData {
+  text-align: center;
+  padding: 1.5rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .inboxHeader {
+    font-size: 1.5rem;
+  }
+
+  .tableHeader,
+  .tableRow {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    font-size: 0.85rem;
+  }
+
+  .viewButton,
+  .deleteButton {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .messageCell {
+    white-space: normal;
+    word-wrap: break-word;
+  }
+}

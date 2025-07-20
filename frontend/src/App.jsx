@@ -39,6 +39,40 @@ import CollegeScheduledExams from './pages/collegePortal/CollegeExaminationSecti
 import CollegeExamHistory from './pages/collegePortal/CollegeExaminationSection/CollegeExamHistory'
 import SubscriptionPlans from './pages/collegePortal/CollegeProfile_icon/CollegePlan'
 
+//ADMIN PORTAL
+
+import AdminDashboardLayout from './pages/AdminPortal/AdminDashboardLayout'
+import AdminDashboard from './pages/AdminPortal/AdminDashboard';
+import College_Exams from './pages/AdminPortal/AdminExams/College_Exams'
+import Manage_Exams from './pages/AdminPortal/AdminExams/Manage_Exams'
+import ManageCollegeQuestions from './pages/AdminPortal/AdminQuestions/ManageCollegeQuestions';
+import ManageQuestions from './pages/AdminPortal/AdminQuestions/ManageQuestions';
+import Admin_College from './pages/AdminPortal/AdminSection/Admin_College';
+import Admin_Student from './pages/AdminPortal/AdminSection/Admin_Student';
+import QuestionBank from './pages/AdminPortal/AdminQuestions/QuestionBank'
+import AddnewQuestions from './pages/AdminPortal/AdminQuestions/AddnewQuestions'
+import AddCollegeQuestions from './pages/AdminPortal/AdminQuestions/AddCollegeQuestions'
+import ViewCollegeQuestions from './pages/AdminPortal/AdminQuestions/ViewCollegeQuestions'
+import AddnewExams from './pages/AdminPortal/AdminExams/AddnewExams'
+import StudentManagement from './pages/AdminPortal/AdminSection/StudentManagement'
+
+import CollegeRegisteredStudents from './pages/AdminPortal/AdminSection/CollegeResiteredStudents'
+import MarksWithoutCollege from './pages/AdminPortal/AdminSection/MarksWithoutCollege'
+import RegisteredColleges from './pages/AdminPortal/AdminSection/RegisteredColleges'
+import PendingColleges from './pages/AdminPortal/AdminSection/PendingColleges'
+import CourseManagement from './pages/AdminPortal/AdminExams/CourseManagement'
+import ContactManagement from './pages/AdminPortal/ContactManagement'
+import UpdateCourseDetails from './pages/AdminPortal/AdminExams/UpdateCourseDetails'
+import ExamQuestions from './pages/AdminPortal/AdminExams/ExamQuestions'
+import UpdateQuestions from './pages/AdminPortal/AdminExams/UpdateQuestions'
+import AdminCourses from './pages/AdminPortal/AdminCourses/AdminCourses'
+import AddCourse from './pages/AdminPortal/AdminCourses/AddCourse'
+import CourseList from './pages/AdminPortal/AdminCourses/CourseList'
+import EditCourse from './pages/AdminPortal/AdminCourses/EditCourse'
+import StudentExamList from './pages/AdminPortal/AdminSection/StudentExamList'
+import StudentExamDetail from './pages/AdminPortal/AdminSection/StudentExamDetail'
+import MarksWithCollege from './pages/AdminPortal/AdminSection/MarksWithCollege'
+
 
 function App() {
   return (
@@ -86,7 +120,55 @@ function App() {
             <Route path="ScheduledExams" element={<CollegeScheduledExams/>}/>
             <Route path="ExamHistory" element={<CollegeExamHistory/>}/>
             <Route path="YourPlan" element={<SubscriptionPlans/>}/>
-            
+        </Route>
+
+        <Route path="/AdminDashboard" element={<AdminDashboardLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="StudentSection" element={<Admin_Student />} />
+          <Route path='StudentManagement' element={<StudentManagement />} />
+          <Route path='MarksWithoutCollege' element={<MarksWithoutCollege />} />
+          <Route path='CollegeRegisteredStudents' element={<CollegeRegisteredStudents />} />
+          <Route path='MarksWithCollege' element={<MarksWithCollege />} />
+          <Route path='ContactManagement' element={<ContactManagement />} />
+          <Route path='UpdateQuestions/:examName' element={<UpdateQuestions />} />
+          <Route path='ExamQuestions' element={<ExamQuestions />} />
+          <Route path="/AdminDashboard/StudentExamList/:studentName" element={<StudentExamList />} />
+          <Route path="/AdminDashboard/StudentExamDetail/:studentName/:examName" element={<StudentExamDetail />} />
+
+
+           {/* COLLEGE SECTION */}
+          <Route path="CollegeSection" element={<Admin_College />} />
+          <Route path='RegisteredColleges' element={<RegisteredColleges />} />
+          <Route path='PendingColleges' element={<PendingColleges />} />
+          <Route path="ManageQuestions" element={<ManageQuestions />} />
+          <Route path="ManageCollegeQuestions" element={<ManageCollegeQuestions />} />
+
+
+
+          {/* QUESTIONS ROUTES */}
+          <Route path="QuestionBank" element={<QuestionBank />} />
+          <Route path="AddnewQuestions" element={<AddnewQuestions />} />
+          <Route path="AddCollegeQuestions" element={<AddCollegeQuestions />} />
+          <Route path="ViewCollegeQuestions" element={<ViewCollegeQuestions />} />
+
+
+           {/* EXAMS ROUTES */}
+          <Route path="ManageExams" element={<Manage_Exams />} />
+          <Route path="ManageCollegeExams" element={<College_Exams />} />
+          <Route path='AddnewExams' element={<AddnewExams examType="platform" />} />
+          <Route path='AddnewExamsCollege' element={<AddnewExams examType="college" />} />
+          <Route path='CourseManagement' element={<CourseManagement examType="platform" />} />
+          <Route path='CourseManagementCollege' element={<CourseManagement examType="college" />} />
+          <Route path='Manage_Exams' element={<Manage_Exams />} />
+          <Route path='College_Exams' element={<College_Exams />} />
+          <Route path='UpdateCourseDetails/:examName' element={<UpdateCourseDetails />} />
+
+
+            {/* SORTED ROUTES */}
+          <Route path='AdminCourses' element={<AdminCourses />} />
+          <Route path='AddCourse' element={<AddCourse />} />
+          <Route path='CourseList' element={<CourseList />} />
+          <Route path="/AdminDashboard/EditCourse/:courseIndex" element={<EditCourse />} />
         </Route>
         
       </Routes>     

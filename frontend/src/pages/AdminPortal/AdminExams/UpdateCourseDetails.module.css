@@ -1,0 +1,346 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #5865f2;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.formContainer {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.input,
+.select {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: #5865f2;
+  box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
+}
+
+.imageSection {
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #5865f2;
+  margin-bottom: 1rem;
+}
+
+.imageUpload {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.currentImage {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.courseImage {
+  width: 200px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.imageInfo {
+  flex: 1;
+}
+
+.imageInfo p {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+.imageActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+}
+
+.fileInput {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.descriptionsSection,
+.keyPointsSection {
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.descriptionsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.keyPointsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.descriptionItem,
+.keyPointItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.descriptionLabel,
+.keyPointLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #5865f2;
+  margin-bottom: 0.5rem;
+}
+
+.textarea {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  resize: vertical;
+  min-height: 60px;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #5865f2;
+  box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.updateButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #5865f2;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.updateButton:hover {
+  background: #4752c4;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #6b7280;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.backButton:hover {
+  background: #4b5563;
+}
+
+@media (max-width: 768px) {
+  .formGrid,
+  .descriptionsGrid,
+  .keyPointsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+  }
+
+  .currentImage {
+    flex-direction: column;
+  }
+}
+
+
+
+
+
+/* Section Wrapper */
+.descriptionsSection,
+.keyPointsSection {
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Grid Layout */
+.descriptionsGrid,
+.keyPointsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Item With Remove Button */
+.descriptionItemWithRemove,
+.keyPointItemWithRemove {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Header Row (Label + Remove Button) */
+.descriptionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Labels */
+.descriptionLabel,
+.keyPointLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #5865f2;
+  margin-bottom: 0.5rem;
+}
+
+/* Textarea */
+.textarea {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  resize: vertical;
+  min-height: 60px;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #5865f2;
+  box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
+}
+
+.textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Remove Button (X) */
+.removeButton {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.5rem;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.removeButton:hover {
+  color: #dc2626;
+}
+
+/* Add Button */
+.addButtonWrapper {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.addButton {
+  background: #e0e7ff;
+  color: #374151;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.addButton:hover {
+  background-color: #c7d2fe;
+}

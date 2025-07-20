@@ -1,0 +1,296 @@
+.sidebarWrapper {
+  height: 100vh;
+  width: 16rem;
+  background-color: #2f3241;
+  border-right: 1px solid #444a6a;
+  position: fixed;
+  top: 1.5rem;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  overflow-y: auto;
+  transition: transform 0.3s ease, visibility 0.3s ease;
+  z-index: 1300;
+  padding-top: 64px; /* Push content below header */
+  box-sizing: border-box;
+}
+
+.open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.closed {
+  transform: translateX(-110%); /* slide completely left */
+  visibility: hidden;
+}
+
+/* User profile */
+.userProfile {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid #444a6a;
+}
+
+.userAvatar {
+  min-width: 4rem;
+  height: 4rem;
+  background: linear-gradient(135deg, #4f7cff, #3950e4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(79, 124, 255, 0.3);
+}
+
+.userAvatar .material-icons {
+  font-size: 1.75rem;
+  color: white;
+}
+
+.userInfo {
+  text-align: center;
+}
+
+.userName {
+  font-weight: 700;
+  color: #a6b0cf;
+  font-size: 1.05rem;
+  margin-bottom: 0.15rem;
+}
+
+.userRole {
+  font-weight: 400;
+  color: #7c85a0;
+  font-size: 0.85rem;
+}
+
+/* Navigation */
+.nav {
+  flex: 1;
+  padding-top: 1rem;
+}
+
+.navItem {
+  margin-bottom: 0.25rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 1.5rem;
+  color: #caccdd;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  user-select: none;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+/* Hover state - subtle indication */
+.navLink:hover {
+  color: #e2e4f0;
+  background-color: rgba(79, 124, 255, 0.1);
+  transform: translateX(2px);
+}
+
+/* Active state - full blue styling */
+.navLink.active {
+  color: white;
+  background-color: #3951e4;
+  border-radius: 6px 0 0 6px;
+  border-right: 4px solid #4f7cff;
+  box-shadow: 0 2px 8px rgba(57, 81, 228, 0.3);
+}
+
+/* Active state should override hover */
+.navLink.active:hover {
+  color: white;
+  background-color: #3951e4;
+  transform: none;
+}
+
+.navIcon {
+  margin-right: 1rem;
+  font-size: 1.3rem;
+  transition: transform 0.2s ease;
+}
+
+.navLink:hover .navIcon {
+  transform: scale(1.1);
+}
+
+.navLink.active .navIcon {
+  transform: none;
+}
+
+.navText {
+  flex: 1;
+}
+
+.dropdownIcon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdownOpen {
+  transform: rotate(180deg);
+}
+
+.subMenu {
+  padding-left: 2.5rem;
+  background-color: #222533;
+  border-left: 3px solid #4f7cff;
+  margin-top: 0.15rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0 4px 4px 0;
+  overflow: hidden;
+}
+
+.subNavLink {
+  display: block;
+  padding: 0.45rem 0;
+  color: #b0b6d9;
+  font-size: 0.85rem;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  border-radius: 0;
+}
+
+/* Sub menu hover state - subtle */
+.subNavLink:hover {
+  color: #d1d5f0;
+  background-color: rgba(79, 124, 255, 0.08);
+  padding-left: 0.5rem;
+}
+
+/* Sub menu active state - more prominent */
+.subNavLink.active {
+  color: white;
+  font-weight: 600;
+  background-color: rgba(79, 124, 255, 0.2);
+  border-left: 3px solid #4f7cff;
+  padding-left: 0.5rem;
+}
+
+.subNavLink.active:hover {
+  color: white;
+  background-color: rgba(79, 124, 255, 0.2);
+}
+
+.subNavText {
+  transition: transform 0.2s ease;
+}
+
+.subNavLink:hover .subNavText {
+  transform: translateX(2px);
+}
+
+.subNavLink.active .subNavText {
+  transform: none;
+}
+
+/* Scrollbar styling */
+.sidebarWrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebarWrapper::-webkit-scrollbar-track {
+  background: #2f3241;
+}
+
+.sidebarWrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(79, 124, 255, 0.3);
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.sidebarWrapper::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(79, 124, 255, 0.5);
+}
+
+/* Focus states for accessibility */
+.navLink:focus,
+.subNavLink:focus {
+  outline: 2px solid #4f7cff;
+  outline-offset: 2px;
+}
+
+/* Responsive adjust */
+@media (max-width: 1023px) {
+  .sidebarWrapper {
+    width: 16rem;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Animation for smooth transitions */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.subMenu {
+  animation: slideIn 0.2s ease-out;
+}
+
+/* Enhanced user profile styling */
+.userProfile:hover .userAvatar {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(79, 124, 255, 0.4);
+}
+
+.userAvatar {
+  transition: all 0.3s ease;
+}
+
+/* Loading state for navigation items */
+.navItem:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.navItem:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.navItem:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.navItem:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.navItem:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.navItem:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+.navItem {
+  animation: slideIn 0.3s ease-out both;
+}
+
+
+
+

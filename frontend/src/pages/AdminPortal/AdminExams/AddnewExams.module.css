@@ -1,0 +1,655 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #5865f2;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.formContainer {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.input,
+.select {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: #5865f2;
+  box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+.imageSection {
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #5865f2;
+  margin-bottom: 1rem;
+}
+
+.fileUpload {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fileInput {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.fileText {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.descriptionsSection,
+.keyPointsSection {
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.descriptionsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.keyPointsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.descriptionItem,
+.keyPointItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.descriptionLabel,
+.keyPointLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #5865f2;
+  margin-bottom: 0.5rem;
+}
+
+.textarea {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  resize: vertical;
+  min-height: 60px;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #5865f2;
+  box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
+}
+
+.textarea::placeholder {
+  color: #9ca3af;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.createButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #5865f2;
+  color: white;
+  border: none;
+  padding: 0.75rem 3rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.createButton:hover {
+  background: #4752c4;
+}
+
+.bulkUploadSection {
+  margin-top: 2rem;
+}
+
+.bulkUploadContainer {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.bulkUploadTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #5865f2;
+  margin-bottom: 1.5rem;
+}
+
+.uploadArea {
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  padding: 3rem;
+  text-align: center;
+  background: #f9fafb;
+}
+
+.uploadIcon {
+  margin-bottom: 1rem;
+}
+
+.uploadIcon .material-icons {
+  font-size: 48px;
+  color: #9ca3af;
+}
+
+.uploadText {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.uploadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #5865f2;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.uploadButton:hover {
+  background: #4752c4;
+}
+
+/* Section Wrapper */
+.descriptionsSection,
+.keyPointsSection {
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Grid Layout */
+.descriptionsGrid,
+.keyPointsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Item With Remove Button */
+.descriptionItemWithRemove,
+.keyPointItemWithRemove {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Header Row (Label + Remove Button) */
+.descriptionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Labels */
+.descriptionLabel,
+.keyPointLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #5865f2;
+  margin-bottom: 0.5rem;
+}
+
+/* Remove Button (X) */
+.removeButton {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.5rem;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.removeButton:hover {
+  color: #dc2626;
+}
+
+/* Add Button */
+.addButtonWrapper {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.addButton {
+  background: #e0e7ff;
+  color: #374151;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.addButton:hover {
+  background-color: #c7d2fe;
+}
+
+/* Manual Entry Section */
+.manualEntrySection {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.manualEntryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.toggleButton {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.toggleButton:hover {
+  background: #059669;
+}
+
+.manualQuestionsWrapper {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 1.5rem;
+}
+
+.manualQuestionsHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.manualQuestionsTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #5865f2;
+  margin: 0 0 0.5rem 0;
+}
+
+.manualQuestionsSubtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.questionFormCard {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+}
+
+.questionCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.questionNumber {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #5865f2;
+  margin: 0;
+}
+
+.removeQuestionBtn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+  transition: color 0.2s ease;
+  border-radius: 4px;
+}
+
+.removeQuestionBtn:hover {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+.questionFormContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.questionTextSection {
+  position: relative;
+}
+
+.questionTextInput {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+  background: #ffffff;
+}
+
+.questionTextInput:focus {
+  outline: none;
+  border-color: #5865f2;
+  box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
+}
+
+.questionTextLabel {
+  position: absolute;
+  bottom: -0.5rem;
+  right: 0.5rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  background: white;
+  padding: 0 0.25rem;
+}
+
+.marksSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.marksLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  min-width: 50px;
+}
+
+.marksInputField {
+  width: 120px;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+}
+
+.marksInputField:focus {
+  outline: none;
+  border-color: #5865f2;
+  box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
+}
+
+.optionsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.optionsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.optionField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.optionLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.optionInput {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+}
+
+.optionInput:focus {
+  outline: none;
+  border-color: #5865f2;
+  box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
+}
+
+.correctAnswerSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.correctAnswerLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  min-width: 120px;
+}
+
+.correctAnswerSelect {
+  min-width: 200px;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  background: white;
+  transition: border-color 0.2s ease;
+}
+
+.correctAnswerSelect:focus {
+  outline: none;
+  border-color: #5865f2;
+  box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
+}
+
+.addQuestionButtonContainer {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.addAnotherQuestionBtn {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addAnotherQuestionBtn:hover {
+  background: #059669;
+}
+
+@media (max-width: 768px) {
+  .formGrid,
+  .descriptionsGrid,
+  .keyPointsGrid,
+  .optionsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fileUpload {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .uploadArea {
+    padding: 2rem 1rem;
+  }
+
+  .manualEntryHeader {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .optionsRow {
+    grid-template-columns: 1fr;
+  }
+
+  .marksSection,
+  .correctAnswerSection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .correctAnswerSelect {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .manualEntryHeader {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+}
+
+
+/* Add this to your AddnewExams.module.css */
+
+.linkedCourseInfo {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #e0f7fa;  /* light teal background */
+  border-left: 4px solid #00796b; /* teal border on left */
+  color: #004d40; /* dark teal text */
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+}
+
+.linkedCourseInfo button {
+  background: transparent;
+  border: none;
+  color: #00796b;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease;
+  border-radius: 3px;
+}
+
+.linkedCourseInfo button:hover {
+  background-color: #b2dfdb; /* lighter teal on hover */
+}

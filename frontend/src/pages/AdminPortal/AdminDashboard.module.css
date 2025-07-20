@@ -1,0 +1,67 @@
+.welcomeSection {
+  margin-bottom: 2rem;
+}
+
+.pageTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+}
+
+.pageSubtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.statsGridTwo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+  gap: 1.5rem;
+}
+
+.statsGridOne {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+  gap: 1.5rem;
+  max-width: 25rem;
+}
+
+@media (max-width: 768px) {
+  .welcomeSection {
+    margin-bottom: 1.5rem;
+  }
+
+  .pageTitle {
+    font-size: 1.5rem;
+  }
+
+  .statsGrid,
+  .statsGridTwo,
+  .statsGridOne {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .pageTitle {
+    font-size: 1.25rem;
+  }
+
+  .pageSubtitle {
+    font-size: 0.875rem;
+  }
+}

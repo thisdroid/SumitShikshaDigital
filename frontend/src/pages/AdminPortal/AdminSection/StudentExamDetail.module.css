@@ -1,0 +1,213 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  min-height: 400px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #10b981, #059669);
+  border-radius: 2px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.table thead {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.table thead th {
+  padding: 1.5rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.table tbody tr {
+  transition: all 0.2s ease-in-out;
+  border-bottom: 1px solid #e5e7eb;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.table tbody tr:hover {
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+.table tbody td {
+  padding: 1.5rem 1.5rem;
+  font-size: 1rem;
+  color: #374151;
+  vertical-align: middle;
+  font-weight: 500;
+  position: relative;
+}
+
+.table tbody td:first-child {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.table tbody td:nth-child(2) {
+  color: #059669;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.table tbody td:nth-child(3) {
+  color: #7c3aed;
+  font-weight: 500;
+}
+
+.table tbody td:nth-child(4) {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+/* Add subtle icons or indicators */
+.table tbody td:nth-child(2)::before {
+  content: "📊";
+  margin-right: 0.5rem;
+}
+
+.table tbody td:nth-child(3)::before {
+  content: "🎯";
+  margin-right: 0.5rem;
+}
+
+.table tbody td:nth-child(4)::before {
+  content: "📅";
+  margin-right: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 8px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .table thead th,
+  .table tbody td {
+    padding: 1rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .table tbody td:nth-child(2) {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem;
+    margin: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+    text-align: left;
+  }
+
+  .table {
+    font-size: 0.8125rem;
+  }
+
+  .table thead th,
+  .table tbody td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.8125rem;
+  }
+
+  .table tbody td:nth-child(2) {
+    font-size: 0.9375rem;
+  }
+
+  /* Stack table on very small screens */
+  .table thead {
+    display: none;
+  }
+
+  .table tbody td {
+    display: block;
+    text-align: right;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0.75rem 1rem;
+  }
+
+  .table tbody td::before {
+    content: attr(data-label) ": ";
+    float: left;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .table tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.5rem;
+  }
+}
+
+/* Loading state styles */
+.container:empty::after {
+  content: "Loading exam details...";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #6b7280;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+/* Error state styles */
+.container[data-error="true"] {
+  border: 2px solid #fecaca;
+  background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
+}
+
+.container[data-error="true"] .title {
+  color: #dc2626;
+}

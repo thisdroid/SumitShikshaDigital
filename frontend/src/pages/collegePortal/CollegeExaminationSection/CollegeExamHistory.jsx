@@ -1,6 +1,7 @@
 "use client";
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedExam, setFilter, setIsDropdownOpen } from '../../../slices/collegeExamHistoryUiSlice';
+import { useEffect, useRef } from 'react';
 import styles from "./CollegeExamHistory.module.css";
 import Header from "../CollegeHeader/CollegeHeaderFile";
 
@@ -9,6 +10,7 @@ const CollegeExamHistory = () => {
   const selectedExam = useSelector((state) => state.collegeExamHistoryUi.selectedExam);
   const filter = useSelector((state) => state.collegeExamHistoryUi.filter);
   const isDropdownOpen = useSelector((state) => state.collegeExamHistoryUi.isDropdownOpen);
+  const popupRef = useRef(null);
 
   // Dummy data for exam history
   const dummyExams = [
@@ -99,6 +101,22 @@ const CollegeExamHistory = () => {
 
   const filteredExams = filterExams(dummyExams);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        dispatch(setSelectedExam(null));
+      }
+    };
+
+    if (selectedExam) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [selectedExam, dispatch]);
+
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.mainContent}>
@@ -147,7 +165,7 @@ const CollegeExamHistory = () => {
         </div>
         {selectedExam && (
           <div className={styles.examDetailsOverlay}>
-            <div className={styles.examDetailsContent}>
+            <div className={styles.examDetailsContent} ref={popupRef}>
               <h2 className={styles.examDetailTitle}>{selectedExam.examName}</h2>
               <p className={styles.examDetailInfo}><strong>Professor:</strong> {selectedExam.professorName}</p>
               <p className={styles.examDetailInfo}><strong>Total Questions:</strong> {selectedExam.totalQuestions}</p>

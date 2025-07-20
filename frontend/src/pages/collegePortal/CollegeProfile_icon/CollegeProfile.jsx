@@ -106,6 +106,17 @@ const CollegeProfile = () => {
               </Link>
             </li>
 
+            <li>
+            <Link to="/CollegeDashboard/YourPlan" className={styles.menuItem} onClick={() => dispatch(setIsOpen(false))}>
+              <svg className={styles.menuIcon} viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-5.46-.46L12 2 8.46 8.78 3 9.24l5.46 4.73L5.82 21z" />
+              </svg>
+              Your Plan
+            </Link>
+          </li>
+
+
+
             <li className={styles.borderTop}>
               <Link to="/GetHelp" className={styles.menuItem} onClick={() => dispatch(setIsOpen(false))}>
                 <span className="material-icons" style={{ marginRight: "0.75rem", fontSize: "20px", color: "#6b7280" }}>

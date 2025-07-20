@@ -129,7 +129,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,7 +137,7 @@
 }
 
 .examDetailsContent {
-  background: white;
+  background: linear-gradient(145deg, #ffffff, #f0f2f5);
   padding: 2rem;
   border-radius: 12px;
   max-width: 80%;
@@ -145,66 +145,94 @@
   max-height: 80vh;
   overflow-y: auto;
   position: relative;
-  margin: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid #eaeaea;
+  margin-left: 16rem;
+}
+
+@media (min-width: 1025px) {
+  .examDetailsContent {
+    margin-left: 16rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .examDetailsContent {
+    margin-left: 0;
+  }
 }
 
 .examDetailTitle {
-  color: #333;
-  margin-bottom: 1rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
   text-align: center;
+  font-size: 2rem;
 }
 
 .examDetailInfo {
-  margin: 0.5rem 0;
+  margin: 0.75rem 0;
   color: #555;
+  font-size: 1.1rem;
+  background: rgba(128, 128, 128, 0.1);
+  padding: 0.5rem;
+  border-radius: 5px;
 }
 
 .questionsTitle {
-  color: #333;
-  margin: 1rem 0 0.5rem 0;
+  color: #2c3e50;
+  margin: 1.5rem 0 1rem 0;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .questionDetails {
   margin-bottom: 1.5rem;
-  padding: 1rem;
-  background: #f8fafc;
+  padding: 1.25rem;
+  background: #ffffff;
   border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #5865f2;
 }
 
 .questionText {
   margin: 0.5rem 0;
-  color: #333;
+  color: #2c3e50;
+  font-size: 1.1rem;
 }
 
 .optionsList {
   list-style-type: none;
   padding: 0;
-  margin: 0.5rem 0;
+  margin: 0.75rem 0;
 }
 
 .optionItem {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #e5e7eb;
-  color: #666;
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+  background: #f8f9fa;
+  border-radius: 4px;
+  color: #333;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .correctAnswer, .questionMarks {
-  margin: 0.5rem 0;
-  color: #444;
+  margin: 0.75rem 0 0.5rem 0;
+  color: #27ae60;
+  font-weight: bold;
 }
 
 .closeButton {
   display: block;
-  margin: 1rem auto;
+  margin: 1.5rem auto 0;
   background: #5865f2;
   color: white;
   border: none;
   padding: 0.75rem 2rem;
   border-radius: 6px;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
 .closeButton:hover {
@@ -222,11 +250,9 @@
   .dashboardContainer {
     flex-direction: column;
   }
-
   .mainContent {
     margin-left: 0;
   }
-
   .statsSection {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
@@ -236,106 +262,85 @@
   .StatsCollege {
     padding: 0.75rem;
   }
-
   .examTitle {
     font-size: 1rem;
   }
-
   .examProfessor, .examConducted {
     font-size: 0.9rem;
   }
 }
-/* Existing CSS remains the same until the last media query */
+
 @media (max-width: 500px) {
   .mainContent {
     margin-left: 0;
     padding: 0.5rem;
   }
-
   .filterOptions {
     padding: 0.5rem;
   }
-
   .dropdownContent {
     min-width: 120px;
     position: fixed;
     width: 80%;
   }
-
   .dropdownItem {
     padding: 0.5rem;
     font-size: 0.8rem;
   }
-
   .contentWrapper {
     padding: 0.5rem;
   }
-
   .statsSection {
     grid-template-columns: 1fr;
     gap: 0.5rem;
     padding: 0.5rem;
   }
-
   .childStats {
     align-items: flex-start;
   }
-
   .StatsCollege {
     padding: 0.5rem;
     align-items: flex-start;
   }
-
   .examTitle {
     font-size: 1rem;
     margin: 0.25rem 0;
   }
-
   .examProfessor, .examConducted {
     font-size: 0.8rem;
     margin: 0.2rem 0;
   }
-
   .examDetailsOverlay {
     padding: 0.5rem;
   }
-
   .examDetailsContent {
     width: 95%;
     padding: 1rem;
     max-width: 100%;
   }
-
   .examDetailTitle {
     font-size: 1.2rem;
   }
-
   .examDetailInfo {
     font-size: 0.9rem;
   }
-
   .questionsTitle {
     font-size: 1.1rem;
   }
-
   .questionDetails {
     padding: 0.75rem;
     margin-bottom: 1rem;
   }
-
   .questionText {
     font-size: 0.9rem;
   }
-
   .optionItem {
     font-size: 0.85rem;
     padding: 0.25rem 0;
   }
-
   .correctAnswer, .questionMarks {
     font-size: 0.85rem;
   }
-
   .closeButton {
     padding: 0.5rem 1.5rem;
     font-size: 0.8rem;

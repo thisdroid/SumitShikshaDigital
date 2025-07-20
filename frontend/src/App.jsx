@@ -37,6 +37,7 @@ import CollegeSecurity from './pages/collegePortal/CollegeProfile_icon/CollegeSe
 import CollegeCreateExam from './pages/collegePortal/CollegeExaminationSection/CollegeCreateExams'
 import CollegeScheduledExams from './pages/collegePortal/CollegeExaminationSection/CollegeScheduledExams'
 import CollegeExamHistory from './pages/collegePortal/CollegeExaminationSection/CollegeExamHistory'
+import SubscriptionPlans from './pages/collegePortal/CollegeProfile_icon/CollegePlan'
 
 
 function App() {
@@ -84,6 +85,7 @@ function App() {
             <Route path="CreateExam" element={<CollegeCreateExam/>}/>
             <Route path="ScheduledExams" element={<CollegeScheduledExams/>}/>
             <Route path="ExamHistory" element={<CollegeExamHistory/>}/>
+            <Route path="YourPlan" element={<SubscriptionPlans/>}/>
             
         </Route>
         
